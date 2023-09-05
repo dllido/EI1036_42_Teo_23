@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>test</title>
+    <script>
+        function capture() {
+            log('capture: ' + this.firstChild.nodeValue.trim())
+        }
+
+        function bubble() {
+            log('bubble: ' + this.firstChild.nodeValue.trim())
+        }
+        function load1() {
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].addEventListener('click', capture, true);
+                divs[i].addEventListener('click', bubble, false);
+            }
+        }
+        function fun1(event) {
+            event.target.style.backgroundColor = "green";
+            event.currentTarget.style.borderColor = "blue";
+        }
+        function fun2(event) {
+            event.target.style.borderColor = "purple";
+            event.currentTarget.style.borderColor = "yelow";
+        }
+        function load() {
+            var divs = document.getElementsByTagName('div');
+            divs[1].addEventListener('dblclick', fun1, true);
+            divs[3].addEventListener('dblclick', fun2, true);
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].addEventListener('click', capture, true);
+                divs[i].addEventListener('click', bubble, false);
+            }
+        }
+        function log(msg) {
+            var node = document.getElementById('log')
+            var x = document.createElement('p');
+            x.innerHTML = '<p>' + msg + '</p>';
+            node.appendChild(x);
+        }
+        document.addEventListener("DOMContentLoaded", load, false);
+    </script>
+    <style>
+        div {
+            border: 1px solid red;
+            padding: 5px;
+            min-height: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>1
+        <div>2
+            <div>3
+                <div>4
+                    <div>5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="log"></section>
+</body>
+</html>

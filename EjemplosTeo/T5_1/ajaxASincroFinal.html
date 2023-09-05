@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>test</title>
+<script type="text/javascript">
+function transferComplete(evt,updateNode) {
+    console.log("The transfer is complete.");
+    updateNode.innerHTML=evt.target.responseText;
+}
+function updateProgress (oEvent) {
+if (oEvent.lengthComputable) {
+    var percentComplete = oEvent.loaded / oEvent.total;
+    console.log("Progress:"+percentComplete);
+} else {// Tamaño total desconocido
+    console.log("Progressing:")
+}
+}
+function transferFailed(evt) {
+    console.log("An error occurred while transferring the file.");
+}
+function transferCanceled(evt) {
+    console.log("The transfer has been canceled by the user.");
+}
+
+var foo = {};
+foo.bar = "new property";
+foo.baz = 3;
+
+var jsonString = JSON.stringify(foo);
+console.log (jsonString);
+//{"bar":"new property","baz":3}
+
+var foo = [];
+foo[0] = "pepe";
+foo[1] = "Jose";
+var jsonString = JSON.stringify(foo);
+console.log (jsonString);
+//["pepe","Jose"]
+
+function replacer(key, value) {
+    if (typeof value == "string") {
+        return undefined;
+    }
+    return value;
+}
+
+var foo = {foundation: "Mozilla", model: "box", week: 45, transport: "car", month: 7};
+var jsonString = JSON.stringify(foo, replacer);
+document.writeln(jsonString);
+//The resulting JSON string is {"week":45,"month":7}.
+
+
+
+function cargaAjax(url_src,updateNode){
+var Ajax1=new XMLHttpRequest();
+Ajax1.addEventListener("progress",updateProgress);
+Ajax1.addEventListener("load", function (event){transferComplete(event,updateNode)})
+         Ajax1.addEventListener("error", transferFailed);
+         Ajax1.addEventListener("abort", transferCanceled);
+         Ajax1.open("GET",url_src);
+         Ajax1.send();
+}
+function detectores()
+{enlace=document.querySelector("nav a");
+enlace.addEventListener("click",function (event)
+         {event.preventDefault();
+         cargaAjax(event.target.getAttribute
+               ("href"),event.target.parentElement);
+         });
+}
+$result= $pdo->prepare("SELECT * FROM usuarios  ");
+$result->execute();
+$datos= $result->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($datos);
+
+$json = '[{"0":"1","id_fruta":"1","1":"Manzana","nombre_fruta":"Manzana","2":"100","cantidad":"100"},{"0":"2","id_fruta":"2","1":"Platano","nombre_fruta":"Platano","2":"167","cantidad":"167"},{"0":"3","id_fruta":"3","1":"Pera","nombre_fruta":"Pera","2":"820","cantidad":"820"}]';
+$array = json_decode($json);
+print_r($_array)
+//OBTENER UN DATO DIRECTAMENTE DEL ARRAY.
+echo $array[0]->nombre_fruta;
+//RECORRER Y RECUPERAR VALORES JSON CON FOREACH.
+foreach($array as $obj){
+            $id_fruta = $obj->id_fruta;
+            $nombre_fruta = $obj->nombre_fruta;
+            $cantidad = $obj->cantidad;
+            echo $id_fruta." ".$nombre_fruta." ".$cantidad;
+}
+<script type="application/javascript">
+function loadJSON()
+{http_request.onreadystatechange  = function(){
+    if (http_request.readyState == 4  )
+    {  var jsonObj = JSON.parse(http_request.responseText);
+        document.getElementById("Name").innerHTML =  jsonObj.name;
+        document.getElementById("Country").innerHTML = jsonObj.country;
+    }
+}
+
+<body>
+<h1>Cricketer Details</h1>
+<table class="src">
+<tr><th>Name</th><th>Country</th></tr>
+<tr><td><div         id="Name">Sachin</div></td>
+<td><div id="Country">India</div></td></tr>
+</table>
+<button type="button" onclick="loadJSON()">Update Details
+var foo = {};
+foo.bar = "new property";
+foo.baz = 3;
+var jsonString = JSON.stringify(foo);
+console.log (jsonString);
+//{"bar":"new property","baz":3}
+var url = "JSONExample3.php createXMLHttpRequest();
+xmlHttp.open("POST", url, true);
+xmlHttp.setRequestHeader("Content-Type", “multipart/form-data”” );
+
+xmlHttp.onreadystatechange = handleStateChange;
+xmlHttp.s
+xmlHttp.send(json);
+
+document.addEventListener("DOMContentLoaded", function (){detectores()});
+</script>
+</head>
+<body>
+<h1>Hola Mundo<h1>
+    <nav> <p><a id="login" href="./form_crud.html"> Acceder </a><p> </nav>
+    </body>
+</html>

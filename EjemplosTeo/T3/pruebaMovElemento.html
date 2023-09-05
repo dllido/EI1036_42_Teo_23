@@ -1,0 +1,148 @@
+<html><head>
+   <meta charset="UTF-8">
+ </head>
+ 
+ <body style="height: 200px" data-new-gr-c-s-check-loaded="14.1080.0" data-gr-ext-installed="">
+ 
+   <p>Drag the ball.</p>
+ 
+   
+ 
+ 
+   <script>
+     ball.onmousedown = function(event) {
+       ball.style.position = 'absolute';
+       ball.style.zIndex = 1000;
+       document.body.appendChild(ball);
+ 
+       moveAt(event.pageX, event.pageY);
+ 
+       function moveAt(pageX, pageY) {
+         ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+         ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+       }
+ 
+       function onMouseMove(event) {
+         moveAt(event.pageX, event.pageY);
+       }
+ 
+       document.addEventListener('mousemove', onMouseMove);
+ 
+       ball.onmouseup = function() {
+         document.removeEventListener('mousemove', onMouseMove);
+         ball.onmouseup = null;
+       };
+ 
+     };
+   </script>
+ 
+ 
+ 
+ <img src="https://js.cx/clipart/ball.svg" style="cursor: pointer; position: absolute; z-index: 1000; left: 3px; top: 80px;" width="40" height="40" id="ball"></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+ 
+ 
+ 
+ <html>
+
+<head>
+
+<script>ball.onmousedown = function(event) {
+   // (1) preparar para mover: hacerlo absoluto y ponerlo sobre todo con el z-index
+   ball.style.position = 'absolute';
+   ball.style.zIndex = 1000;
+ 
+   // quitar cualquier padre actual y moverlo directamente a body
+   // para posicionarlo relativo al body
+   document.body.append(ball);
+ 
+   // centrar la pelota en las coordenadas (pageX, pageY)
+   function moveAt(pageX, pageY) {
+     ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+     ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+   }
+ 
+   // mover nuestra pelota posicionada absolutamente bajo el puntero
+   moveAt(event.pageX, event.pageY);
+ 
+   function onMouseMove(event) {
+     moveAt(event.pageX, event.pageY);
+   }
+ 
+   // (2) mover la pelota con mousemove
+   document.addEventListener('mousemove', onMouseMove);
+ 
+   // (3) soltar la pelota, quitar cualquier manejador de eventos innecesario
+   ball.onmouseup = function() {
+     document.removeEventListener('mousemove', onMouseMove);
+     ball.onmouseup = null;
+   };
+ 
+ };</script>
+
+<style>
+   // That's our limiter, you can adjust the height 
+   .wrapper {
+      overflow: hidden;
+      display: block;
+      width: 100%;
+   }
+
+   // To move our element 
+   .move {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      left: 0;
+      top: 0;
+      background-color: #333;
+   }
+   //https://es.javascript.info/mouse-drag-and-drop
+
+</style>
+</head>
+
+<body>
+
+</body>
+<div clas=" move"> Hola me muevo </div>
+<div class="wrapper"> no me muevo
+   <div class="move"> tal vez si</div>
+</div>
+<script>
+
+   var elem = document.querySelector('.wrapper'),
+      div = document.querySelector('.move'),
+      x = 0,
+      y = 0,
+      mousedown = false;
+
+   // div event mousedown 
+   div.addEventListener('mousedown', function (e) {
+      // mouse state set to true 
+      mousedown = true;
+      // subtract offset 
+      x = div.offsetLeft - e.clientX;
+      y = div.offsetTop - e.clientY;
+   }, true);
+
+   // div event mouseup 
+   div.addEventListener('mouseup', function (e) {
+      // mouse state set to false 
+      mousedown = false;
+   }, true);
+
+   // element mousemove to stop 
+   elem.addEventListener('mousemove', function (e) {
+      // Is mouse pressed 
+      if (mousedown) {
+         // Now we calculate the difference upwards 
+         div.style.left = e.clientX + x + 'px';
+         div.style.top = e.clientY + y + 'px';
+      }
+   }, true);
+
+
+   </script>
+</body>
+
+</html>

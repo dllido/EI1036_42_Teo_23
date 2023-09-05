@@ -1,0 +1,3 @@
+#  listar directorios
+Options +Indexes
+IndexOptions -FancyIndexing

@@ -1,0 +1,158 @@
+.reveal .slides  pre{
+  font-size:1.2em;
+}
+.reveal .slides h1 {
+  font-size: 1.3em; 
+  color: #83a;
+  text-shadow: none;}
+
+.reveal h2 {
+  font-size: 1.3em;color: rgb(70, 67, 228); }
+
+.reveal h3 {
+  font-size: 1.3em; color:  #83a;}
+
+.reveal h4 {
+  font-size: 1.1em; color: rgb(70, 67, 228);}
+.reveal h5 {
+    font-size: 1.1em;  color: #83a;}
+
+ @media print { 
+  html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: hide;
+	}
+	body {
+		background: #fff;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 0 0 0;
+		padding: 0;
+		overflow: hide;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds,
+	.reveal .slide-number {
+		display: none !important;
+	}
+  
+  /* All your print styles go here */
+  #header, #footer, #nav,#customcontrols,.controls,.slide-menu-button { display: none !important; } 
+
+ }
+
+
+ .reveal section {
+   top: 15%;
+   margin: 0  0  0 0;
+   padding: 0  0  0 0;
+ }
+ .reveal img{
+  border:0px;
+  
+   max-width: 750px;
+   max-height: 500px; 
+ }
+
+.reveal .slides h4 img {
+  max-height: 400px; 
+  margin: 0  0  0 0;}
+.reveal section  img.imagen {max-height: 300px; 
+  border:0px;
+  float:right;
+  margin: 0  0  0 0;}
+
+.reveal {
+  margin: 1px;
+  padding: 1px;
+  line-height: 1.2em;
+  font-size:27px;
+  min-height: 1200px;
+}
+
+
+
+/*
+.reveal li{margin-left:5px}
+.reveal table{font-size: 0.5 em;line-height: 0.8em;}
+.reveal .slides > section{margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}
+.reveal ol,
+.reveal dl,
+*/
+.reveal ul {
+  text-align: left;
+  line-height: 1.1em;
+  font-size:1.1em;
+ 
+}
+*/
+.reveal p {  text-align: left;}
+
+.reveal pre {
+  width: auto;
+  font: size 1em;;
+  line-height: 1em;
+  box-shadow:none;
+}
+
+.reveal pre>code.python{
+  font-size:.8em;
+
+  } 
+
+   
+ .reveal pre>code.txt{
+
+  color: black;
+  
+  background:rgba(199, 197, 197, 0.5);
+  }
+
+ .reveal pre>code{
+    overflow: scroll;
+    max-height: 600px;
+    margin: 5px 5px 5px 5px;
+    padding:2px 2px 2px 2px;
+    border:0px;
+    font-size: .8em;
+    line-height: .8em;
+    box-shadow: none;
+    width: 100%;
+
+    }
+
+a { word-wrap: break-word;}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.truncate:hover {
+  white-space: normal;
+  overflow:visible;
+   }
+
+.DescriptionExcerpt {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+p kbd{
+  border-style: solid;
+  border-color: green;
+}

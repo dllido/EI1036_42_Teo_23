@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Hola</title>
+			<script type="text/javascript">
+			
+			
+			function ejecutar_form()
+			{num=document.querySelector("#numero").value;
+				if (null!=num)alert("tabla del:"+num)		
+			}
+			function detectores()
+			{num=document.querySelector("#numero");
+			 num.addEventListener("change",function (event){alert("valorCambiado");});
+				form=document.querySelector("#form_reg");
+				form.addEventListener("submit",function (event) {if (ejecutar_form()==false){event.preventDefault()}});
+			}
+			document.addEventListener("DOMContentLoaded", function (){detectores()});
+			
+				</script>
+			</head>
+<body>
+<ul id="todoItems">
+</ul>
+<h1>Registrar</h1>
+<h2 id="errores"></h2>
+<form method="post" id="form_reg" action="">
+	<p>
+	<label for="Nombre">Nombre: </label>
+	<input
+		type="text"
+		name="Number"
+		id="numero"
+		placeholder="5"
+		pattern="[1-9]{1}"
+		title="Sólo un número del 1 al 9"
+		required >
+		
+			<label for="Enviar">Enviar:</label>
+			</p><p>
+			<input name="Enviar"
+				type="submit"
+			>
+	</form>
+</body>
+</html>

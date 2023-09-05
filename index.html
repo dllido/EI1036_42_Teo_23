@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Temario</title>
+
+	<link rel="stylesheet" href="lola_theme.css">
+	<script>
+
+		function load() {
+			document.querySelectorAll('kbd').forEach(kdb => {
+				kdb.addEventListener('click', e => {
+					alert("has pulsado" + e.target.tagName + " id= " + e.target.id);
+					}		);} 	);}
+
+		document.addEventListener("DOMContentLoaded", load, false);
+	</script>
+</head>
+
+<body>
+	<div>
+		<h1>Temario EI2036_1042</h1>
+
+		<ol>
+
+			<li>
+				<h2><a href="T1.html">Tema1</a></h2>
+			</li>
+			<li>
+				<h2><a href="T2.html">Tema2</a></h2>
+			</li>
+			<li>
+				<h2><a href="T3.html">Tema3</a></h2>
+			</li>
+			<li>
+				<h2><a href="T4.html">Tema4</a></h2>
+			</li>
+			<li>
+				<h2><a href="T5.html">Tema5</a></h2>
+			</li>
+
+		</ol>
+
+		<h1>Herramientas</h1>
+
+		<ul>
+			<li>Impresión Transparencias: URL?print-pdf</li>
+			<li>PHP <a href="https://www.w3schools.com/php/phptryit.asp?filename=tryphp_compiler">
+					https://www.w3schools.com/php/phptryit.asp?filename=tryphp_compiler </a>
+			</li>
+		</ul>
+
+
+
+	</div>
+
+	<p>
+
+		Si va a asistir pulse <kbd id="si">sí</kbd>. Si no, pulse <kbd id="no">no</kbd>
+	</p>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+td {
+  border: 1px solid black;
+}
+thead td {
+  color: purple;
+  text-decoration: bold;
+}
+.button {
+  background-color: THISTLE;
+  border-radius: 9px;
+  color: purple;
+  padding: 0.5em;
+  text-decoration: bold;
+}
+.button:focus,
+.button:hover {
+  background-color: darkblue;
+}

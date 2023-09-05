@@ -1,0 +1,52 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>test</title>
+	<script type="text/javascript">
+		function cargaAjax(src_url, lugar) {
+			let Ajax1 = new XMLHttpRequest();
+			Ajax1.addEventListener('readystatechange', function () {
+				console.log(this.readyState);
+				if (this.readyState === 4) {
+					lugar.innerHTML = Ajax1.responseText;
+					nodoScript = lugar.querySelector("script");
+					if (null != nodoScript) {
+						let myScript = document.createElement('script');
+						myScript.textContent = nodoScript.innerHTML;
+						document.head.appendChild(myScript);
+						(nodoScript.parentNode).removeChild(nodoScript);
+						return true;
+					}
+				}
+			})
+			Ajax1.open("GET", src_url);
+			Ajax1.send();
+			return true;
+		}
+
+		function detectores() {
+			lugar = document.querySelector("#divi");
+			enlace = document.querySelector("nav a");
+			enlace.addEventListener("click", function (event) {
+				if (cargaAjax(event.target.href, lugar) == true) {
+					event.preventDefault()
+				}
+			});
+		}
+		document.addEventListener("DOMContentLoaded", function () {
+			detectores()
+		});
+	</script>
+</head>
+
+<body>
+	<h1>Hola Mundo<h1>
+			<nav>
+				<p><a id="login" href="./closureProblemAsinc.html"> Acceder </a>
+				<p>
+			</nav>
+			<div id="divi"></div>
+</body>
+
+</html>

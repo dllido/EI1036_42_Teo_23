@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hola</title>
+        <script type="text/javascript">
+        //funciona en filezilla;
+ 
+        var ventana=window.open();
+        var father, child;
+        father=ventana.document.querySelector('head');
+        child = document.createElement('title');
+        child.textContent='HTMLDOM';
+        father.appendChild(child);
+        father=ventana.document.querySelector('body');
+        child = document.createElement('h1');
+        father.appendChild(child);
+        child.textContent='Bienvenido ';
+        child = document.createElement('h2');
+        child.innerHTML='Esto es el H2';
+        father.appendChild(child);
+        
+        
+        </script>
+    </head>
+    <body >
+</body>
+</html>

@@ -1,0 +1,829 @@
+# Tema 2: Introducción al PHP
+
+### EI1042 - Tecnologías y Aplicaciones Web
+
+**EI1036- Tecnologías Web para los Sistemas de Información (2022/2023)**
+
+##### Profesorado: Dra. Dolores María Llidó Escrivá
+
+![Derechos Autor](./media/cc2.jpg)
+
+[Universitat Jaume I](https://www.uji.es/).
+
+---
+
+### Índice
+WP
+
+- PHP avanzado
+- Wordpres y PHP
+
+---
+
+### Robots.txt
+
+- Fichero donde indicar el comportamiento que tienen que tener los buscadores y los programas de descargas sobre el servidor.
+
+- Se supone que todos los
+programas de descarga deben
+respetarlo, aunque no siempre es
+así.
+
+- Se utilizan 2 directivas:
+  - User-agent:
+  - Disallow:
+
+**Continua ↓**
+
+--
+
+### Ejemplos:
+
+```txt
+#Para desactivar todas la arañas:
+User-agent: *
+Disallow: /
+
+#Prohibimos que las arañas carguen los directorios /cgi-bin/ y /imágenes/
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /imagenes/
+
+#Prohibimos que emailspider lea cualquier página
+User-agent: emailspider
+Disallow: /
+```
+
+---
+
+## Configuración Servidor apache: 
+- http.conf
+
+- .htaccess (personalizado en directorios)
+
+Más Info:
+- [http://httpd.apache.org/docs/2.2/es/](http://httpd.apache.org/docs/2.2/es/)
+
+- [http://php.net/manual/es/](http://php.net/manual/es/)
+
+```txt
+#.htaccess
+Options +Indexes
+RewriteEngine on
+RewriteBase /Lab2017/T
+RewriteRule pp/(.*)/(.*)$   phpInfo.php?Val1=$1&Val2=$
+
+```
+https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html
+
+**Continua ↓**
+
+--
+
+### Ejemplos .htaccess
+
+```txt
+#  listar directorios
+Options +Indexes
+IndexOptions -FancyIndexing
+```
+
+https://asociacionpiruleta.cloudaccess.host/PHP/T1/
+
+```txt
+# No listar directorios
+Options -Indexes
+```
+
+https://asociacionpiruleta.cloudaccess.host/PHP/
+
+--
+
+##Configuración en apache para URLs  de wordpress
+
+```txt
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+```
+Si existe el fichero o directorio los muestra como otro servidor apache.
+En caso contrario lo intenta cargar con wordpress.
+
+
+---
+
+# 3 PHP avanzado
+##  3.1. Funciones anónimas
+
+Una función anónima no es más que una función que no tiene nombre.
+
+```php
+$saludo = function() {
+    return "Hola que tal";
+};
+
+echo $saludo(),"<p>"; // Devuelve: Hola que tal
+};
+```
+
+```php
+function decir ($algo) {
+    echo $algo();
+}
+
+decir(function(){
+    return "Esto es algo";
+});
+ // Devuelve "Esto es algo".
+```
+
+---
+
+## 3.2. Una clausura o closure
+
+
+Una clausura o closure es una función anónima que captura el ámbito actual, y proporciona acceso a ese ámbito cuando se invoca el closure.
+
+```php
+
+$colorCoche = 'rojo';
+
+$mostrarColor = function() use ($colorCoche) {
+    echo "El color del coche es $colorCoche";
+};
+
+$mostrarColor(); // Mostrará El color del coche es rojo
+```
+
+
+Las clausuras permiten usar variables mediante la palabra use. Estas variables su ámbito es el de la función donde se definen, no son como las variables globales.
+
+--
+
+Si se altera el valor de la variable $colorCoche dentro de la clausura, no afectará a la variable original.
+
+
+```php
+$colorCoche = 'rojo';
+
+$mostrarColor = function() use ($colorCoche) {
+    $colorCoche = 'azul';
+};
+
+$mostrarColor();
+echo $colorCoche; // Mostrará rojo
+```
+
+---
+
+## 3.3. Callback/Calleable/Retrollamadas
+
+
+Un callback es un tipo de funciones que son pasadas como parámetros y que serán ejecutadas desde otra función o clase.
+Generalmente se ejecutan cuando se producen eventos.
+
+Ej: Uso en WordPress:
+
+```php
+function example_callback( $example ) {
+    // Maybe modify $example in some way.
+    return $example;
+}
+add_filter( 'example_filter', 'example_callback' );
+
+```
+
+
+--
+
+
+Como en JavaScript, generalmente se utilizan funciones anónimas como callbacks.
+
+```php
+$saludo = function($nombre)
+{
+    printf("Hola %s\r\n", $nombre);
+};
+
+$saludo('Carlos'); // Devuelve Hola Carlos
+call_user_func($saludo, "PHP"); // Devuelve Hola PHP
+```
+
+---
+
+## 3.4. Sintaxis alternativa de estructuras de control¶
+
+
+
+
+ PHP ofrece sintaxis alternativa para : if, while, for, foreach, y switch.
+
+ En cada caso, la forma básica de la sintaxis alternativa es cambiar la llave de apertura por dos puntos (:) y la llave de cierre por endif;, endwhile;, endfor;, endforeach;, o endswitch;, respectivamente.
+
+
+```php
+<?php if ( is_user_logged_in() ) {
+     echo "CUIDADO estas Logueado ok?";
+} else {
+     echo "CUIDADO NO Estas logeado.";
+}?>
+```
+
+Solución:
+
+```php
+<?php if (is_user_logged_in()): ?>
+   <h1> CUIDADO Estas logeado ok? </h1>
+<?php else:?>
+   <h1> CUIDADO NO Estas logeado. </h1>
+<?php endif; ?>
+?>
+```
+
+---
+
+# 4. WP en PHP
+
+¿Cómo se añaden funciones propias en WP?
+- Creando en las plantillas las funciones: ```Code Snippets```.
+- Creando un ```pluggin```.
+- Añadir código personalizado a WordPress (en ```functions.php```).
+
+---
+
+## 4.1 Ejemplo shortcode
+
+En una página  poner el shortcode [gracias], se sustituirá por el valor de la función si definimos y registramos la función que queremos que se ejecute.
+
+Ejemplo:
+```
+function shortcode_gracias() {
+        return '<p>¡Gracias por leer mi blog!, si te gustó suscríbete al feed RSS</p>';
+    }
+add_shortcode('gracias','shortcode_gracias');
+```
+
+
+---
+
+
+## 4.2. Etiquetas de plantilla (tags)
+
+Son funciones PHP para incluir fácilmente archivos de plantilla  desde el tema en otro archivo o para mostrar información de la base de datos.
+
+Etiquetas de plantilla para cargar plantillas:
+
+ | WP                | PHP                       |
+ | ----------------- | ------------------------- |
+ | get_header()      | include('header.php')     |
+ | get_sidebar()     | include('sidebar.php')    |
+ | get_footer()      | include('footer.php')     |
+ | get_search_form() | include('searchform.php') |
+
+Ventaja:  podemos personalizar que código cargando bien la plantilla por defecto u otra personalizada.
+
+
+--
+
+## Cuestiones:
+
+  
+*  Problema 1: ¿Cómo cargar la cabezera del fichero ```header-custom.php``` en un tema?
+
+Solución Problema1 ```<?php get_header('custom'); ?>```
+
+Cargará el fichero header-custom.php en lugar de header.php
+
+* Problema 2: Mostrar el pie de página en la página principal, pero no en ninguna otra página tipo blog
+
+Solución Problema 2: agrega  ```get_footer()``` al final de index.php, pero no en page.php.
+
+¿Por qué?
+
+--
+
+Etiquetas de plantilla para mostrar información de la base de datos:
+
+- bloginfo() - muestra el nombre del sitio web según se define en el Panel de control del administrador
+- single_post_title() – muestra el título de la publicación vista actualmente cuando se utiliza en single.php
+- the_author() – muestra el autor del mensaje visto en ese momento
+- the_content() – muestra el texto principal de una publicación o página
+- the_excerpt() – el extracto de la publicación o página
+
+---
+
+## 4.3.  Las etiquetas condicionales
+
+ ```Etiquetas condicionales ``` o conditional tags, son funciones que permiten  determinar en qué circunstancias/condiciones deben incluirse ciertas  funcionalidades  en las plantillas.
+
+Debe ocurrir algo solo si:
+
+- is_home() está en la página principal configurada
+- is_front_page() está en la pàgina front_page.php
+- is_single('excursion-a-piedramillera') está la entrada denominada “Excursión a Piedramillera”;
+- in_category('sesion-1') está  la entrada de la categoría “Sesión 1”.
+
+--
+
+Ejemplo.
+
+```
+<?php
+if ( is_admin() ) { // Chequea si el panel del dash_board se está intentando mostrar.
+    // la url tiene algo como http://www.example.com/wp-admin/
+    // we are in admin mode
+    require_once( dirname( __FILE__ ) . '/admin/plugin-name-admin.php' );
+}
+
+if(current_user_can('administrator') ) {print "Administrador";}
+//comprueba si es usuario administrador.
+```
+
+
+---
+
+## 4.4. Ganchos
+
+Los Ganchos de WordPress interactúan con código del núcleo de WP .
+
+Hay dos tipos diferentes de ganchos:
+- Ganchos de acción (para agregar / quitar funciones).
+- Ganchos de filtro (Para modificar datos producidos por funciones).
+
+```PHP
+add_action( 'user_register', 'crf_user_register' );
+add_filter( 'autentificarClientes', 'myplugin_auth_signon', 30, 3 );
+```
+
+Las funciones que conectamos a un gancho son  «callbacks».
+
+---
+
+### 4.4.1 Ganchos de acción (hooks)
+Los hooks de acción son disparadas cuando pasa algo, como que se cargue la página, se  inicie una sesión, etc.
+
+Estos se definen en el plugin API de Wordpress: https://codex.wordpress.org/Plugin_API
+
+- Los ganchos de acción son funciones que tienen generalmente funciones asociadas a ellas.
+- Algunos ganchos existen para su uso por plugins, no tienen funciones conectadas de forma predeterminada.
+- Los ganchos de acción permiten que los complementos conecten sus propias funciones y que se ejecuten en varios puntos de la carga de una página.
+
+
+
+
+--
+
+Ejemplo Hook predefinido:
+
+```
+####
+function wp_head() {
+    /**
+     * Prints scripts or data in the head tag on the front end.
+     *
+     * @since 1.5.0
+     */
+    do_action( 'wp_head' );
+}
+####
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+
+<?php wp_head(); ?>
+</head>
+```
+
+- do_action( 'wp_head' ) es un gancho predefinido en *default-filters.php*, que se carga con la función  wp_head().
+
+```
+/*default-filters.php*/
+add_action( 'wp_head', 'rest_output_link_wp_head', 10, 0 );
+```
+
+Plugin API/Action Reference.
+https://codex.wordpress.org/Plugin_API/Action_Reference
+
+--
+
+#### Definir función action hook
+
+- Para asociar nuestras propias funciones a ganchos de acción, debemos usar ***add_action***.
+
+Definimos que nuestra función compass_smallprint, y queremos que se ejecute cada vez que se llame a la acción  con una prioridad de 20.
+
+```php
+add_action( 'compass_in_footer', 'compass_smallprint', 20 );
+```
+
+- Para llamar a la acción se utiliza ***do_action()***
+
+```php
+do_action( 'compass_in_footer' );
+```
+
+
+--
+
+### Asociar funciones a un Action Hook
+* Se puede asociar a una acción más de una función, de forma que se ejecutará primero la de **menos** prioridad. Si no se indica la prioridad por defecto es 10.
+
+```php
+add_action( 'compass_in_footer', 'compass_colophon' );
+add_action( 'compass_in_footer', 'compass_smallprint', 20 );
+do_action( 'compass_in_footer' );
+
+```
+--
+
+CUESTIONES:
+
+- ¿que función se ejecuta antes en el ejemplo anterior?
+- ¿Por que no llamar directamente  a las funciones?
+
+
+
+ Solución: ¿Por que no llamar directamente a las funciones?
+
+* Puedes enlazar más de una funcion para la misma acción
+* Puedes fijar la prioridad para que ellos se ejecuten en el orden deseado
+
+--
+
+#### Borrado funciones action hook
+- Podemos borrar nuestras funciones  con
+
+```remove_action( 'compass_in_footer', 'compass_smallprint', 20 );```
+
+- O todas las funciones  con:
+
+```remove_all_actions( 'compass_in_footer' );```
+
+---
+
+### 4.4.2 Ganchos de filtro
+
+Útil si tienes opciones por defecto en tu tema o plugin que quieras sobreescribir, o si estas creando un tema padre que puede tener elementos sobreescritos de  un tema hijo.
+
+- Una función de filtro te permite modificar los datos resultantes que son devueltos por funciones ya existentes y deben estar enganchados a los ganchos de filtro.
+- Adición de filtros mediante ```add_filter()```
+- Ejecución del gancho de filtro con ```apply_filters()```
+
+
+--
+
+#### apply_filters
+```apply_filters( string $tag, mixed $value )```
+* Es la función que se encarga de ejecutar los ganchos.
+* tiene tres parámetros : el nombre del hook de filtro, el valor que quieres filtrar, y variables opcionales las cuales se pasan al callback del filtro.
+
+- Lista completa de los ganchos de filtro: https://codex.wordpress.org/Plugin_API/Filter_Reference
+
+
+--
+
+#### add_filter()
+
+``` add_filter($tag, $function_to_add, $priority = 10,$accepted_args = 1 )```
+
+* Función que permite añadir funciones de filtro:
+* Es un callback con 4 parámetros:
+    - $tag puede ser cualquier gangho de WP.
+    - $function_to_add la funcion del callback que se ejecuta al activar el gancho.
+    -  $priority Prioridad.
+    - $accepted_args Número de argumentos de la $function_to_add
+
+--
+
+#### Ejemplo filter hook :
+
+Para filtrar el contenido de cualquier post quitando dobles espacios
+
+```PHP
+add_filter("the_content", "mfp_Fix_Text_Spacing");
+
+// Automatically correct double spaces from any post
+function mfp_Fix_Text_Spacing($the_Post)
+{
+ $the_New_Post = str_replace(" ", " ", $the_Post);
+ return $the_New_Post;
+}
+apply_filters( 'the_content', string $content )
+```
+
+
+
+---
+
+## 4.5 Widget
+
+- Los widgets, son bloques  que permiten añadir a todas las páginas del portal en una determinada posición distintos elementos: iconos de redes sociales, listado de entradas más vistas en el blog, categorías del sitio web, contacto…
+- El widget es  un bloque de código php  se debe registrar (register_widget('name'))en el WP para que un filtro de acción ('widgets_init') lo inicialice para poder utilizar en un tema.
+
+
+```php
+function wpl_load_widget() {
+    register_widget( 'wpl_widget' );
+}
+add_action( 'widgets_init', 'wpl_load_widget' );
+```
+
+(https://www.axarnet.es/blog/como-crear-un-widget-en-wordpress/)
+
+
+--
+
+## Ejemplo para añadir un widget
+
+```
+class wpl_widget extends WP_Widget {
+    function __construct() { // Constructor del Widget.
+        $widget_ops = array(
+            'classname' => 'my_widget',
+            'description' => 'My Widget is awesome',
+        );
+        parent::__construct( 'wpl_widget', 'Wpl Widget', $widget_ops );
+    }
+    function widget($args,$instance){// Contenido del Widget que se mostrará donde posicionamos el widget
+    }
+    function update($new_instance, $old_instance){ // Función de guardado de opciones del formulario
+    }
+    function form($instance){// Formulario de opciones del Widget, aparece al añadir el Widget a una Sidebar
+    }
+}
+```
+
+
+---
+
+## 4.6. Anatomía de un tema
+<img src="https://getflywheel.com/wp-content/uploads/2015/06/Anatomy-of-a-WordPress-Theme.png">
+
+- https://getflywheel.com/wp-content/uploads/2015/06/Anatomy-of-a-WordPress-Theme.png
+
+
+
+Lectura:https://code.tutsplus.com/es/articles/wordpress-actions-and-filters-whats-the-difference--cms-25700
+
+--
+## Listado ficheros
+
+<img  class="flotante" src="./media/T4/template.png" style="float:right;height:70%;"/>
+
+HomePage:
+
+- blog: index.php
+- static web:  front-page.php  - o - home.php - o-  page.php
+
+Más información :
+https://yoast.com/wordpress-theme-anatomy/
+
+--
+
+### Listado Ficheros Template
+
+- **index.php**: Plantilla  página de inicio del site. *OBLIGATORIO*.
+- **style.css**: fichero CSS principal.
+- **header.php**: Plantilla cabecera común. Todo lo que contiene la etiqueta  <head> o el menú de navegación principal.
+- **footer.php**:  Plantilla del pie de página (por ejemplo el copyright o los enlaces a la información legal).
+- **sidebar.php**: Plantilla   de una barra lateral (sobre todo cuando se trata de un blog).
+- **front-page.php**: Plantilla de la página de inicio del blog. Está especialmente pensada para que sea un listado de entradas, es decir, la portada de un blog.
+- **home.php**: Plantilla por defecto de inicio si se ha seleccionado que la página de inicio es ```página estática```, o sea un portal web.
+
+--
+
+- **single.php**:Plantilla que muestra una entrada completa por defecto.
+- **page.php**:  mostrará por defecto cualquier página que creemos.
+- **category.php**: Sirve para mostrar un listado de posts de una categoría específica.
+- **comments.php**: Es la plantilla a la que llamaremos dentro de single.php para poder añadir los comentarios a nuestros posts.
+- **search.php**: Esta plantilla nos permite  realizar   búsquedas en el site.
+- **404.php**: Plantilla que se mostrará cuando un enlace esté roto o no funcione.
+- **functions.php**: Permite crear zonas de menú y de widgets, así como personalizar algunos parámetros que WordPress trae por defecto.
+
+
+---
+
+### 4.6.1 CHILD THEMES
+
+- Los temas secundarios (child themes) son la forma en que los diseñadores y desarrolladores pueden realizar pequeños ajustes a páginas específicas de un sitio sin tener que crear un tema completo para ellos.
+
+- El tema hijo se pone en el directorio *Themes* con el nombre del tema padre seguido de -child.
+- Debe tener 3 ficheros: index.php (copiar el del padre),  style.css y screenshot.png (imagen del fondo de nuestro tema)
+
+
+Ejemplo: *twentyseventeen-child*:
+
+
+--
+
+Ejemplo  style.css
+
+```
+Theme URI:    http://example.com/twenty-seventeen-child/
+ Description:  Twenty Seventeen Child Theme
+ Author:       John Doe
+ Author URI:   http://example.com
+ Template:     twentyseventeen
+ Version:      1.0.2
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         one-column, two-columns, right-sidebar, flexible-header,custom-menu,
+                accessibility-ready, custom-colors, custom-header,  translation-ready
+                custom-logo, editor-style, featured-images, footer-widgets, post-formats,
+                rtl-language-support, sticky-post, theme-options, threaded-comments,
+ Text Domain:  twenty-seventeen-child
+ */
+/* -----Aquí empieza la personalización de tu tema-- */
+```
+
+- Revisar la referencia a la plantilla padre en "template"
+
+
+--
+
+### 4.6.2 The WordPress template hierarchy
+
+
+ WP busca los archivos de plantilla en el siguiente orden:
+
+- **Plantilla de página:** : plantilla personalizada asignada, WordPress busca ese archivo y, si lo encuentra, lo usa.
+- **page-{slug} .php:**:  plantilla especializada que contiene el slug (babosa) de la página, o sea el nombre del recurso.
+- **page-{id} .php:**: plantilla especializada que incluye el id de la página.
+- **page.php:**:  plantilla de página predeterminada del tema.
+- **singular.php:**:  plantilla para una sola publicación.
+- **index.php:**:  archivo de índice del tema para representar páginas.
+
+--
+
+
+
+https://wphierarchy.com/
+
+
+![Template](./media/T4/wp-hierarchy.png)
+
+**Ampliar ↓**
+
+--
+
+Según la jerarquia de WP:
+
+- Primero se busca  el fichero en el tema hijo.
+- Luego se busca en el tema padre por defecto.
+
+
+Ejemplo: Página del usuario con el rol  autor, "david" que tenga una identificación numérica de 3.
+
+¿Existe el archivo author-david.php en el tema secundario? No…
+
+¿Existe el archivo author-david.php en el tema principal? No…
+
+¿Existe el archivo author-3.php en el tema secundario? No…
+
+¿Existe el archivo author-3.php en el tema principal? No…
+
+¿Existe el archivo author.php en el tema secundario? ¡Sí!
+
+--
+
+###  Cuestión: ¿Cómo se genera la página principal HTML en WP?
+
+-  index.php/home.php/front-page.php
+cargarán todas las otras plantillas de las distintas secciones con las distintas etiquetas de plantilla. (get_header(), get_sidebar(), get_footer(), etc.)
+- Si el usuario está autentificado, se carga además una cabecera con el menú del rol del usuario.
+
+--
+
+## Cuestiones en casa
+
+- ¿Qué página se carga en WP al llamar a http://portal.--.es/
+- Indica que gancho carga:
+  - ¿Y las noticias/entradas?
+  - ¿Y la página Participa?
+-- Mirando functions.php por que nuestro tema tiene solo 3 sidebars donde poner los widgets?
+
+---
+
+## 4.7. Plugins
+
+Los plugins se añaden al portal desde el Dashboard mediante un fichero zip con el nombre "plugin-name.zip"  o desde un repositorio.
+
+Según el esqueleto del ***boilerplate*** (http://wppb.io/) creado a partir de la documentación de Wordpress y  de la Worpress API el sistema de ficheros de un plugin es :
+```
+/plugin-name
+     plugin-name.php
+     uninstall.php
+     readme.md
+     /languages
+     /includes
+     /admin
+          /js
+          /css
+          /images
+     /public
+          /js
+          /css
+          /images
+```
+**Ampliar ↓**
+
+--
+
+Directorios:
+- admin, para código PHP con funcionalidad de back-end
+- css, para almacenar nuestras hojas de estilos
+- includes, para código PHP auxiliar
+- js, para código JavaSript
+- languages, para la internacionalización de nuestro plugins
+- public, para código PHP con funcionalidad de front-end
+
+--
+
+Ficheros:
+- plugin-name.php, que es el fichero principal de nuestro plugin,
+- uninstall.php que se ejecutará cuando un usuario borre nuestro plugin para realizar acciones de limpieza en BBDD.
+- README.md
+- CHANGELOG.md
+
+--
+
+Lectura Individual
+https://www.cssigniter.com/use-custom-theme-plugin-wordpress-site-customizations/
+
+
+- ¿Conclusiones?
+- ¿Cuándo es conveniente utilizar un plugin o un child-theme?
+
+
+---
+
+
+# 4.8 Interacción C/S WP: Cache
+
+https://wpengine.com/support/cookies-and-php-sessions/
+
+
+![Image of La World Wide Web](./media/T4/uncached_workflow.png)
+
+¿qué pasa con las sesiones la 2 vez?
+¿Y con las cookies?
+
+
+
+--
+
+No hay interacción con PHP.
+
+![Image of La World Wide Web](./media/T4/cached_workflow.png)
+
+JavaScript permite visualizar las cookies.
+
+¿Y el objeto SESSION PHP?
+
+
+
+
+---
+
+## 4.9 SESIONES
+
+- Por defecto, WordPress no le dará la posibilidad de recuperar datos de los usuarios para mejorar su experiencia de usuario.
+- El propio WordPress no retiene sesiones, pero si algunos plugins o temas una vez que probablemente se activan.
+- WordPress  no utiliza sesiones PHP nativas. En cambio, depende en gran medida de las cookies para la autenticación y almacena cualquier información adicional sobre una sesión autenticada en la base de datos.
+
+https://slicejack.com/building-custom-wordpress-login-page/
+
+
+
+
+
+
+
+---
+
+## Bibliografia
+
+- PHP: [http://es.php.net/manual/es/](http://es.php.net/manual/es/)
+- Guia Estilos: https://www.php-fig.org/psr/psr-2/
+- Apache: [http://httpd.apache.org/docs/2.3/es/](http://httpd.apache.org/docs/2.3/es/)
+- Callbacks: https://diego.com.es/funciones-anonimas-y-clausuras-en-php
+
+- https://visual.ly/community/infographic/computers/wordpress-theme-anatomy
+
+- https://kinsta.com/es/blog/seguridad-wordpress/
+
+- https://elibro.net/es/ereader/uji/106387?as_edition_year=2019,2020&as_edition_year_op=range&as_all=web&as_all_op=unaccent__icontains&prev=as&page=108
+
+
+---
+
+## ¿Dudas?
+
+  ![Image de Dudas](./media/image8.png)
+

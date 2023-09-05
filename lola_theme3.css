@@ -1,0 +1,57 @@
+@media screen and (max-width: 900px), (max-height: 600px) {
+   .reveal .slides {
+       font-size: 0.82em;
+       padding: 10px 0;
+   }
+ }
+ 
+ @media screen and (max-width: 700px), (max-height: 400px) {
+   .reveal .slides {
+       font-size: 0.66em;
+       padding: 10px 0;
+   }
+ }r
+ .reveal .slides>section, .reveal .slides>section>section {
+    padding: 10px 0; 
+ }
+ .reveal .progress {
+   height: 35px;
+ } 
+ /**
+  *Mis fuentes más pequeñas*/
+  .reveal .slide-number {
+    right:50%;
+    bottom: 60px;
+  }
+  element.style{top :10px;}
+ 
+  .reveal #title-footer {
+   opacity: 1;
+   transition: opacity 800ms ease-in-out;
+   position: fixed;
+   height: 3.5vh;
+   z-index: 20;
+   font-size: 1vh;
+   text-align: center;
+   letter-spacing: 0em;
+   padding-top: 0.5vh;
+   padding-bottom: 0.5vh;
+ }
+  @media print { 
+   /* All your print styles go here */
+   #header, #footer, #nav { display: none !important; } 
+  }
+  .reveal section  img {max-height: 530px; 
+   margin: 0  0  0 0;}
+ .reveal section  img.imagen {max-height: 300px; 
+   float:right;
+   margin: 0  0  0 0;}
+ 
+ .reveal {
+   font-size: 27px;
+   margin: 5px;
+   padding: 5px;
+   line-height: 1.3;
+   width: auto;
+ }
+ .content-box { columns: 2 auto; }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Hola</title>
+			<script type="text/javascript">
+				function validar() {
+					var r='true';
+					var inputs = document.forms[0].getElementsByTagName('input');
+					for(var i = 0; i < inputs.length; i++) {
+						if (inputs[i].getAttribute('type')=='text' && inputs[i].value.length<4){
+							document.querySelector("#errores").textContent="Escriba por lo menos 4 caracteres en el campo "+inputs[i].getAttribute('name');
+							inputs[i].focus();
+							return(false);
+						} }
+					return(r);
+				}
+			
+			
+			function detectores()
+			{form=document.querySelector("#form_reg");
+				form.addEventListener("submit",function (event) {if (validar()==false){event.preventDefault()}});
+			}
+			document.addEventListener("DOMContentLoaded", function (){detectores()});
+			
+				</script>
+			</head>
+<body>
+<ul id="todoItems">
+</ul>
+<h1>Registrar</h1>
+<h2 id="errores"></h2>
+<form method="post" id="form_reg" action="home.html">
+	<p>
+	<label for="Nombre">Nombre: </label>
+	<input
+		type="text"
+		name="Nombre"
+		placeholder="Maria"
+		pattern="[a-zA-Z]{3,15}"
+		title="Sólo letras"
+		required >
+		</p><p>
+		<label for="Apellido">Apellido:</label>
+		<input
+			type="text"
+			name="Apellido"
+			placeholder="Gonzalez"
+			pattern="[a-zA-Z]{3,15}"
+			title="Sólo letras">
+			</p><p>
+			<label for="Correo:">Correo: </label>
+			<input
+				type="email"
+				name="Correo"
+				placeholder="alxxx@uji.es"
+				title="Correo"
+				>
+			</p><p>
+			<label for="Enviar">Enviar:</label>
+			</p><p>
+			<input name="Enviar"
+				type="submit"
+			>
+	</form>
+</body>
+</html>

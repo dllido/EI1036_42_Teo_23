@@ -1,0 +1,5 @@
+#./htaccess
+AuthType Basic
+AuthName "Password Required"
+AuthUserFile /public_html/teoria/T1/Auth/users.htpasswd
+Require  valid-user

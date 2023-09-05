@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>Web page parsing</title>
+    <script>
+        function geoFindMe() {
+            frame = document.getElementById("mapa");
+            output=document.createElement('p');
+            
+            output.innerHTML='Geolocation is not supported by your browser';
+            padre=frame.parentNode
+            padre.insertBefore(output,frame);
+        
+           if (!navigator.geolocation){
+               
+                output.contentText('Geolocation is not supported by your browser');
+               
+                return;
+            }
+            
+            function success(position) {
+                var latitude  = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                output=document.createElement('p');
+                
+                output.innerHTML= '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+                frame.parentNode.insertBefore(output,frame);
+                output=document.createElement('img');
+                output.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," +longitude + "&zoom=13&size=300x300&sensor=false";
+                padre.insertBefore(output,frame);
+                padre.removeChild(frame);
+                
+                frame.src = "https://www.google.es/maps/dir//" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false&output=embed";
+                
+            };
+            
+            function error() {
+                output.contentText = "Unable to retrieve your location";
+            };
+            
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+    
+        function detectores()
+    {geoFindMe ()}
+    document.addEventListener("DOMContentLoaded", function (){detectores()});
+    </script>
+    
+</head>
+<body>
+    <div>
+        <h1>Web page parsing</h1>
+        <p>This is an example Web page.</p>
+    </div>
+    <iframe  id= "mapa" width="400" height="215" frameborder="0"
+        scrolling="no" marginheight="0" marginwidth="0"
+        src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=buenos+aires&amp;sll=37.0625,-95.677068&amp;sspn=38.638819,80.859375&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Buenos+Aires,+Argentina&amp;z=11&amp;ll=-34.603723,-58.381593&amp;output=embed"></iframe>
+        <p><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=es-419&amp;geocode=&amp;q=buenos+aires&amp;sll=37.0625,-95.677068&amp;sspn=38.638819,80.859375&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Buenos+Aires,+Argentina&amp;z=11&amp;ll=-34.603723,-58.381593"
+            style="color:#0000FF;text-align:left">See bigger map</a>
+        </p>
+        <iframe width="400" height="215" frameborder="1"
+            scrolling="no" marginheight="0" marginwidth="0"
+            src="./webJs.html"></iframe>
+            
+</body>
+</html>

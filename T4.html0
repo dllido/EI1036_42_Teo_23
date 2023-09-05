@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>EI1036_42: Teoría T4</title>
+   <meta name="author" content="Dolores Maria Llidó Escrivá">
+  <link rel="icon" type="image/ico" href="./media/favicon.ico">
+   <link rel="stylesheet" href="dist/reset.css">
+   <link rel="stylesheet" href="dist/reveal.css">
+   <link rel="stylesheet" href="dist/theme/sky.css" id="theme">
+
+   <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+   <link rel="stylesheet" href="plugin/menu/menu.css" id="highlight-theme">
+   <!--link rel="stylesheet" href="plugin/menu/reveal.js-menu/bower.json" id="highlight-theme"-->
+   
+   <link rel="stylesheet" href="lola_theme0.css">
+
+
+
+</head>
+
+<body>
+
+   <div class="reveal">
+
+      <div class="slides">
+
+         <!-- Use external markdown resource, separate slides by three newlines; vertical slides by two newlines -->
+         <section data-markdown="./EI1036_42_T4.md" data-markdown data-separator="^\n---\n$"
+            data-separator-vertical="^\n--\n$"></section>
+
+      </div>
+   </div>
+
+   <script src="plugin/notes/notes.js"></script>
+   <script src="plugin/markdown/markdown.js"></script>
+   <script src="plugin/highlight/highlight.js"></script>
+   <script src="plugin/menu/menu.js"></script>
+   <script src="plugin/zoom/zoom.js"></script>
+   <script src="dist/reveal.js"></script>
+   <script>
+
+      Reveal.initialize({
+         slideNumber: 'c/t' ,
+         // Learn about plugins: https://revealjs.com/plugins/
+         plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu, RevealZoom],
+
+      });
+   </script>
+   
+   <script>
+      //AÑADIR TITULO BARRA PROGRESS
+      Reveal.on('ready', event => {
+         var titPres= document.createElement('aside')
+         titPres.appendChild(document.createTextNode(document.title))
+         titPres.className="titPres"
+         
+         //var parentN = document.querySelector('div.slide-number')
+         //parentN.insertBefore(document.createTextNode(document.title), parentN.firstChild)
+         document.body.appendChild(titPres)
+      });
+
+
+   </script>
+
+</body>
+
+</html>

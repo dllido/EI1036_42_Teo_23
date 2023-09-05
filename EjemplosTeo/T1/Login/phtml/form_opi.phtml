@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ACCE - Opiniones de tiendas</title>
+	<link rel="stylesheet" href="../css/estilo.css" type="text/css">
+	<link rel="stylesheet" href="../css/formulario.css" type="text/css">
+</head>
+<html>
+	<body>
+		<div id="contenedor">
+			<form>
+				<fieldset>
+					<legend>Datos de usuario</legend>
+					<div class="pregunta">
+						Usuario: <input class="campo" type="email" name="email-usuario" placeholder="tu email..." />
+					</div>
+					<div class="pregunta">
+						Contraseña: <input class="campo" type="password" name="pass" />
+					</div>
+					<button class="boton">Acceder</button>
+				</fieldset>
+				<fieldset>
+					<legend>Datos de la compra</h2></legend>
+					<div class="pregunta">
+						Tienda: <input class="campo" list="tiendas" required />
+						<datalist id="tiendas">
+						<option value="Amazon"></option>
+						<option value="Privalia"></option>
+						<option value="Zalando"></option>
+						</datalist>
+					</div>
+					<div class="pregunta">
+						Fecha de compra: <input class="campo" type="date" name="fecha-compra" value="2014-09-18" min="2014-06-18" max="2014-09-18" />
+					</div>
+					<div class="pregunta">
+						Artículo adquirido: <input class="campo" type="text" name="articulo" />
+					</div>
+					<div class="pregunta">
+						Importe: <input class="campo" type="number" name="importe" min="0" />
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Valoración</legend>
+					<div class="pregunta">
+						Tiempo de entrega:
+						<div class="botonradio">
+							<input name="tiempo-entrega" type="radio" value="1" />Más de 5 días
+						</div>
+						<div class="botonradio">
+							<input name="tiempo-entrega" type="radio" value="2" checked />3 a 5 días
+						</div>
+						<div class="botonradio">
+							<input name="tiempo-entrega" type="radio" value="3" />24/48 horas
+						</div>
+						<div class="botoncheck">
+							<input name="atiempo" type="checkbox" checked />El paquete llegó a tiempo
+						</div>
+					</div>
+					<div class="pregunta">
+						Embalaje:
+						<div class="botonradio">
+							<input name="embalaje" type="radio" value="1" />Insuficiente
+						</div>
+						<div class="botonradio">
+							<input name="embalaje" type="radio" value="2" checked />Bueno
+						</div>
+						<div class="botonradio">
+							<input name="embalaje" type="radio" value="3" />Excelente
+						</div>
+					</div>
+					<div class="pregunta">
+						Relación calidad precio:
+						<div class="botondesliz">
+							Mala
+							<input name="relacion" type="range" value="2" min="0" max="4" list="0a4" />
+							Buena
+							<datalist id="0a4">
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							</datalist>
+						</div>
+					</div>
+					<div class="pregunta">
+						Atención al cliente:
+						<div class="botondesliz">
+							Mala
+							<input name="atencion" type="range" value="2" min="0" max="4" list="0a4" />
+							Buena
+						</div>
+					</div>
+					<textarea name="comentarios" rows="4" cols="80" placeholder="Escribe aquí otros comentarios que quieras compartir..."></textarea>
+				</fieldset>
+				<input class="boton" type="submit" />
+				<input class="boton" type="reset" />
+				
+			</form>
+		</div>
+	</body>
+</html>

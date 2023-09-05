@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Hola</title>
+			<script type="text/javascript">
+			
+			
+			
+				</script>
+			</head>
+<body>
+<ul id="todoItems">
+</ul>
+<h1>Registrar</h1>
+<h2 id="errores"></h2>
+<form class="fom_usuario" action="?action=my_datos&proceso=registrar" method="POST">
+	<label for="clienteMail">Tu correo</label>
+	<br/>
+	<input type="text" name="clienteMail"  size="20" maxlength="25" value="<?php print $userID?> "
+	readonly />
+	<br/>
+	<legend>Datos básicos</legend>
+	<label for="nombre">Nombre</label>
+	<br/>
+	<input type="text" name="userName" class="item_requerid" size="20" maxlength="25" value="<?php print $userName ?>"
+	placeholder="Miguel Cervantes" />
+	<br/>
+	<label for="email">Email</label>
+	<br/>
+	<input type="text" name="email" class="item_requerid" size="20" maxlength="25" value="<?php print $email ?>"
+	placeholder="kiko@ic.es" />
+	<br/>
+	<label for=foto>Foto</label>
+	<br/>
+	<input type="file" name="foto" class="item_requerid" />
+	<br/>
+	<input type="submit" value="Enviar">
+	<input type="reset" value="Deshacer">
+</form>
+</body>
+</html>

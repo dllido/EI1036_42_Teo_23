@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tema 2&colon;   Introducci&oacute;n al PHP</title>
+        <style>
+/* From extension vscode.markdown-math */
+@font-face{font-family:KaTeX_AMS;src:url(fonts/KaTeX_AMS-Regular.woff2) format("woff2"),url(fonts/KaTeX_AMS-Regular.woff) format("woff"),url(fonts/KaTeX_AMS-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Caligraphic;src:url(fonts/KaTeX_Caligraphic-Bold.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Bold.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Caligraphic;src:url(fonts/KaTeX_Caligraphic-Regular.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Regular.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Fraktur;src:url(fonts/KaTeX_Fraktur-Bold.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Bold.woff) format("woff"),url(fonts/KaTeX_Fraktur-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Fraktur;src:url(fonts/KaTeX_Fraktur-Regular.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Regular.woff) format("woff"),url(fonts/KaTeX_Fraktur-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Bold.woff2) format("woff2"),url(fonts/KaTeX_Main-Bold.woff) format("woff"),url(fonts/KaTeX_Main-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Main-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Main-BoldItalic.ttf) format("truetype");font-weight:700;font-style:italic}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Italic.woff2) format("woff2"),url(fonts/KaTeX_Main-Italic.woff) format("woff"),url(fonts/KaTeX_Main-Italic.ttf) format("truetype");font-weight:400;font-style:italic}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Regular.woff2) format("woff2"),url(fonts/KaTeX_Main-Regular.woff) format("woff"),url(fonts/KaTeX_Main-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Math;src:url(fonts/KaTeX_Math-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Math-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Math-BoldItalic.ttf) format("truetype");font-weight:700;font-style:italic}@font-face{font-family:KaTeX_Math;src:url(fonts/KaTeX_Math-Italic.woff2) format("woff2"),url(fonts/KaTeX_Math-Italic.woff) format("woff"),url(fonts/KaTeX_Math-Italic.ttf) format("truetype");font-weight:400;font-style:italic}@font-face{font-family:"KaTeX_SansSerif";src:url(fonts/KaTeX_SansSerif-Bold.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Bold.woff) format("woff"),url(fonts/KaTeX_SansSerif-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:"KaTeX_SansSerif";src:url(fonts/KaTeX_SansSerif-Italic.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Italic.woff) format("woff"),url(fonts/KaTeX_SansSerif-Italic.ttf) format("truetype");font-weight:400;font-style:italic}@font-face{font-family:"KaTeX_SansSerif";src:url(fonts/KaTeX_SansSerif-Regular.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Regular.woff) format("woff"),url(fonts/KaTeX_SansSerif-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Script;src:url(fonts/KaTeX_Script-Regular.woff2) format("woff2"),url(fonts/KaTeX_Script-Regular.woff) format("woff"),url(fonts/KaTeX_Script-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size1;src:url(fonts/KaTeX_Size1-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size1-Regular.woff) format("woff"),url(fonts/KaTeX_Size1-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size2;src:url(fonts/KaTeX_Size2-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size2-Regular.woff) format("woff"),url(fonts/KaTeX_Size2-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size3;src:url(fonts/KaTeX_Size3-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size3-Regular.woff) format("woff"),url(fonts/KaTeX_Size3-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size4;src:url(fonts/KaTeX_Size4-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size4-Regular.woff) format("woff"),url(fonts/KaTeX_Size4-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Typewriter;src:url(fonts/KaTeX_Typewriter-Regular.woff2) format("woff2"),url(fonts/KaTeX_Typewriter-Regular.woff) format("woff"),url(fonts/KaTeX_Typewriter-Regular.ttf) format("truetype");font-weight:400;font-style:normal}.katex{font:normal 1.21em KaTeX_Main,Times New Roman,serif;line-height:1.2;text-indent:0;text-rendering:auto;border-color:currentColor}.katex *{-ms-high-contrast-adjust:none!important}.katex .katex-version:after{content:"0.13.0"}.katex .katex-mathml{position:absolute;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}.katex .katex-html>.newline{display:block}.katex .base{position:relative;white-space:nowrap;width:-webkit-min-content;width:-moz-min-content;width:min-content}.katex .base,.katex .strut{display:inline-block}.katex .textbf{font-weight:700}.katex .textit{font-style:italic}.katex .textrm{font-family:KaTeX_Main}.katex .textsf{font-family:KaTeX_SansSerif}.katex .texttt{font-family:KaTeX_Typewriter}.katex .mathnormal{font-family:KaTeX_Math;font-style:italic}.katex .mathit{font-family:KaTeX_Main;font-style:italic}.katex .mathrm{font-style:normal}.katex .mathbf{font-family:KaTeX_Main;font-weight:700}.katex .boldsymbol{font-family:KaTeX_Math;font-weight:700;font-style:italic}.katex .amsrm,.katex .mathbb,.katex .textbb{font-family:KaTeX_AMS}.katex .mathcal{font-family:KaTeX_Caligraphic}.katex .mathfrak,.katex .textfrak{font-family:KaTeX_Fraktur}.katex .mathtt{font-family:KaTeX_Typewriter}.katex .mathscr,.katex .textscr{font-family:KaTeX_Script}.katex .mathsf,.katex .textsf{font-family:KaTeX_SansSerif}.katex .mathboldsf,.katex .textboldsf{font-family:KaTeX_SansSerif;font-weight:700}.katex .mathitsf,.katex .textitsf{font-family:KaTeX_SansSerif;font-style:italic}.katex .mainrm{font-family:KaTeX_Main;font-style:normal}.katex .vlist-t{display:inline-table;table-layout:fixed;border-collapse:collapse}.katex .vlist-r{display:table-row}.katex .vlist{display:table-cell;vertical-align:bottom;position:relative}.katex .vlist>span{display:block;height:0;position:relative}.katex .vlist>span>span{display:inline-block}.katex .vlist>span>.pstrut{overflow:hidden;width:0}.katex .vlist-t2{margin-right:-2px}.katex .vlist-s{display:table-cell;vertical-align:bottom;font-size:1px;width:2px;min-width:2px}.katex .vbox{display:inline-flex;flex-direction:column;align-items:baseline}.katex .hbox{width:100%}.katex .hbox,.katex .thinbox{display:inline-flex;flex-direction:row}.katex .thinbox{width:0;max-width:0}.katex .msupsub{text-align:left}.katex .mfrac>span>span{text-align:center}.katex .mfrac .frac-line{display:inline-block;width:100%;border-bottom-style:solid}.katex .hdashline,.katex .hline,.katex .mfrac .frac-line,.katex .overline .overline-line,.katex .rule,.katex .underline .underline-line{min-height:1px}.katex .mspace{display:inline-block}.katex .clap,.katex .llap,.katex .rlap{width:0;position:relative}.katex .clap>.inner,.katex .llap>.inner,.katex .rlap>.inner{position:absolute}.katex .clap>.fix,.katex .llap>.fix,.katex .rlap>.fix{display:inline-block}.katex .llap>.inner{right:0}.katex .clap>.inner,.katex .rlap>.inner{left:0}.katex .clap>.inner>span{margin-left:-50%;margin-right:50%}.katex .rule{display:inline-block;border:0 solid;position:relative}.katex .hline,.katex .overline .overline-line,.katex .underline .underline-line{display:inline-block;width:100%;border-bottom-style:solid}.katex .hdashline{display:inline-block;width:100%;border-bottom-style:dashed}.katex .sqrt>.root{margin-left:.27777778em;margin-right:-.55555556em}.katex .fontsize-ensurer.reset-size1.size1,.katex .sizing.reset-size1.size1{font-size:1em}.katex .fontsize-ensurer.reset-size1.size2,.katex .sizing.reset-size1.size2{font-size:1.2em}.katex .fontsize-ensurer.reset-size1.size3,.katex .sizing.reset-size1.size3{font-size:1.4em}.katex .fontsize-ensurer.reset-size1.size4,.katex .sizing.reset-size1.size4{font-size:1.6em}.katex .fontsize-ensurer.reset-size1.size5,.katex .sizing.reset-size1.size5{font-size:1.8em}.katex .fontsize-ensurer.reset-size1.size6,.katex .sizing.reset-size1.size6{font-size:2em}.katex .fontsize-ensurer.reset-size1.size7,.katex .sizing.reset-size1.size7{font-size:2.4em}.katex .fontsize-ensurer.reset-size1.size8,.katex .sizing.reset-size1.size8{font-size:2.88em}.katex .fontsize-ensurer.reset-size1.size9,.katex .sizing.reset-size1.size9{font-size:3.456em}.katex .fontsize-ensurer.reset-size1.size10,.katex .sizing.reset-size1.size10{font-size:4.148em}.katex .fontsize-ensurer.reset-size1.size11,.katex .sizing.reset-size1.size11{font-size:4.976em}.katex .fontsize-ensurer.reset-size2.size1,.katex .sizing.reset-size2.size1{font-size:.83333333em}.katex .fontsize-ensurer.reset-size2.size2,.katex .sizing.reset-size2.size2{font-size:1em}.katex .fontsize-ensurer.reset-size2.size3,.katex .sizing.reset-size2.size3{font-size:1.16666667em}.katex .fontsize-ensurer.reset-size2.size4,.katex .sizing.reset-size2.size4{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size2.size5,.katex .sizing.reset-size2.size5{font-size:1.5em}.katex .fontsize-ensurer.reset-size2.size6,.katex .sizing.reset-size2.size6{font-size:1.66666667em}.katex .fontsize-ensurer.reset-size2.size7,.katex .sizing.reset-size2.size7{font-size:2em}.katex .fontsize-ensurer.reset-size2.size8,.katex .sizing.reset-size2.size8{font-size:2.4em}.katex .fontsize-ensurer.reset-size2.size9,.katex .sizing.reset-size2.size9{font-size:2.88em}.katex .fontsize-ensurer.reset-size2.size10,.katex .sizing.reset-size2.size10{font-size:3.45666667em}.katex .fontsize-ensurer.reset-size2.size11,.katex .sizing.reset-size2.size11{font-size:4.14666667em}.katex .fontsize-ensurer.reset-size3.size1,.katex .sizing.reset-size3.size1{font-size:.71428571em}.katex .fontsize-ensurer.reset-size3.size2,.katex .sizing.reset-size3.size2{font-size:.85714286em}.katex .fontsize-ensurer.reset-size3.size3,.katex .sizing.reset-size3.size3{font-size:1em}.katex .fontsize-ensurer.reset-size3.size4,.katex .sizing.reset-size3.size4{font-size:1.14285714em}.katex .fontsize-ensurer.reset-size3.size5,.katex .sizing.reset-size3.size5{font-size:1.28571429em}.katex .fontsize-ensurer.reset-size3.size6,.katex .sizing.reset-size3.size6{font-size:1.42857143em}.katex .fontsize-ensurer.reset-size3.size7,.katex .sizing.reset-size3.size7{font-size:1.71428571em}.katex .fontsize-ensurer.reset-size3.size8,.katex .sizing.reset-size3.size8{font-size:2.05714286em}.katex .fontsize-ensurer.reset-size3.size9,.katex .sizing.reset-size3.size9{font-size:2.46857143em}.katex .fontsize-ensurer.reset-size3.size10,.katex .sizing.reset-size3.size10{font-size:2.96285714em}.katex .fontsize-ensurer.reset-size3.size11,.katex .sizing.reset-size3.size11{font-size:3.55428571em}.katex .fontsize-ensurer.reset-size4.size1,.katex .sizing.reset-size4.size1{font-size:.625em}.katex .fontsize-ensurer.reset-size4.size2,.katex .sizing.reset-size4.size2{font-size:.75em}.katex .fontsize-ensurer.reset-size4.size3,.katex .sizing.reset-size4.size3{font-size:.875em}.katex .fontsize-ensurer.reset-size4.size4,.katex .sizing.reset-size4.size4{font-size:1em}.katex .fontsize-ensurer.reset-size4.size5,.katex .sizing.reset-size4.size5{font-size:1.125em}.katex .fontsize-ensurer.reset-size4.size6,.katex .sizing.reset-size4.size6{font-size:1.25em}.katex .fontsize-ensurer.reset-size4.size7,.katex .sizing.reset-size4.size7{font-size:1.5em}.katex .fontsize-ensurer.reset-size4.size8,.katex .sizing.reset-size4.size8{font-size:1.8em}.katex .fontsize-ensurer.reset-size4.size9,.katex .sizing.reset-size4.size9{font-size:2.16em}.katex .fontsize-ensurer.reset-size4.size10,.katex .sizing.reset-size4.size10{font-size:2.5925em}.katex .fontsize-ensurer.reset-size4.size11,.katex .sizing.reset-size4.size11{font-size:3.11em}.katex .fontsize-ensurer.reset-size5.size1,.katex .sizing.reset-size5.size1{font-size:.55555556em}.katex .fontsize-ensurer.reset-size5.size2,.katex .sizing.reset-size5.size2{font-size:.66666667em}.katex .fontsize-ensurer.reset-size5.size3,.katex .sizing.reset-size5.size3{font-size:.77777778em}.katex .fontsize-ensurer.reset-size5.size4,.katex .sizing.reset-size5.size4{font-size:.88888889em}.katex .fontsize-ensurer.reset-size5.size5,.katex .sizing.reset-size5.size5{font-size:1em}.katex .fontsize-ensurer.reset-size5.size6,.katex .sizing.reset-size5.size6{font-size:1.11111111em}.katex .fontsize-ensurer.reset-size5.size7,.katex .sizing.reset-size5.size7{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size5.size8,.katex .sizing.reset-size5.size8{font-size:1.6em}.katex .fontsize-ensurer.reset-size5.size9,.katex .sizing.reset-size5.size9{font-size:1.92em}.katex .fontsize-ensurer.reset-size5.size10,.katex .sizing.reset-size5.size10{font-size:2.30444444em}.katex .fontsize-ensurer.reset-size5.size11,.katex .sizing.reset-size5.size11{font-size:2.76444444em}.katex .fontsize-ensurer.reset-size6.size1,.katex .sizing.reset-size6.size1{font-size:.5em}.katex .fontsize-ensurer.reset-size6.size2,.katex .sizing.reset-size6.size2{font-size:.6em}.katex .fontsize-ensurer.reset-size6.size3,.katex .sizing.reset-size6.size3{font-size:.7em}.katex .fontsize-ensurer.reset-size6.size4,.katex .sizing.reset-size6.size4{font-size:.8em}.katex .fontsize-ensurer.reset-size6.size5,.katex .sizing.reset-size6.size5{font-size:.9em}.katex .fontsize-ensurer.reset-size6.size6,.katex .sizing.reset-size6.size6{font-size:1em}.katex .fontsize-ensurer.reset-size6.size7,.katex .sizing.reset-size6.size7{font-size:1.2em}.katex .fontsize-ensurer.reset-size6.size8,.katex .sizing.reset-size6.size8{font-size:1.44em}.katex .fontsize-ensurer.reset-size6.size9,.katex .sizing.reset-size6.size9{font-size:1.728em}.katex .fontsize-ensurer.reset-size6.size10,.katex .sizing.reset-size6.size10{font-size:2.074em}.katex .fontsize-ensurer.reset-size6.size11,.katex .sizing.reset-size6.size11{font-size:2.488em}.katex .fontsize-ensurer.reset-size7.size1,.katex .sizing.reset-size7.size1{font-size:.41666667em}.katex .fontsize-ensurer.reset-size7.size2,.katex .sizing.reset-size7.size2{font-size:.5em}.katex .fontsize-ensurer.reset-size7.size3,.katex .sizing.reset-size7.size3{font-size:.58333333em}.katex .fontsize-ensurer.reset-size7.size4,.katex .sizing.reset-size7.size4{font-size:.66666667em}.katex .fontsize-ensurer.reset-size7.size5,.katex .sizing.reset-size7.size5{font-size:.75em}.katex .fontsize-ensurer.reset-size7.size6,.katex .sizing.reset-size7.size6{font-size:.83333333em}.katex .fontsize-ensurer.reset-size7.size7,.katex .sizing.reset-size7.size7{font-size:1em}.katex .fontsize-ensurer.reset-size7.size8,.katex .sizing.reset-size7.size8{font-size:1.2em}.katex .fontsize-ensurer.reset-size7.size9,.katex .sizing.reset-size7.size9{font-size:1.44em}.katex .fontsize-ensurer.reset-size7.size10,.katex .sizing.reset-size7.size10{font-size:1.72833333em}.katex .fontsize-ensurer.reset-size7.size11,.katex .sizing.reset-size7.size11{font-size:2.07333333em}.katex .fontsize-ensurer.reset-size8.size1,.katex .sizing.reset-size8.size1{font-size:.34722222em}.katex .fontsize-ensurer.reset-size8.size2,.katex .sizing.reset-size8.size2{font-size:.41666667em}.katex .fontsize-ensurer.reset-size8.size3,.katex .sizing.reset-size8.size3{font-size:.48611111em}.katex .fontsize-ensurer.reset-size8.size4,.katex .sizing.reset-size8.size4{font-size:.55555556em}.katex .fontsize-ensurer.reset-size8.size5,.katex .sizing.reset-size8.size5{font-size:.625em}.katex .fontsize-ensurer.reset-size8.size6,.katex .sizing.reset-size8.size6{font-size:.69444444em}.katex .fontsize-ensurer.reset-size8.size7,.katex .sizing.reset-size8.size7{font-size:.83333333em}.katex .fontsize-ensurer.reset-size8.size8,.katex .sizing.reset-size8.size8{font-size:1em}.katex .fontsize-ensurer.reset-size8.size9,.katex .sizing.reset-size8.size9{font-size:1.2em}.katex .fontsize-ensurer.reset-size8.size10,.katex .sizing.reset-size8.size10{font-size:1.44027778em}.katex .fontsize-ensurer.reset-size8.size11,.katex .sizing.reset-size8.size11{font-size:1.72777778em}.katex .fontsize-ensurer.reset-size9.size1,.katex .sizing.reset-size9.size1{font-size:.28935185em}.katex .fontsize-ensurer.reset-size9.size2,.katex .sizing.reset-size9.size2{font-size:.34722222em}.katex .fontsize-ensurer.reset-size9.size3,.katex .sizing.reset-size9.size3{font-size:.40509259em}.katex .fontsize-ensurer.reset-size9.size4,.katex .sizing.reset-size9.size4{font-size:.46296296em}.katex .fontsize-ensurer.reset-size9.size5,.katex .sizing.reset-size9.size5{font-size:.52083333em}.katex .fontsize-ensurer.reset-size9.size6,.katex .sizing.reset-size9.size6{font-size:.5787037em}.katex .fontsize-ensurer.reset-size9.size7,.katex .sizing.reset-size9.size7{font-size:.69444444em}.katex .fontsize-ensurer.reset-size9.size8,.katex .sizing.reset-size9.size8{font-size:.83333333em}.katex .fontsize-ensurer.reset-size9.size9,.katex .sizing.reset-size9.size9{font-size:1em}.katex .fontsize-ensurer.reset-size9.size10,.katex .sizing.reset-size9.size10{font-size:1.20023148em}.katex .fontsize-ensurer.reset-size9.size11,.katex .sizing.reset-size9.size11{font-size:1.43981481em}.katex .fontsize-ensurer.reset-size10.size1,.katex .sizing.reset-size10.size1{font-size:.24108004em}.katex .fontsize-ensurer.reset-size10.size2,.katex .sizing.reset-size10.size2{font-size:.28929605em}.katex .fontsize-ensurer.reset-size10.size3,.katex .sizing.reset-size10.size3{font-size:.33751205em}.katex .fontsize-ensurer.reset-size10.size4,.katex .sizing.reset-size10.size4{font-size:.38572806em}.katex .fontsize-ensurer.reset-size10.size5,.katex .sizing.reset-size10.size5{font-size:.43394407em}.katex .fontsize-ensurer.reset-size10.size6,.katex .sizing.reset-size10.size6{font-size:.48216008em}.katex .fontsize-ensurer.reset-size10.size7,.katex .sizing.reset-size10.size7{font-size:.57859209em}.katex .fontsize-ensurer.reset-size10.size8,.katex .sizing.reset-size10.size8{font-size:.69431051em}.katex .fontsize-ensurer.reset-size10.size9,.katex .sizing.reset-size10.size9{font-size:.83317261em}.katex .fontsize-ensurer.reset-size10.size10,.katex .sizing.reset-size10.size10{font-size:1em}.katex .fontsize-ensurer.reset-size10.size11,.katex .sizing.reset-size10.size11{font-size:1.19961427em}.katex .fontsize-ensurer.reset-size11.size1,.katex .sizing.reset-size11.size1{font-size:.20096463em}.katex .fontsize-ensurer.reset-size11.size2,.katex .sizing.reset-size11.size2{font-size:.24115756em}.katex .fontsize-ensurer.reset-size11.size3,.katex .sizing.reset-size11.size3{font-size:.28135048em}.katex .fontsize-ensurer.reset-size11.size4,.katex .sizing.reset-size11.size4{font-size:.32154341em}.katex .fontsize-ensurer.reset-size11.size5,.katex .sizing.reset-size11.size5{font-size:.36173633em}.katex .fontsize-ensurer.reset-size11.size6,.katex .sizing.reset-size11.size6{font-size:.40192926em}.katex .fontsize-ensurer.reset-size11.size7,.katex .sizing.reset-size11.size7{font-size:.48231511em}.katex .fontsize-ensurer.reset-size11.size8,.katex .sizing.reset-size11.size8{font-size:.57877814em}.katex .fontsize-ensurer.reset-size11.size9,.katex .sizing.reset-size11.size9{font-size:.69453376em}.katex .fontsize-ensurer.reset-size11.size10,.katex .sizing.reset-size11.size10{font-size:.83360129em}.katex .fontsize-ensurer.reset-size11.size11,.katex .sizing.reset-size11.size11{font-size:1em}.katex .delimsizing.size1{font-family:KaTeX_Size1}.katex .delimsizing.size2{font-family:KaTeX_Size2}.katex .delimsizing.size3{font-family:KaTeX_Size3}.katex .delimsizing.size4{font-family:KaTeX_Size4}.katex .delimsizing.mult .delim-size1>span{font-family:KaTeX_Size1}.katex .delimsizing.mult .delim-size4>span{font-family:KaTeX_Size4}.katex .nulldelimiter{display:inline-block;width:.12em}.katex .delimcenter,.katex .op-symbol{position:relative}.katex .op-symbol.small-op{font-family:KaTeX_Size1}.katex .op-symbol.large-op{font-family:KaTeX_Size2}.katex .accent>.vlist-t,.katex .op-limits>.vlist-t{text-align:center}.katex .accent .accent-body{position:relative}.katex .accent .accent-body:not(.accent-full){width:0}.katex .overlay{display:block}.katex .mtable .vertical-separator{display:inline-block;min-width:1px}.katex .mtable .arraycolsep{display:inline-block}.katex .mtable .col-align-c>.vlist-t{text-align:center}.katex .mtable .col-align-l>.vlist-t{text-align:left}.katex .mtable .col-align-r>.vlist-t{text-align:right}.katex .svg-align{text-align:left}.katex svg{display:block;position:absolute;width:100%;height:inherit;fill:currentColor;stroke:currentColor;fill-rule:nonzero;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1}.katex svg path{stroke:none}.katex img{border-style:none;min-width:0;min-height:0;max-width:none;max-height:none}.katex .stretchy{width:100%;display:block;position:relative;overflow:hidden}.katex .stretchy:after,.katex .stretchy:before{content:""}.katex .hide-tail{width:100%;position:relative;overflow:hidden}.katex .halfarrow-left{position:absolute;left:0;width:50.2%;overflow:hidden}.katex .halfarrow-right{position:absolute;right:0;width:50.2%;overflow:hidden}.katex .brace-left{position:absolute;left:0;width:25.1%;overflow:hidden}.katex .brace-center{position:absolute;left:25%;width:50%;overflow:hidden}.katex .brace-right{position:absolute;right:0;width:25.1%;overflow:hidden}.katex .x-arrow-pad{padding:0 .5em}.katex .cd-arrow-pad{padding:0 .55556em 0 .27778em}.katex .mover,.katex .munder,.katex .x-arrow{text-align:center}.katex .boxpad{padding:0 .3em}.katex .fbox,.katex .fcolorbox{box-sizing:border-box;border:.04em solid}.katex .cancel-pad{padding:0 .2em}.katex .cancel-lap{margin-left:-.2em;margin-right:-.2em}.katex .sout{border-bottom-style:solid;border-bottom-width:.08em}.katex .angl{box-sizing:border-content;border-top:.049em solid;border-right:.049em solid;margin-right:.03889em}.katex .anglpad{padding:0 .03889em}.katex .eqn-num:before{counter-increment:katexEqnNo;content:"(" counter(katexEqnNo) ")"}.katex .mml-eqn-num:before{counter-increment:mmlEqnNo;content:"(" counter(mmlEqnNo) ")"}.katex .mtr-glue{width:50%}.katex .cd-vert-arrow{display:inline-block;position:relative}.katex .cd-label-left{display:inline-block;position:absolute;right:calc(50% + .3em);text-align:left}.katex .cd-label-right{display:inline-block;position:absolute;left:calc(50% + .3em);text-align:right}.katex-display{display:block;margin:1em 0;text-align:center}.katex-display>.katex{display:block;text-align:center;white-space:nowrap}.katex-display>.katex>.katex-html{display:block;position:relative}.katex-display>.katex>.katex-html>.tag{position:absolute;right:0}.katex-display.leqno>.katex>.katex-html>.tag{left:0;right:auto}.katex-display.fleqn>.katex{text-align:left;padding-left:2em}body{counter-reset:katexEqnNo mmlEqnNo}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.katex-error {
+	color: var(--vscode-editorError-foreground);
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="tema-2---introducción-al-php">Tema 2:   Introducción al PHP</h1>
+<h3 id="ei1042---tecnologías-y-aplicaciones-web">EI1042 - Tecnologías y Aplicaciones Web</h3>
+<p><strong>EI1036- Tecnologías Web para los Sistemas de Información (2020/2021)</strong></p>
+<h5 id="profesorado-dra-dolores-maría-llidó-escrivá">Profesorado: Dra. Dolores María Llidó Escrivá</h5>
+<p><img src="./media/cc2.jpg" alt="Derechos Autor"></p>
+<p><a href="https://www.uji.es/">Universitat Jaume I</a>.</p>
+<hr>
+<h3 id="índice">Índice</h3>
+<ul>
+<li>Introducción a PHP</li>
+<li>Paginas dinámicas con php</li>
+<li>PHP avanzado</li>
+<li>Wordpres y PHP</li>
+</ul>
+<hr>
+<h1 id="1-introducción-al-php">1. Introducción al PHP</h1>
+<ul>
+<li>Creado por Rasmus Lerdorf para uso personal en 1994 <img src="./media/T2/rasmus.jpeg" alt="Image of Rasmus"></li>
+<li>PHP es un lenguaje de script del lado del servidor.</li>
+<li>PHP: Hypertext Preprocessor</li>
+<li>Versión actual: PHP 7</li>
+<li>Es potente, fácil de aprender, de libre
+distribución, permite el acceso a bases de datos y otras
+funcionalidades orientadas a la red</li>
+<li>Dispone de abundante soporte en la Web</li>
+</ul>
+<p>Manual PHP: <a href="http://php.net/manual/es/">http://php.net/manual/es/</a></p>
+<hr>
+<h2 id="12-sintaxis-básica-php">1.2. Sintaxis básica PHP</h2>
+<ul>
+<li>PHP es sensible a mayúsculas/minúsculas <strong>solo para las variables</strong>.</li>
+<li>Las instrucciones se separan con &quot;;&quot;</li>
+<li>Espacios en blanco y cambios de línea no se tienen en cuenta.</li>
+<li>PHP interpreta entre comillas dobles pero no entre comillas
+simples.</li>
+<li>Se utiliza codificación UTF-8.</li>
+<li>Comprobar que el editor no ha generado un BOM ( <em>byte order mark</em> de unicode en la primera línea)</li>
+</ul>
+<p>Guia Estilos: <a href="https://www.php-fig.org/psr/psr-2/">https://www.php-fig.org/psr/psr-2/</a></p>
+<p>--</p>
+<h3 id="usar-yodastyle">Usar: YodaStyle</h3>
+<p><img src="./media/T2/image2.png" alt="Image of La World Wide Web"></p>
+<p>Comparaciones  al revés  para evitar equivocarnos.</p>
+<hr>
+<h3 id="ejecución-php">Ejecución PHP</h3>
+<ul>
+<li>Consola</li>
+</ul>
+<pre><code class="language-php"><div>php.exe <span class="hljs-string">&quot;./bienvenidos.php&quot;</span> 
+</div></code></pre>
+<ul>
+<li>Entorno php:</li>
+</ul>
+<pre><code class="language-php"><div>&gt;&gt;php -a
+$hola=<span class="hljs-string">&quot;Adios&quot;</span>;
+$echo $hola
+</div></code></pre>
+<ul>
+<li>
+<p>Servidor web:
+<a href="https://asociacionpiruleta.cloudaccess.host/PHP/T2/holaMundo.php">https://asociacionpiruleta.cloudaccess.host/PHP/T2/holaMundo.php</a></p>
+</li>
+<li>
+<p>Servidor web local:</p>
+</li>
+</ul>
+<pre><code class="language-php"><div>php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]
+&gt;&gt; php -S localhost:<span class="hljs-number">8080</span>
+</div></code></pre>
+<p>--</p>
+<h3 id="ejemplo-fichero-php">Ejemplo fichero PHP</h3>
+<pre><code class="language-PHP"><div><span class="hljs-meta">&lt;?php</span>
+$var = <span class="hljs-string">&quot;test&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$var</span>&quot;</span>; <span class="hljs-comment">// Salida:&quot;test“</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;\$var&quot;</span>; <span class="hljs-comment">// Salida:&quot; &quot;$var&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;$var&#x27;</span>; <span class="hljs-comment">// Salida:&quot; &quot;test&quot;</span>
+<span class="hljs-comment"># otro comentario hasta el final de la línea</span>
+<span class="hljs-comment">// este también es de línea</span>
+<span class="hljs-comment">/* comento
+varias líneas */</span>
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="13-tipos-de-datos">1.3. Tipos de datos</h2>
+<ul>
+<li>Tipos escalares: boolean, integer, double, string</li>
+<li>Tipos compuestos: array, object</li>
+<li>Tipos especiales: resource, NULL</li>
+<li>Las variables no declaradas se asocian a NULL y se imprimen como cadenas vacías.</li>
+<li>El tipo resource no lo veremos este curso por ser un tópico avanzado</li>
+</ul>
+<p>--</p>
+<h3 id="array-asociativo">Array Asociativo</h3>
+<p>Sintaxis:
+array ([clave =&gt;] valor, ...)</p>
+<pre><code class="language-PHP"><div>$medidas = <span class="hljs-keyword">array</span> (<span class="hljs-number">10</span>, <span class="hljs-number">25</span>, <span class="hljs-number">15</span>);
+<span class="hljs-keyword">echo</span> $medidas[<span class="hljs-number">0</span>];
+
+$color = <span class="hljs-keyword">array</span> (<span class="hljs-string">&#x27;rojo&#x27;</span>=&gt;<span class="hljs-number">101</span>, <span class="hljs-string">&#x27;verde&#x27;</span>=&gt;<span class="hljs-number">51</span>, <span class="hljs-string">&#x27;azul&#x27;</span>=&gt;<span class="hljs-number">255</span>); 
+
+<span class="hljs-comment">#Acceso:</span>
+<span class="hljs-keyword">echo</span> $color[<span class="hljs-string">&#x27;rojo&#x27;</span>]; <span class="hljs-comment">// No olvidar las comillas</span>
+<span class="hljs-keyword">echo</span> array_keys($color);
+</div></code></pre>
+<hr>
+<h2 id="14-salida-estándar">1.4. Salida estándar</h2>
+<p>¿Cómo enviar mensajes a la salida estándar?</p>
+<ul>
+<li>echo — Muestra una o más cadenas separada por ','.</li>
+<li>print — Mostrar solo una cadena.</li>
+<li>printf — Imprimir una cadena con formato.</li>
+<li>print_r — Imprime información legible para humanos.</li>
+<li>var_dump— Vuelca información sobre una variable. La información y su tipo</li>
+</ul>
+<p>--</p>
+<h3 id="diferencias-echo-o-print">Diferencias echo o print</h3>
+<ul>
+<li><strong>Void</strong> echo (string argument1[,...string argumentN])</li>
+<li><strong>Int</strong> print (argument)
+<ul>
+<li>print solo tiene un argumento (echo puede tener varios)</li>
+<li>si print devuelve 1 (significa que ha generado la salida)</li>
+</ul>
+</li>
+</ul>
+<p>No es obligatorio el uso de paréntesis ya que no son
+realmente una función.</p>
+<pre><code class="language-PHP"><div><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hola mundo&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hola &quot;</span>, <span class="hljs-string">&quot;mundo&quot;</span>; <span class="hljs-comment">//dos argumentos</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Hola mundo&quot;</span>;
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Hola &quot;</span>. <span class="hljs-string">&quot;mundo&quot;</span>; <span class="hljs-comment">// el operador &#x27;.&#x27; concatena cadenas</span>
+</div></code></pre>
+<hr>
+<h2 id="15-variables">1.5. Variables</h2>
+<ul>
+<li>No se declara el tipo de las variables.</li>
+<li>Las variables se pueden asignar
+<ul>
+<li>Por valor</li>
+<li>Por referencia (con &amp;)</li>
+<li>Creación de nombres de variables dinámico.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-PHP"><div>$x=<span class="hljs-string">&#x27;equis&#x27;</span>;
+$_x = &amp;$x; <span class="hljs-comment">//referencia a $x</span>
+$_x =<span class="hljs-string">&#x27;x&#x27;</span>;
+<span class="hljs-keyword">echo</span> $x; <span class="hljs-comment">//salida: x</span>
+<span class="hljs-keyword">echo</span> $_x; <span class="hljs-comment">//salida: x</span>
+$a = <span class="hljs-string">&quot;hola&quot;</span>;
+$$a = <span class="hljs-string">&quot;mundo&quot;</span>; <span class="hljs-comment">//nombrar una variable con otra variable</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;<span class="hljs-subst">$a</span> <span class="hljs-subst">$hola</span>\n&quot;</span>; <span class="hljs-comment">//salida: hola mundo</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;<span class="hljs-subst">$a</span> ${a}s\n&quot;</span>; <span class="hljs-comment">//salida: hola hola //utilizaremos ${} para evitar errores</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;<span class="hljs-subst">$a</span> $<span class="hljs-subst">{$a}</span>&quot;</span>;  <span class="hljs-comment">//salida: hola mundo //podemos acceder al valor de una variable ($mundo) nombrada en otra ($a)</span>
+</div></code></pre>
+<p>--</p>
+<h3 id="de-qué-tipo-es-la-variable">¿De qué tipo es la variable?</h3>
+<ul>
+<li>gettype() devuelve el tipo de una variable</li>
+<li>is_type() comprueba si una variable es de un tipo dado:</li>
+</ul>
+<pre><code class="language-php"><div>is_array(), is_bool(), is_null(), is_object(), is_resource(),
+is_scalar(),is_string(),is_float(), is_integer(), is_numeric(),is_nan()
+</div></code></pre>
+<p>--</p>
+<h3 id="ámbito-de-variables">Ámbito de variables</h3>
+<ul>
+<li>Local: Variable definida en una función
+<ul>
+<li>Está limitada a dicha función.</li>
+<li>Se elimina al acabar la ejecución de la función</li>
+<li>Salvo si la variable se declara como <strong>static</strong> .</li>
+</ul>
+</li>
+<li>Global:
+<ul>
+<li>No se puede definir dentro de las funciones a menos que :
+<ul>
+<li>se declare en la función con la palabra clave 'global'</li>
+<li>O que se acceda con el array $GLOBALS[indice]</li>
+</ul>
+</li>
+<li>Existen durante todo el tiempo de proceso del fichero</li>
+<li>Al acabar de procesar el fichero se eliminan las variables globales</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="16-funciones">1.6. Funciones</h2>
+<pre><code class="language-PHP"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">suma</span> (<span class="hljs-params">$x, $y</span>)
+</span>{
+   $s = $x + $y;
+   <span class="hljs-keyword">return</span> $s;
+}
+</div></code></pre>
+<p>Salida:</p>
+<pre><code><code><div>$a=1;
+$b=2;
+$c=suma ($a, $b);
+print $c;
+</div></code></code></pre>
+<p>--</p>
+<h3 id="paso-parámetros">Paso parámetros</h3>
+<ul>
+<li>Por defecto paso parámetros por valor</li>
+<li>Paso por referencia:</li>
+</ul>
+<pre><code class="language-PHP"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">incrementa</span> (<span class="hljs-params">&amp;$a</span>)
+</span>{
+  $a = $a + <span class="hljs-number">1</span>;
+}
+$a=<span class="hljs-number">1</span>;
+incrementa ($a);
+<span class="hljs-keyword">print</span> $a; <span class="hljs-comment">// Muestra un 2</span>
+</div></code></pre>
+<p>--</p>
+<h3 id="argumentos-por-defecto">Argumentos por defecto</h3>
+<ul>
+<li>Los argumentos con valores por defecto deben ser siempre
+los últimos:</li>
+</ul>
+<pre><code class="language-PHP"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">muestranombre</span> (<span class="hljs-params">$nombre, $titulo= <span class="hljs-string">&quot;Sr.&quot;</span></span>)
+</span>{
+  <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Estimado <span class="hljs-subst">$titulo</span> <span class="hljs-subst">$nombre</span>:\n&quot;</span>;
+}
+muestranombre (“Fernández”);
+muestranombre (“Fernández”, <span class="hljs-string">&quot;Prof.&quot;</span>);
+</div></code></pre>
+<p>Salida:</p>
+<pre><code><code><div>Estimado Sr. Fernández:
+Estimado Prof. Fernández:
+</div></code></code></pre>
+<hr>
+<h1 id="17-oop-en-php">1.7. OOP en PHP</h1>
+<ul>
+<li>PHP no es un lenguaje 100% Orientado a Objetos.</li>
+<li>Soporta:
+<ul>
+<li>Encapsulamiento.</li>
+<li>Tipos Abstractos de Datos y ocultamiento de la Información.</li>
+<li>Herencia.</li>
+<li>Polimorfismo.</li>
+</ul>
+</li>
+</ul>
+<p>--</p>
+<h2 id="clases-y-objetos">Clases y Objetos</h2>
+<pre><code class="language-php"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Myclass</span></span>{
+
+    <span class="hljs-keyword">const</span> CONST_VALUE = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">public</span> $numero=<span class="hljs-number">5</span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dameNumero</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::CONST_VALUE*<span class="hljs-keyword">$this</span>-&gt;numero;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">llamoDame</span>(<span class="hljs-params"></span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">self</span>::dameNumero();}
+}
+$classname = <span class="hljs-string">&#x27;Myclass&#x27;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;p&gt;&quot;</span>,$classname::CONST_VALUE,<span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>; <span class="hljs-comment">// A partir de PHP 5.3.0</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;p&gt;&quot;</span>,Myclass::CONST_VALUE,<span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>;
+$datos=<span class="hljs-keyword">new</span>  Myclass();
+$datos-&gt;numero=<span class="hljs-number">15</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;p&gt;&quot;</span>,$datos-&gt;dameNumero(),<span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;p&gt;&quot;</span>,$datos-&gt;llamoDame(),<span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>; <span class="hljs-comment">//Da error</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;p&gt;&quot;</span>,Myclass::dameNumero();
+</div></code></pre>
+<ul>
+<li><code>::</code> es el operador de Resolución de Ámbito, el cual permite acceder a elementos estáticos/constantes y sobrescribir propiedades o métodos de una clase.</li>
+<li><code>-&gt;</code> permite acceder a las propiedades y métodos de un objeto.</li>
+</ul>
+<p>--</p>
+<h3 id="this-self-parent">$this, self, parent</h3>
+<ul>
+<li><code>$this</code> es una variable especial que auto-referencia al objeto para acceder a sus métodos y propiedades.</li>
+<li><code>self</code> y <code>parent</code>: son pseudo-variables para acceder a una propiedad o método  de una clase.</li>
+<li>Usamos <code>$this-&gt;</code> para hacer referencia al objeto (instancia) actual, y <code>self::</code> para referenciar a la clase actual.</li>
+</ul>
+<pre><code class="language-PHP"><div><span class="hljs-keyword">$this</span>-&gt;nombre 
+<span class="hljs-built_in">self</span>::nombres
+</div></code></pre>
+<p>--</p>
+<h1 id="2-páginas-web-dinámicas-con-php">2. Páginas web dinámicas con PHP</h1>
+<ul>
+<li>El cliente no ve el código PHP sino los resultados que produce en la salida estándar.</li>
+<li>Apache ejecuta php no como un <a href="https://httpd.apache.org/docs/trunk/es/howto/cgi.html">CGI</a> sino como un módulo.</li>
+</ul>
+<p>Version php  S.O. != Apache</p>
+<p><img src="./media/T2/image1.png" alt="Image of La World Wide Web"></p>
+<p>Seguridad: Ficheros sensibles  estar fuera de la raíz (docroot-httpdocs) del servidor web.</p>
+<hr>
+<h3 id="ejercicio-1">Ejercicio 1</h3>
+<p><a href="https://asociacionpiruleta.cloudaccess.host/PHP/Lab/P1/portal.php?action=listar">https://asociacionpiruleta.cloudaccess.host/PHP/Lab/P1/portal.php?action=listar</a></p>
+<p>Analiza la URL.</p>
+<ul>
+<li>¿Cual es el nombre servidor?</li>
+<li>¿Cual es el recurso?</li>
+<li>¿Que parametros requiere el programa php?</li>
+</ul>
+<hr>
+<p>Fichero con HTML con php:</p>
+<p>bienvenido.php</p>
+<pre><code class="language-HTML"><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Inicio<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">?php</span> 
+$<span class="hljs-attr">nombre</span> = <span class="hljs-string">&quot;Ana&quot;</span>;
+<span class="hljs-attr">print</span>(&quot; &lt;<span class="hljs-attr">P</span>&gt;</span>Hola, $nombre<span class="hljs-tag">&lt;/<span class="hljs-name">P</span>&gt;</span>&quot;); 
+ ?&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Fin<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="ejercicio-2">Ejercicio 2</h3>
+<pre><code class="language-php"><div>&gt;&gt;php -S localhost:<span class="hljs-number">8080</span>
+</div></code></pre>
+<ul>
+<li>¿Cuál  es el docroot del servidor web?</li>
+<li>¿Dónde ponemos el fichero tutoPhp.php en el servidor para acceder desde <a href="http://localhost/teoria/T2/tutoPHP.php">http://localhost/teoria/T2/tutoPHP.php</a>?</li>
+</ul>
+<p>--</p>
+<h3 id="servidor-web-en-producción">Servidor WEB en Producción</h3>
+<ul>
+<li>Servidor web Apache (<a href="http://www.apache.org">http://www.apache.org</a>) con el módulo PHP (<a href="http://www.php.net">http://www.php.net</a>)</li>
+<li>Base de datos MySQL (<a href="http://www.mysql.com">http://www.mysql.com</a>) si se desea crear páginas dinámicas</li>
+<li>Herramientas para la gestión de MySQL, como PHPMyAdmin
+(<a href="http://www.phpmyadmin.net">http://www.phpmyadmin.net</a>)</li>
+</ul>
+<p><a href="http://httpd.apache.org/docs/current/es/">Apache  http://httpd.apache.org/docs/current/es/</a></p>
+<p>--</p>
+<h2 id="servidor-web--en-desarrollo-xampp">Servidor WEB  en desarrollo: XAMPP</h2>
+<p><a href="https://geekflare.com/es/lamp-lemp-mean-xampp-stack-intro/">https://geekflare.com/es/lamp-lemp-mean-xampp-stack-intro/</a></p>
+<ul>
+<li>XAMPP es una distribución de Apache que incluye MySQL, PHP y  phpMyAdmin</li>
+<li>XAMPP es gratuito y fácil de instalar</li>
+<li>XAMPP es multiplataforma</li>
+<li>Precaución: la configuración por defecto  no es segura, ni para un entorno de producción.</li>
+</ul>
+<p>--</p>
+<h2 id="21-variables-en-el-servidor-web-con-php">2.1 Variables en el servidor web con php</h2>
+<h3 id="superglobal">Superglobal</h3>
+<ul>
+<li>
+<p>Variables predefinidas en PHP</p>
+</li>
+<li>
+<p>Están disponibles en todos los ámbitos.</p>
+</li>
+<li>
+<p>$GLOBALS — Array con todas las variables disponibles en el ámbito global</p>
+<ul>
+<li>$_SERVER — Información del entorno del servidor y de ejecución</li>
+<li>$_GET(POST) — Variables HTTP GET(POST)</li>
+<li>$_FILES — Variables de Carga de Archivos HTTP</li>
+<li>$_REQUEST — Variables HTTP Request: GET+POTS+COOKIE</li>
+<li>$_SESSION — Variables de sesión</li>
+<li>$_COOKIE— Variables con datos de la cookie</li>
+<li>$_ENV— Variables del entorno</li>
+</ul>
+</li>
+</ul>
+<p>--</p>
+<h3 id="ejercicio-3">Ejercicio 3</h3>
+<p><a href="https://asociacionpiruleta.cloudaccess.host/PHP/T2/tutoPhp.php">https://asociacionpiruleta.cloudaccess.host/PHP/T2/tutoPhp.php</a></p>
+<ul>
+<li>Analiza este fichero y mira el funcionamiento.</li>
+</ul>
+<hr>
+<h2 id="22-formularios">2.2. Formularios</h2>
+<h3 id="ejemplo-radio">Ejemplo: radio</h3>
+<pre><code class="language-HTML"><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;procesar.php&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
+Sexo:
+  <span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;sexo&quot;</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;M&quot;</span> <span class="hljs-attr">CHECKED</span> &gt;</span>Mujer
+  <span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;sexo&quot;</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;H&quot;</span>&gt;</span>Hombre
+  <span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+</div></code></pre>
+<pre><code class="language-PHP"><div><span class="hljs-comment">#Procesar.php</span>
+<span class="hljs-meta">&lt;?PHP</span>
+$sexo = $_REQUEST[<span class="hljs-string">&quot;sexo&quot;</span>];
+<span class="hljs-keyword">print</span> ($sexo);
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+<p>--</p>
+<h3 id="ejercicio-4">Ejercicio 4:</h3>
+<ul>
+<li>¿Cuál es la petición al servidor al pulsar submit/enviar?</li>
+<li>Añade el nombre de la persona en el formulario y muéstralo en Procesar.php.</li>
+<li>¿Diferencia entre post y get?</li>
+<li>¿Como probar que funciona el código php?</li>
+</ul>
+<p>Simulando PETICIONES POST con parámetros</p>
+<pre><code><code><div>curl --data &quot;param1=value1&amp;param2=value2&quot; http://hostname/resource
+</div></code></code></pre>
+<p>--</p>
+<h3 id="checkbox">CHECKBOX</h3>
+<pre><code class="language-HTML"><div><span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;extras[]&quot;</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;garaje&quot;</span> <span class="hljs-attr">CHECKED</span>&gt;</span>Garaje
+<span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;extras[]&quot;</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;piscina&quot;</span>&gt;</span>Piscina
+<span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;extras[]&quot;</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;jardin&quot;</span>&gt;</span>Jardín
+</div></code></pre>
+<pre><code class="language-PHP"><div><span class="hljs-meta">&lt;?php</span>
+$extras = $_REQUEST[<span class="hljs-string">&quot;extras&quot;</span>];
+<span class="hljs-keyword">foreach</span> ($extras <span class="hljs-keyword">as</span> $extra)
+    <span class="hljs-keyword">print</span> (<span class="hljs-string">&quot;<span class="hljs-subst">$extra</span>&lt;BR&gt;\n&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+<p>--</p>
+<h3 id="button">BUTTON</h3>
+<pre><code class="language-HTML"><div><span class="hljs-tag">&lt;<span class="hljs-name">INPUT</span> <span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;actualizar&quot;</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;Actualizar datos&quot;</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-PHP"><div><span class="hljs-meta">&lt;?php</span>
+$actualizar = $_REQUEST[<span class="hljs-string">&quot;actualizar&quot;</span>];
+<span class="hljs-keyword">if</span> ($actualizar)
+  <span class="hljs-keyword">print</span> (<span class="hljs-string">&quot;Se han actualizado los datos&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+<p>--</p>
+<h3 id="select-múltiple">SELECT múltiple</h3>
+<pre><code class="language-HTML"><div>Idiomas:
+<span class="hljs-tag">&lt;<span class="hljs-name">SELECT</span> <span class="hljs-attr">MULTIPLE</span> <span class="hljs-attr">SIZE</span>=<span class="hljs-string">&quot;3&quot;</span> <span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;idiomas[]&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">OPTION</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;ingles&quot;</span> <span class="hljs-attr">SELECTED</span>&gt;</span>Inglés
+  <span class="hljs-tag">&lt;<span class="hljs-name">OPTION</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;francés&quot;</span>&gt;</span>Francés
+  <span class="hljs-tag">&lt;<span class="hljs-name">OPTION</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;alemán&quot;</span>&gt;</span>Alemán
+  <span class="hljs-tag">&lt;<span class="hljs-name">OPTION</span> <span class="hljs-attr">VALUE</span>=<span class="hljs-string">&quot;holandés&quot;</span>&gt;</span>Holandés
+<span class="hljs-tag">&lt;/<span class="hljs-name">SELECT</span>&gt;</span>
+</div></code></pre>
+<pre><code class="language-PHP"><div><span class="hljs-meta">&lt;?php</span>
+$idiomas = $_REQUEST[<span class="hljs-string">&quot;idiomas&quot;</span>];
+<span class="hljs-keyword">foreach</span> ($idiomas <span class="hljs-keyword">as</span> $idioma)
+   <span class="hljs-keyword">print</span> (<span class="hljs-string">&quot;<span class="hljs-subst">$idioma</span>&lt;BR&gt;\n&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+<hr>
+<!-- # 3. Callback/Calleable/Retrollamadas 
+
+
+Un callback es un tipo de funciones que son pasadas como parámetros y que serán ejecutadas desde otra función o clase. 
+Generalmente se ejecutan cuando se producen eventos.
+
+Ej: Uso en WordPress: 
+
+```php 
+function example_callback( $example ) {
+    // Maybe modify $example in some way.
+    return $example;
+}
+add_filter( 'example_filter', 'example_callback' );
+
+```
+
+
+xxx
+
+
+Como en JavaScript, generalmente se utilizan funciones anónimas como callbacks.
+
+```php 
+$saludo = function($nombre)
+{
+    printf("Hola %s\r\n", $nombre);
+};
+
+$saludo('Carlos'); // Devuelve Hola Carlos
+call_user_func($saludo, "PHP"); // Devuelve Hola PHP
+```
+
+xxx
+
+#  Funciones anónimas
+
+Una función anónima no es más que una función que no tiene nombre.
+
+```php
+$saludo = function() {
+    return "Hola que tal";
+};
+
+echo $saludo(),"<p>"; // Devuelve: Hola que tal
+};
+```
+
+```php
+function decir ($algo) {
+    echo $algo();
+}
+
+decir(function(){
+    return "Esto es algo";
+});
+ // Devuelve "Esto es algo".
+```
+xx
+
+# Una clausura o closure 
+
+
+Una clausura o closure es una función anónima que captura el ámbito actual, y proporciona acceso a ese ámbito cuando se invoca el closure.
+
+```php
+
+$colorCoche = 'rojo';
+
+$mostrarColor = function() use ($colorCoche) {
+    echo "El color del coche es $colorCoche";
+};
+
+$mostrarColor(); // Mostrará El color del coche es rojo
+```
+
+
+Las clausuras permiten usar variables mediante la palabra use. Estas variables su ámbito es el de la función donde se definen, no son como las variables globales.
+
+
+Si se altera el valor de la variable $colorCoche dentro de la clausura, no afectará a la variable original.
+
+xx
+
+```php
+$colorCoche = 'rojo';
+
+$mostrarColor = function() use ($colorCoche) {
+    $colorCoche = 'azul';
+};
+
+$mostrarColor();
+echo $colorCoche; // Mostrará rojo
+```
+
+xx
+
+# 8. WP en PHP
+
+¿Cómo se añaden funciones propias en WP?
+- Creando en las plantillas las funciones: ```Code Snippets```.
+- Creando un ```pluggin```.
+- Añadir código personalizado a WordPress (en ```functions.php```). Para que no se borren al actualizar los plugins directamente en la carpeta /mu-plugins/. ("Must Use" plugins). 
+
+xx
+
+
+## Sintaxis alternativa de estructuras de control¶
+
+Código HTML oculto:
+
+```php
+<?php if ( is_user_logged_in() ) {
+     echo "CUIDADO estas Logueado ok?";
+} else {
+     echo "CUIDADO NO Estas logeado.";
+}?>
+```
+
+ PHP ofrece sintaxis alternativa para : if, while, for, foreach, y switch.
+
+ En cada caso, la forma básica de la sintaxis alternativa es cambiar la llave de apertura por dos puntos (:) y la llave de cierre por endif;, endwhile;, endfor;, endforeach;, o endswitch;, respectivamente.
+
+Solución: 
+
+```php
+<?php if (is_user_logged_in()): ?>
+   <h1> CUIDADO Estas logeado ok? </h1>
+<?php else:?>
+   <h1> CUIDADO NO Estas logeado. </h1>
+<?php endif; ?>
+?>
+```
+
+xx
+
+# 9. Etiquetas de plantilla (tags)
+
+Son funciones PHP para incluir fácilmente archivos de plantilla  desde el tema en otro archivo o para mostrar información de la base de datos.
+
+Etiquetas de plantilla para cargar plantillas:
+
+ | WP            | PHP                    |
+ | ------------- | ---------------------- |
+ | get_header()  | include('header.php')  |
+ | get_sidebar() | include('sidebar.php') |
+ | get_footer()  | include('footer.php')  |
+ | get_search_form()| include('searchform.php')|
+
+Ventaja:  podemos personalizar que código cargando bien la plantilla por defecto u otra personalizada. 
+
+
+**Leer ↓**
+
+xx
+
+## Cuestiones:
+
+*  Actividad: Comentar pages.php de un tema.
+*  Problema 1: ¿Cómo cargar la cabezera del fichero ```header-custom.php``` en un tema?
+
+Solución Problema1 ```<?php get_header('custom'); ?>```
+
+Cargará el fichero header-custom.php en lugar de header.php 
+
+* Problema 1: Mostrar el pie de página en la página principal, pero no en ninguna otra página
+
+Solución Problema 2: agrega  ```get_footer()``` al final de index.php, pero no en page.php.
+
+¿Por qué?
+
+xx
+
+Etiquetas de plantilla para mostrar información de la base de datos:
+
+- bloginfo() - muestra el nombre del sitio web según se define en el Panel de control del administrador 
+- single_post_title() – muestra el título de la publicación vista actualmente cuando se utiliza en single.php
+- the_author() – muestra el autor del mensaje visto en ese momento
+- the_content() – muestra el texto principal de una publicación o página
+- the_excerpt() – el extracto de la publicación o página
+xx
+
+# 10  Las etiquetas condicionales
+
+ ```Etiquetas condicionales ``` o conditional tags, son funciones que permiten  determinar en qué circunstancias/condiciones deben incluirse ciertas  funcionalidades  en las plantillas.
+
+Debe ocurrir algo solo si:
+
+- is_home() está en la página principal configurada
+- is_front_page() está en la pàgina front_page.php
+- is_single('excursion-a-piedramillera') está la entrada denominada “Excursión a Piedramillera”;
+
+- in_category('sesion-1') está  la entrada de la categoría “Sesión 1”. 
+
+xx
+
+Ejemplo.
+
+```
+<?php
+if ( is_admin() ) { // Chequea si el panel del dash_board se está intentando mostrar.
+    // la url tiene algo como http://www.example.com/wp-admin/
+    // we are in admin mode 
+    require_once( dirname( __FILE__ ) . '/admin/plugin-name-admin.php' );
+}
+
+if(current_user_can('administrator') ) {print "Administrador";}
+//comprueba si es usuario administrador.
+```
+
+
+xx
+
+# 11. Ganchos
+
+Los Ganghos de WordPress interactúan con código del núcleo de WP .
+
+Hay dos tipos diferentes de ganchos:
+- Ganchos de acción (para agregar / quitar funciones).
+- Ganchos de filtro (Para modificar datos producidos por funciones).
+
+```PHP
+add_action( 'user_register', 'crf_user_register' );
+add_filter( 'autentificarClientes', 'myplugin_auth_signon', 30, 3 );
+```
+
+Las funciones que conectamos a un gancho son  «callbacks». 
+
+
+
+xxx
+
+## Ganchos de acción (hooks)
+Los hooks de acción son disparadas cuando pasa algo, como que se cargue la página, se  inicie una sesión, etc.
+
+Estos se definen en el plugin API de Wordpress: https://codex.wordpress.org/Plugin_API
+
+- Los ganchos de acción son funciones que tienen generalmente funciones asociadas a ellas. 
+- Algunos ganchos existen para su uso por plugins, no tienen funciones conectadas de forma predeterminada.
+- Los ganchos de acción permiten que los complementos conecten sus propias funciones y que se ejecuten en varios puntos de la carga de una página.
+
+
+**Leer ↓**
+
+xx
+
+Ejemplo Hook predefinido:
+
+```
+####
+function wp_head() {
+    /**
+     * Prints scripts or data in the head tag on the front end.
+     *
+     * @since 1.5.0
+     */
+    do_action( 'wp_head' );
+}
+####
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+
+<?php wp_head(); ?>
+</head>
+```
+
+- do_action( 'wp_head' ) es un gancho predefinido en *default-filters.php*, que se carga con la función  wp_head(). 
+
+```
+/*default-filters.php*/
+add_action( 'wp_head', 'rest_output_link_wp_head', 10, 0 );
+```
+
+Plugin API/Action Reference.
+https://codex.wordpress.org/Plugin_API/Action_Reference
+
+xx
+
+### Definir función action hook
+
+- Para asociar nuestras propias funciones a ganchos de acción, debemos usar ***add_action***. 
+
+Definimos que nuestra función compass_smallprint, y queremos que se ejecute cada vez que se llame a la acción  con una prioridad de 20.
+
+```php
+add_action( 'compass_in_footer', 'compass_smallprint', 20 );
+```
+
+- Para llamar a la acción se utiliza ***do_action()***
+
+```php
+do_action( 'compass_in_footer' );
+```
+
+
+xx
+
+## Asociar funciones a un Action Hook
+* Se puede asociar a una acción más de una función, de forma que se ejecutará primero la de más prioridad. Si no se indica la prioridad por defecto es 10.
+
+```php
+add_action( 'compass_in_footer', 'compass_colophon' ); 
+add_action( 'compass_in_footer', 'compass_smallprint', 20 );
+do_action( 'compass_in_footer' );
+ 
+```
+CUESTIONES:
+
+- ¿que función se ejecuta antes en el ejemplo anterior?
+- ¿Por que no llamar directamente  a las funciones?
+
+xx
+
+ Solución: ¿Por que no llamar directamente a las funciones?
+
+* Puedes enlazar más de una funcion para la misma acción
+* Puedes fijar la prioridad para que ellos se ejecuten en el orden deseado
+
+xx
+
+## Borrado funciones action hook
+- Podemos borrar nuestras funciones  con
+
+```remove_action( 'compass_in_footer', 'compass_smallprint', 20 );```
+
+- O todas las funciones  con:
+
+```remove_all_actions( 'compass_in_footer' );```
+
+xx
+
+### Ganchos de filtro
+
+Útil si tienes opciones por defecto en tu tema o plugin que quieras sobreescribir, o si estas creando un tema padre que puede tener elementos sobreescritos de  un tema hijo.
+
+- Una función de filtro te permite modificar los datos resultantes que son devueltos por funciones ya existentes y deben estar enganchados a los ganchos de filtro. 
+- Adición de filtros mediante ```add_filter()``` 
+- Ejecución del gancho de filtro con ```apply_filters()```
+
+
+xx
+
+## apply_filters 
+```apply_filters( string $tag, mixed $value )```
+* Es la función que se encarga de ejecutar los ganchos. 
+* tiene tres parámetros : el nombre del hook de filtro, el valor que quieres filtrar, y variables opcionales las cuales se pasan al callback del filtro.
+
+- Lista completa de los ganchos de filtro: https://codex.wordpress.org/Plugin_API/Filter_Reference
+  
+
+xx
+
+## add_filter()
+
+``` add_filter($tag, $function_to_add, $priority = 10,$accepted_args = 1 )```
+
+* Función que permite añadir funciones de filtro:
+* Es un callback con 4 parámetros:
+    - $tag puede ser cualquier gangho de WP.
+    - $function_to_add la funcion del callback que se ejecuta al activar el gancho.
+    -  $priority Prioridad.
+    - $accepted_args Número de argumentos de la $function_to_add
+
+xx
+
+#### Ejemplo filter hook :
+
+Para filtrar el contenido de cualquier post quitando dobles espacios 
+
+```PHP 
+add_filter("the_content", "mfp_Fix_Text_Spacing");
+
+// Automatically correct double spaces from any post
+function mfp_Fix_Text_Spacing($the_Post)
+{
+ $the_New_Post = str_replace(" ", " ", $the_Post);
+ return $the_New_Post;
+}
+apply_filters( 'the_content', string $content )
+```
+
+xxx
+
+<img src="https://getflywheel.com/wp-content/uploads/2015/06/Anatomy-of-a-WordPress-Theme.png">
+
+- https://getflywheel.com/wp-content/uploads/2015/06/Anatomy-of-a-WordPress-Theme.png
+
+
+
+Lectura:https://code.tutsplus.com/es/articles/wordpress-actions-and-filters-whats-the-difference--cms-25700
+
+xxx
+
+# Ejemplo shortcode
+
+En página o plantilla poner [gracias], se sustituirá por el valor de la función.
+```
+    function shortcode_gracias() {
+        return '<p>¡Gracias por leer mi blog!, si te gustó suscríbete al feed RSS</p>';
+    }
+    add_shortcode('gracias', 'shortcode_gracias');
+```
+xx
+
+# 5. Anatomía de un tema
+
+<img  class="flotante" src="./media/T4/template.png" style="float:right;height:70%;"/>
+
+HomePage:
+
+- blog: index.php   
+- static web:  front-page.php  - o - home.php - o-  page.php 
+
+Más información :
+https://yoast.com/wordpress-theme-anatomy/
+
+**Leer ↓**
+
+
+xx
+
+## Listado Ficheros Template
+ 
+- **index.php**: Plantilla  página de inicio del site. *OBLIGATORIO*. 
+- **style.css**: fichero CSS principal.
+- **header.php**: Plantilla cabecera común. Todo lo que contiene la etiqueta  <head> o el menú de navegación principal.
+- **footer.php**:  Plantilla del pie de página (por ejemplo el copyright o los enlaces a la información legal).
+- **sidebar.php**: Plantilla   de una barra lateral (sobre todo cuando se trata de un blog).
+- **front-page.php**: Plantilla de la página de inicio del blog. Está especialmente pensada para que sea un listado de entradas, es decir, la portada de un blog.
+- **home.php**: Plantilla por defecto de inicio si se ha seleccionado que la página de inicio es ```página estática```, o sea un portal web. 
+
+xx
+
+- **single.php**:Plantilla que muestra una entrada completa por defecto.
+- **page.php**:  mostrará por defecto cualquier página que creemos.
+- **category.php**: Sirve para mostrar un listado de posts de una categoría específica.
+- **comments.php**: Es la plantilla a la que llamaremos dentro de single.php para poder añadir los comentarios a nuestros posts.
+- **search.php**: Esta plantilla nos permite  realizar   búsquedas en el site.
+- **404.php**: Plantilla que se mostrará cuando un enlace esté roto o no funcione.
+- **functions.php**: Permite crear zonas de menú y de widgets, así como personalizar algunos parámetros que WordPress trae por defecto.
+
+
+xxx
+
+## CHILD THEMES
+
+- Los temas secundarios (child themes) son la forma en que los diseñadores y desarrolladores pueden realizar pequeños ajustes a páginas específicas de un sitio sin tener que crear un tema completo para ellos.
+
+- El tema hijo se pone en el directorio *Themes* con el nombre del tema padre seguido de -child.
+- Debe tener 2 ficheros: index.php (copiar el del padre) y style.css 
+
+
+Ejemplo: *twentyseventeen-child*: 
+
+**Leer ↓**
+
+xx
+
+Ejemplo  style.css
+
+```
+Theme URI:    http://example.com/twenty-seventeen-child/
+ Description:  Twenty Seventeen Child Theme
+ Author:       John Doe
+ Author URI:   http://example.com
+ Template:     twentyseventeen
+ Version:      1.0.2
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         one-column, two-columns, right-sidebar, flexible-header,custom-menu,
+                accessibility-ready, custom-colors, custom-header,  translation-ready
+                custom-logo, editor-style, featured-images, footer-widgets, post-formats, 
+                rtl-language-support, sticky-post, theme-options, threaded-comments, 
+ Text Domain:  twenty-seventeen-child
+ */
+
+/* -----Aquí empieza la personalización de tu tema
+ -------------------------------------------------------------- */
+```
+
+- Revisar la referencia a la plantilla padre en "template"
+
+
+xx
+
+### The WordPress template hierarchy
+
+
+ WP busca los archivos de plantilla en el siguiente orden:
+
+- **Plantilla de página:** : plantilla personalizada asignada, WordPress busca ese archivo y, si lo encuentra, lo usa.
+- **page-{slug} .php:**:  plantilla especializada que contiene el slug (babosa) de la página, o sea el nombre del recurso.
+- **page-{id} .php:**: plantilla especializada que incluye el id de la página.
+- **page.php:**:  plantilla de página predeterminada del tema.
+- **singular.php:**:  plantilla para una sola publicación.
+- **index.php:**:  archivo de índice del tema para representar páginas.
+
+xx
+
+**Ampliar ↓**
+
+https://wphierarchy.com/
+
+![Template](./media/T4/wp-hierarchy.png)  
+
+
+xx
+
+Según la jerarquia de WP:
+
+- Primero se busca  el fichero en el tema hijo.
+- Luego se busca en el tema padre por defecto.
+
+
+Ejemplo: Página del usuario con el rol  autor, "david" que tenga una identificación numérica de 3. 
+
+¿Existe el archivo author-david.php en el tema secundario? No…
+
+¿Existe el archivo author-david.php en el tema principal? No…
+
+¿Existe el archivo author-3.php en el tema secundario? No…
+
+¿Existe el archivo author-3.php en el tema principal? No…
+
+¿Existe el archivo author.php en el tema secundario? ¡Sí!
+
+xx
+
+### Cuestión: ¿Cómo se genera la página principal HTML en WP?
+
+-  index.php/home.php/front-page.php  
+cargarán todas las otras plantillas de las distintas secciones con las distintas etiquetas de plantilla. (get_header(), get_sidebar(), get_footer(), etc.)
+- Si el usuario está autentificado, se carga además una cabecera con el menú del rol del usuario.
+
+xx
+
+## Cuestiones en casa
+
+- ¿Qué página se carga en WP al llamar a http://portal.xx.es/
+- Indica que gancho carga:
+  - ¿Y las noticias/entradas?
+  - ¿Y la página Participa?
+-- Mirando functions.php por que nuestro tema tiene solo 3 sidebars donde poner los widgets?
+
+xxx
+
+# 13 Plugins
+
+Los plugins se añaden al portal desde el Dashboard mediante un fichero zip con el nombre "plugin-name.zip"  o desde un repositorio.
+
+Según el esqueleto del ***boilerplate*** (http://wppb.io/) creado a partir de la documentación de Wordpress y  de la Worpress API el sistema de ficheros de un plugin es :
+```
+/plugin-name
+     plugin-name.php
+     uninstall.php
+     readme.md
+     /languages
+     /includes
+     /admin
+          /js
+          /css
+          /images
+     /public
+          /js
+          /css
+          /images
+```
+**Ampliar ↓**
+
+xx
+
+Directorios:
+- admin, para código PHP con funcionalidad de back-end
+- css, para almacenar nuestras hojas de estilos
+- includes, para código PHP auxiliar
+- js, para código JavaSript
+- languages, para la internacionalización de nuestro plugins
+- public, para código PHP con funcionalidad de front-end
+
+xx
+
+Ficheros: 
+- plugin-name.php, que es el fichero principal de nuestro plugin, 
+- uninstall.php que se ejecutará cuando un usuario borre nuestro plugin para realizar acciones de limpieza en BBDD.
+- README.md 
+- CHANGELOG.md
+
+xx
+
+Lectura Individual 
+https://www.cssigniter.com/use-custom-theme-plugin-wordpress-site-customizations/
+
+
+- ¿Conclusiones?
+- ¿Cuándo es conveniente utilizar un plugin o un child-theme?
+
+
+xxx
+
+# 14 Widget
+
+- Los widgets, son bloques  que permiten añadir a todas las páginas del portal en una determinada posición distintos elementos: iconos de redes sociales, listado de entradas más vistas en el blog, categorías del sitio web, contacto… 
+- El widget es  un bloque de código php  se debe registrar (register_widget('name'))en el WP para que un filtro de acción ('widgets_init') lo inicialice para poder utilizar en un tema.
+
+
+```php
+function wpl_load_widget() {
+    register_widget( 'wpl_widget' );
+}
+add_action( 'widgets_init', 'wpl_load_widget' );
+```
+
+(https://www.axarnet.es/blog/como-crear-un-widget-en-wordpress/)
+
+
+xx
+
+## Ejemplo para añadir un widget
+
+```
+class wpl_widget extends WP_Widget {
+    function __construct() { // Constructor del Widget.
+        $widget_ops = array(
+            'classname' => 'my_widget',
+            'description' => 'My Widget is awesome',
+        );
+        parent::__construct( 'wpl_widget', 'Wpl Widget', $widget_ops );
+    }
+    function widget($args,$instance){// Contenido del Widget que se mostrará donde posicionamos el widget
+    }
+    function update($new_instance, $old_instance){ // Función de guardado de opciones del formulario
+    }
+    function form($instance){// Formulario de opciones del Widget, aparece al añadir el Widget a una Sidebar
+    }
+}
+```
+
+
+xxx
+
+# 14. Interacción C/S WP: Cache
+
+https://wpengine.com/support/cookies-and-php-sessions/
+
+
+![Image of La World Wide Web](./media/T4/uncached_workflow.png)
+
+¿qué pasa con las sesiones la 2 vez?
+¿Y con las cookies?
+
+**Leer ↓**
+
+xx
+
+No hay interacción con PHP.
+
+![Image of La World Wide Web](./media/T4/cached_workflow.png)
+
+JavaScript permite visualizar las cookies.
+
+¿Y el objeto SESSION PHP?
+
+
+**Leer ↓**
+
+xx
+
+## SESIONES 
+
+- Por defecto, WordPress no le dará la posibilidad de recuperar datos de los usuarios para mejorar su experiencia de usuario.
+- El propio WordPress no retiene sesiones, pero si algunos plugins o temas una vez que probablemente se activan.
+- WordPress  no utiliza sesiones PHP nativas. En cambio, depende en gran medida de las cookies para la autenticación y almacena cualquier información adicional sobre una sesión autenticada en la base de datos.
+
+
+
+**Leer ↓**
+
+xx
+
+Lectura individual en casa
+
+Uso sesiones:
+
+https://slicejack.com/building-custom-wordpress-login-page/
+
+Ejemplo Login https://pressjitsu.com/blog/wordpress-sessions-performance/
+
+
+
+xxx
+
+# 15. WEB: Autenticación de usuarios
+
+- Una cuestión frecuente en un sitio web es controlar el acceso de los usuarios a una zona determinada del mismo (autorización), para ello se requiere solicitar generalmente la Autentificación previamente.
+- Autentificación requiere credenciales o pruebas de identidad.
+- La autentificación de usuarios puede realizarse:
+    - Autentificación en el Servidor: En Apache los ficheros ```.htacacces```.
+    - Autentificación en el Cliente: Firma Digital.
+    - Autentificación por Programa: Escribir un programa para controlar el acceso de los usuarios.
+
+**Leer ↓**
+
+xx
+
+## Proceso autentificación básica en Servidor: 
+
+Autentificación básica: Solicita al cliente un usuario y contraseña, que viajan encriptadas con codificación base 64 bits
+
+ ![Proceso Auth](./media/T4/authProcess.jpeg)
+ 
+**Leer ↓**
+
+xx
+
+### Configuración Autentificación Básica
+
+- Configurar fichero .htaccess en directorio que se requiera.
+
+```
+#./htaccess
+AuthType Basic
+AuthName "Password Required"
+AuthUserFile /home/alxxx/privado/.htpasswd
+Require valid-user
+```
+
+- Ejemplo:
+https://piruletas.000webhostapp.com/teoria/T4/Auth/session.php
+
+```
+#Generar fichero password en Linux
+>htpasswd -c /home/alxxx/privado/.htpasswd usuario
+```
+**Leer ↓**
+
+xx
+
+## Autentificación Básica por Programa
+
+ ![Flujo del proceso autentificación?](./media/T4/authWorkflow.jpeg)
+ 
+**Leer ↓**
+
+xx
+
+https://piruletas.000webhostapp.com/teoria/T4/basicAuth.php
+
+```
+<?php
+$valid_passwords = array ("Pepe" => "Catala","lola"=>"lola");
+$valid_users = array_keys($valid_passwords);
+$user = $_SERVER['PHP_AUTH_USER'];
+$pass = $_SERVER['PHP_AUTH_PW'];
+$validated = (in_array($user, $valid_users)) && ($pass == $valid_passwords[$user]);
+
+if (!$validated) {
+header('WWW-Authenticate: Basic realm="My Realm"');
+
+header('HTTP/1.0 401 Unauthorized');
+
+die ("Not authorized");
+
+
+}
+// If arrives here, is a valid user.
+
+echo "<p>Welcome $user.</p>";
+
+echo "<p>Congratulation, you are into the system.</p>";
+
+?>
+```
+
+xx
+
+
+ ![Flujo del proceso autentificación?](./media/T4/authWorkflow.jpeg) 
+
+xx
+
+### Autorizar recursos a los usuarios
+ ![Proceso autorización](./media/T4/ResourceShow.jpeg)
+
+xx
+
+## Cuestiones:
+
+- ¿Hay que pedir autorización a todos los recursos que se soliciten?
+
+- ¿La acción “redirect” es propia de php o del protocolo http?
+
+- ¿Qué entiendes por usuario cliente, visitante, gestor,administrador?
+
+- ¿Que podríamos hacer al cambiar el rol del usuario?
+
+
+xxx
+
+## 16: WP y Gestión de usuarios:
+
+WP como tiene un sistema de autentificación tiene por defecto un sistema de login que almacena en la BD información sobre el usuario.
+
+Por tanto tiene:
+- una variable global para acceder al BD: $wpdb
+- Un objeto wp-user que nos permite gestionar los datos de los usuarios y comprobar que la autentificación es correcta.
+
+xxx
+
+## Objeto wp_user: 
+Parametros wp_user
+(https://developer.wordpress.org/reference/classes/wp_user/)
+
+- ID (int): identificador usuario.
+- roles (array): los roles del user.
+- first_name (string): nombre usuario.
+- last_name (string): apellido usuario.
+
+Ejemplo para comprobar que el usuario está registrado
+
+```
+if ( !$user = $wpdb->get_row( $wpdb->prepare(
+            "SELECT * FROM $wpdb->users WHERE $db_field = %s", $value
+        ) ) )
+```
+
+xx
+
+## Autentificación WP: wp_authenticate_cookie
+Hoock para comprobar si un usuario está autentificado:
+
+- wp_authenticate_cookie( WP_User|WP_Error|null $user, string $username, string $password )
+
+devuelve: (WP_User|WP_Error) WP_User on success, WP_Error on failure.
+
+
+https://developer.wordpress.org/reference/functions/wp_authenticate_cookie/
+
+xxx
+
+## 17. Seguridad WP
+
+https://kinsta.com/es/blog/seguridad-wordpress/
+
+
+
+
+xxx
+
+## Bibliografia
+
+- PHP: [http://es.php.net/manual/es/](http://es.php.net/manual/es/)
+- Guia Estilos: https://www.php-fig.org/psr/psr-2/
+- Apache: [http://httpd.apache.org/docs/2.3/es/](http://httpd.apache.org/docs/2.3/es/)
+- Callbacks: https://diego.com.es/funciones-anonimas-y-clausuras-en-php 
+
+- https://visual.ly/community/infographic/computers/wordpress-theme-anatomy
+
+- https://kinsta.com/es/blog/seguridad-wordpress/
+
+- https://elibro.net/es/ereader/uji/106387?as_edition_year=2019,2020&as_edition_year_op=range&as_all=web&as_all_op=unaccent__icontains&prev=as&page=108
+
+
+xxx
+
+## ¿Dudas?
+
+  ![Image de Dudas](./media/image8.png)
+-->
+    </body>
+    </html>

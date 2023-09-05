@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <title>TEMPLATE</title>
+   <style type="text/css">
+      td {
+         border: 1px solid black;
+      }
+
+      thead td {
+         color: purple;
+         text-decoration: bold;
+      }
+
+      .button {
+         background-color: THISTLE;
+         border-radius: 9px;
+         color: purple;
+         padding: .5em;
+         text-decoration: bold;
+
+      }
+
+      .button:focus,
+      .button:hover {
+         background-color: darkblue;
+      }
+   </style>
+
+   <script type="text/javascript">
+      var datos = [{ "id": "1", "nombre": "pepe", "apellido": null, "email": null, "clave": null }, { "id": "2", "nombre": "pepe", "apellido": null, "email": null, "clave": null }, { "id": "3", "nombre": "", "apellido": null, "email": null, "clave": null }, { "id": "4", "nombre": "joseva", "apellido": null, "email": null, "clave": null }, { "id": "5", "nombre": "LOLA", "apellido": null, "email": null, "clave": null }, { "id": "6", "nombre": "paco", "apellido": null, "email": null, "clave": null }, { "id": "7", "nombre": "user1", "apellido": null, "email": null, "clave": null }, { "id": "8", "nombre": "pl", "apellido": null, "email": null, "clave": null }, { "id": "9", "nombre": "plll", "apellido": null, "email": null, "clave": null }]
+      document.addEventListener("DOMContentLoaded", function () {
+         // Test to see if the browser supports the HTML template element by checking
+         // for the presence of the template element's content attribute.
+         table = document.querySelector('table');
+         cTabla = "<thead><tr>";
+         for (let i in datos[0]) { cTabla += "<td>"+i+"</td>";}
+         cTabla += "</tr></thead>";
+        
+         for (let i in datos) { 
+            cTabla += "<tr>";
+            for (let j in datos[i])  {
+               cTabla += "<td>"+datos[i][j]+"</td>";
+            }
+            cTabla += "</tr>";
+         }
+         table.innerHTML = cTabla; 
+      })
+JSONdata={"menu": {
+"id": "file",
+"value": "File",
+"popup": {
+"menuitem": [
+{"value": "New", "onclick": "CreateNewDoc()"},
+{"value": "Open", "onclick": "OpenDoc()"},
+{"value": "Close", "onclick": "CloseDoc()"}
+]
+}
+}}
+
+var menu = JSONdata.menu; 
+
+var submenu = JSONdata.menu.menuitem;
+
+var submenuVal = JSONdata.menu.popup.menuitem[ 0 ]["value"]
+for (let campo in submenu)
+ {
+   for (let atributos in campo)
+  {console.log(submenu[campo][atributo]);};};
+console.log("qahi nn")
+   </script>
+</head>
+
+<body>
+   <p><a class="button" href="SendJSON.php"> Listar usuarios <a>
+            <p>
+               <table id="producttable">
+
+               </table>
+
+</body>
+
+</html>

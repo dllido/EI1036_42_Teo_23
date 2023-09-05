@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Hola</title>
+			<script type="text/javascript">
+			imagenes=[{alt:"mono",url:"http://www.bigfoto.com/themes/nature/animals/orangs-ape_small.JPG"},
+			{alt:"gallo",url:"http://www.bigfoto.com/themes/nature/animals/rooster-h6yl_small.jpg"},
+			{alt:"jirafa",url:"http://www.bigfoto.com/themes/nature/animals/giraffe_1_small.jpg"}];
+			
+			var i=1;
+			
+			
+			function detectores()
+			{imagen=document.querySelector("#carrusel");
+			 imagen.addEventListener("mouseover",function (event){
+				 alert("valorCambiado");
+				 i++;
+				 imagen.alt=imagenes[i%3].alt;
+				 imagen.src=imagenes[i%3].url;
+
+			document.querySelector("#PieImagen").textContent=imagenes[i%3].alt;
+				});
+						}
+			document.addEventListener("DOMContentLoaded", function (){detectores()});
+			
+				</script>
+			</head>
+<body>
+<ul id="todoItems">
+</ul>
+<h1>Carrusel, situate encima de la imagen</h1>
+<h2 id="errores"></h2>
+<img id="carrusel" src="http://www.bigfoto.com/themes/nature/animals/orangs-ape_small.JPG" alt="mono">
+<label id=PieImagen>mono</label>	
+</body>
+</html>

@@ -1,0 +1,3 @@
+#./htaccessa
+Options +Indexes
+Header set Access-Control-Allow-Origin *
