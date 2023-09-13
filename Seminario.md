@@ -3,7 +3,6 @@
 ## Instalación WordPress
 
 
-
 #### EI1042 - Tecnologías y Aplicaciones Web
 
 #### EI1036- Tecnologías Web para los Sistemas de Información (2022/2023)
@@ -13,8 +12,6 @@
 ![Derechos Autor](./media/cc2.jpg)
 
 [Universitat Jaume I](https://www.uji.es/).
-
-
 
 ---
 
@@ -47,12 +44,25 @@
 
 ![Image of HTML](./media/T1/image1.png)
 
-```<!DOCTYPE html >``` 
+--
 
-``` <li id="section-3" class="section main clearfix" role="region" aria-label="Laboratorio">```
+#### Internacionalización codificación de carácteres
+```
+<!DOCTYPE html >
+<html lang="es">
+<head>
+<meta charset="ISO-8859-1">
+```
+
+
+Html5 el estandar es utf-8
+
 
 - HTML(HyperText Markup Language)
 - XML(eXtensible Markup Language)
+
+https://validator.w3.org/#validate_by_uri+with_options
+
 
 --
 
@@ -104,6 +114,7 @@ Servidor
 ```
 
 --
+
 
 ![Image of headersHttp](./media/T1/image12.jpeg)
 
@@ -160,41 +171,11 @@ esquema=protocolo sistema:
 
 - ftp://al007@anubis.uji.es/un/ejemplo.txt
   
-
-  https://aulavirtual.uji.es/course/view.php?id=64297#section-3
-
-
---
-
-
-
-
-### Ejemplo URL HTTP
-
-- [http://www.milanuncios.com/informaticos-en-almeria/pp.htm?dias=1&demanda=n](http://www.milanuncios.com/informaticos-en-almeria/pp.htm?dias=1&demanda=n)
-- https://duckduckgo.com/?q=pp&t=ffab&ia=about
-- https://www.google.es/search?q=llido&as_sitesearch=uji.es&gfe_rd=ssl&ei=pRDx
-- [http://dllido.al.nisu.org/EI1036_1042/PortalJson.php?action=modificarAlumnoJson](http://dllido.al.nisu.org/EI1036_1042/PortalJson.php?action=modificarAlumnoJson)
 - https://aulavirtual.uji.es/course/view.php?id=64297#section-3
 
 
 --
 
-## Caracteres especiales:
-
-- /: Indica path del recurso
-- #: indica una etiqueta que tiene el id referenciado 
- (< id=section-3>)
-- &,=: El cliente WEB los datos del formulario cuando se usa el método get los envia como pares nombre=valor unidos por &
-
-```
-<?php
-echo '<a href="mycgi?foo=', urlencode($userinput), '">';
-?>
-```
-- urlencode() - Codifica una cadena cifrada como URL
-
-- urldecode() - Decodifica una cadena cifrada como URL
 
 --
 
@@ -205,6 +186,7 @@ echo '<a href="mycgi?foo=', urlencode($userinput), '">';
 - Mejora el SEO ( Search Engine Optimization)
 - El servidor http  manipula la URL para redirigir esta url  a los recursos internos correctamente.
 
+
 --
 
 #### Ejemplos URL amigables
@@ -213,18 +195,92 @@ echo '<a href="mycgi?foo=', urlencode($userinput), '">';
  https://cursoswp.educacion.navarra.es/cursowp2018/categoria/sesion-1/. La “Sesión 1” es una categoría de entradas, que agrupa todos los elementos de contenido que se tratarán en dicha sesión.
 - Página de las entradas que han sido marcadas con la etiqueta “widgets”: https://cursoswp.educacion.navarra.es/cursowp2018/etiqueta/widgets/. La etiqueta “widgets” es un marcador semántico que sirve para poder agrupar todos los artículos que contengan dicho concepto.
 
+---
+
+## Instalació Wordpress al Ordinador:
+
+
+1. Descarga XAMP
+https://www.apachefriends.org/es/index.html
+2. Descarga WP
+https://es.wordpress.org/download/#download-install
+3. Instala XAMP
+4. Ejecuta el entorno del XAMP
+
+
+<img width="30%" src="./media/seminario/xampp.png">
+
+En el menu de configuración obtendrás los datos de configuración por defecto de los distintos servidores
+- Accee a la pestaña "manager servers"
+- Pulsa "start" en todos los servidores
+
+
 --
 
-#### Cuestión
+5. Configuracion servidor web
 
 
-¿Que envia el servidor si el recurso es un directorio? 
+- Pulsa en "Configure->Open Conf File"
+Segun esta imagen el home/raiz del portal web: http://localhost/  está en /Applications/XAMPP/xamppfiles/htdocs.
+- Abre en un navegador la url http://localhost/ y conprueba donde está el fichero que muestra.
+Supongo que te redirige a la url: http://localhost/dashboard/index.html
 
-1. Nada 
-2. index.html
-3. index.php
-4. Listado directorios
-5. Error
+<img width="50%" src="./media/seminario/confhttp.png">
+
+--
+
+6. Abre  la url del gestor de la  BD :  http://localhost/phpmyadmin
+
+- El usuario por defecto si no se cambia es: root/xamp
+
+- Si no se abre la url o para dar más seguridad y ponerlo en ejecución, ejecuta en el terminal el comando siguiente, modificando la ruta del xamp de tu sistema operativo.
+´´´sh
+sudo /Applications/XAMPP/xamppfiles/xampp security
+´´´
+Añade un password a la BD para el usuario root.
+
+--
+
+
+
+7. Crear BD con phpmyadmin
+
+- Puedes crear una BD para WP con la herramienta web phpmyadmin, entrando en la url http://localhost/phpmyadmin
+
+<img width="50%" src="./media/seminario/phpmy.png">
+
+- Pulsa sobre el icono "nueva" y crea una BD  "WP_alxxxx" con un usuario "alxxxx" y contraseña "uji" con permisos de acceso para el WP. No modifiqueis estos datos.
+
+--
+
+8. Abre el directorio "Home" del portal y en este directorio descomprimes el fichero de instalación de  WP.
+
+El directorio htdocs tendrá esta forma.
+<img width="50%" src="./media/T1/image14.jpeg">
+
+--
+
+9. Instalación WP. 
+
+- Entra en un navegador a la URL http://localhost/index.php aparecera el menú de instalación del WP. 
+
+- Pon los datos requeridos. 
+
+<img width="30%" src=./media/T3/WP_Gest.jpg><img width="30%" float="right" src="./media/seminario/wp.png">
+
+- Si todo es correcto, al final del proceso entrarás en el dashboard/escritorio del Wordpress. 
+
+--
+19. Linux
+
+ - sudo +x  xamp
+ - sudo xampxxx.run  ( ejecución super usuario)
+  Solo Core files
+  - instalación en /opt/LAMP
+
+
+
+
 
 ---
 
@@ -403,91 +459,6 @@ Las taxonomías de WP son un mecanismo de agrupamiento o categorización de los 
   ![Image de Dudas](./media/image8.png)
 
 ---
-
-## Instalació Wordpress al Ordinador:
-
-
-1. Descarga XAMP
-https://www.apachefriends.org/es/index.html
-2. Descarga WP
-https://es.wordpress.org/download/#download-install
-3. Instala XAMP
-4. Ejecuta el entorno del XAMP
-
-
-<img width="30%" src="./media/presentacion/xampp.png">
-
-En el menu de configuración obtendrás los datos de configuración por defecto de los distintos servidores
-- Accee a la pestaña "manager servers"
-- Pulsa "start" en todos los servidores
-
-
---
-
-5. Configuracion servidor web
-
-
-- Pulsa en "Configure->Open Conf File"
-Segun esta imagen el home/raiz del portal web: http://localhost/  está en /Applications/XAMPP/xamppfiles/htdocs.
-- Abre en un navegador la url http://localhost/ y conprueba donde está el fichero que muestra.
-Supongo que te redirige a la url: http://localhost/dashboard/index.html
-
-<img width="50%" src="./media/presentacion/confhttp.png">
-
---
-
-6. Abre  la url del gestor de la  BD :  http://localhost/phpmyadmin
-
-- El usuario por defecto si no se cambia es: root/xamp
-
-- Si no se abre la url o para dar más seguridad y ponerlo en ejecución, ejecuta en el terminal el comando siguiente, modificando la ruta del xamp de tu sistema operativo.
-´´´sh
-sudo /Applications/XAMPP/xamppfiles/xampp security
-´´´
-Añade un password a la BD para el usuario root.
-
---
-
-
-
-7. Crear BD con phpmyadmin
-
-- Puedes crear una BD para WP con la herramienta web phpmyadmin, entrando en la url http://localhost/phpmyadmin
-
-<img width="50%" src="./media/presentacion/phpmy.png">
-
-- Pulsa sobre el icono "nueva" y crea una BD  "WP_alxxxx" con un usuario "alxxxx" y contraseña "uji" con permisos de acceso para el WP. No modifiqueis estos datos.
-
---
-
-8. Abre el directorio "Home" del portal y en este directorio descomprimes el fichero de instalación de  WP.
-
-El directorio htdocs tendrá esta forma.
-<img width="50%" src="./media/T1/image14.jpeg">
-
---
-
-9. Instalación WP. 
-
-- Entra en un navegador a la URL http://localhost/index.php aparecera el menú de instalación del WP. 
-
-- Pon los datos requeridos. 
-
-<img width="30%" src=./media/T3/WP_Gest.jpg><img width="30%" float="right" src="./media/presentacion/wp.png">
-
-- Si todo es correcto, al final del proceso entrarás en el dashboard/escritorio del Wordpress. 
-
---
-19. Linux
-
- - sudo +x  xamp
- - sudo xampxxx.run  ( ejecución super usuario)
-  Solo Core files
-  - instalación en /opt/LAMP
-
-
-
-
 
 
 
