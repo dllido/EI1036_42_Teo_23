@@ -20,9 +20,9 @@
       }
 
       @media (orientation: portrait) {
-         color: green background-color: DodgerBlue;
+         color: green;
+         background-color: DodgerBlue;
          opacity: .5;
-
       }
 
       @media (min-width: 500px) and (max-width: 600px) {
@@ -34,7 +34,6 @@
             content: " In fact, it's between 500px and 600px wide.";
          }
       }
-
 
 
       .container {
@@ -65,7 +64,6 @@
          height: 100px;
 
       }
-
 
       #este {
          /* basic styling */
@@ -130,7 +128,6 @@
          background-color: aquamarine;
       }
 
-
       #dos0 {
          float: right;
          border: solid 4px green;
@@ -143,41 +140,17 @@
 
 </head>
 
-
 <body>
-   <p>
-   <form action="./procesar.php" method=”get”>
-      <label> Configuración</label>
-      <input TYPE="radio" NAME="conf" VALUE="S" CHECKED>Si
-      <input TYPE="radio" NAME="conf" VALUE="N">No
-      </p>
-      <Label>Extras</Label>
-      <INPUT TYPE="checkbox" NAME="extras[]" VALUE="garaje" CHECKED>Garaje
-      <INPUT TYPE="checkbox" NAME="extras[]" VALUE="piscina">Piscina
-      <INPUT TYPE="checkbox" NAME="extra[]" VALUE="jardin">Jardín
-      <p>
-
-         <Label>Idiomas</Label>
-         <SELECT MULTIPLE SIZE="3" NAME="idiomas[]">
-            <OPTION VALUE="ingles" SELECTED>Inglés
-            <OPTION VALUE="francés">Francés
-            <OPTION VALUE="alemán">Alemán
-            <OPTION VALUE="holandés">Holandés
-         </SELECT>
-
-         <Label>País</Label>
-         <SELECT MULTIPLE SIZE="3" NAME="pais">
-            <OPTION VALUE="ES" SELECTED>España
-            <OPTION VALUE="FR">Francia
-            <OPTION VALUE="GR">Inglaterra
-         </SELECT>
-
-         <input type=”submit” value="Enviar">
-   </form>
-
+   <header>
+      <hgroup>
+         <h1>EI1036</h1>
+         <h2>Ejercicios T1</h2>
+      </hgroup>
+   </header>
    <h3> Texto overflow</h3>
    <div class="container">
-      <p id="scroll" class="truncate scroll">This is a text that should be truncated because it's too long. The dreams of yesterday are the
+      <p id="scroll" class="truncate scroll">This is a text that should be truncated because it's too long. The dreams
+         of yesterday are the
          hopes of today and the reality of tomorrow. Many say exploration is part of our destiny, but it’s actually our
          duty to future generations and their quest to ensure the survival of the human species. Curious that we spend
          more time congratulating people who have succeeded than encouraging people who have not. If you could see the
@@ -185,7 +158,8 @@
          Buy why, some say, the moon? Why choose this as our goal? And they may as well ask why climb the highest </p>
    </div>
    <div class="container">
-      <p id=elipsis class="truncate ">This is a text that should be truncated because it's too long. The dreams of yesterday
+      <p id=elipsis class="truncate ">This is a text that should be truncated because it's too long. The dreams of
+         yesterday
          are
          the hopes of today and the reality of tomorrow. Many say exploration is part of our destiny, but it’s
          actually our duty to future generations and their quest to ensure the survival of the human species. Curious

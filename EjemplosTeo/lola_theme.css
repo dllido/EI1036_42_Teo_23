@@ -1,0 +1,243 @@
+
+
+.reveal .slides section,
+.reveal .slides section>section {
+  line-height: 1;
+}
+
+.reveal .slides h1 {
+  font-size: 1.5em;
+  color: #83a;
+  text-decoration: underline;
+
+}
+
+.reveal h2 {
+  font-size: 1.3em;
+  color: rgb(70, 67, 228);
+}
+
+.reveal h3 {
+  font-size: 1.4em;
+  text-transform: None;
+  color: #83a;
+  text-decoration: underline;
+}
+
+.reveal h4 {
+
+  text-transform: None;
+  font-size: 1.2em;
+  color: rgb(70, 67, 228);
+}
+
+.reveal h5 {
+  text-transform: None;
+  font-size: 1.2em;
+  color: #83a;
+}
+
+.reveal .slide-number {
+  font-size: 10px;
+  right: 20px;
+  bottom: 16px;
+}
+
+
+
+
+.reveal section {
+  top: 15%;
+  margin: 0 0 0 0;
+  padding: 2px 2px 2px 2px;
+}
+
+.reveal img {
+  border: 0px;
+  margin: 10px ;
+  max-width:70%;
+}
+
+.reveal .slides h4 img {
+  max-height: 400px;
+  margin: 0 0 0 0;
+}
+
+.reveal section img.imagen {
+  max-height: 300px;
+  border: 0px;
+  float: right;
+  margin: 0 0 0 0;
+}
+
+.reveal .left{
+  width: 50%;
+  float:left;margin:0px 0px "
+}
+
+.reveal {
+  margin: 1px;
+  padding: 2px 2px 2px 2px;
+  line-height: 1.2em;
+  font-size: 27px;
+}
+
+.reveal table {
+  font-size: 1em;
+  line-height: 1em;
+}
+
+/*
+.reveal li{margin-left:5px}
+.reveal table{font-size: 0.5 em;line-height: 0.8em;}
+.reveal .slides > section{margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}
+.reveal ol,
+.reveal dl,
+*/
+
+.reveal ul {
+  display: block;
+  /*line-height: 1.1em;
+  font-size: 1.1em;*/
+  padding: 2px;
+
+}
+
+a.reveal p {
+  text-align: left;
+}
+.reveal pre{
+  width: 120%;
+  border:0px;
+  margin:3px 3px;
+  padding:0px 0px;
+ font-size: 22px;
+}
+.reveal pre>code.plaintext {
+  font-size: 35px;
+  line-height: 1.2em;
+  background-color: #1b91ff;
+  border:0px;
+  margin:2px 2px;
+  padding:0px 0px;
+}
+
+.reveal pre> code.python, .reveal pre> code.console,
+.reveal aside > pre> .python, .reveal aside > pre>code.console, aside >pre> code.python, aside >pre> code.text {
+  word-break: break-word;
+  white-space: pre-wrap;
+  line-height: 1em;
+  border:0px;
+  margin:3px 3px;
+  padding:0px 0px;
+
+  max-height: 600px;
+  background-color: #7c1ade61;
+  font-size: 22px;
+}
+
+
+.reveal0 pre > code {
+  margin: 5px 0px;
+  padding: 1px 0px;
+  line-height: 1em;
+  line-height: 1em;
+  background-color: #7c1ade61;
+
+  font-size: 22px;
+  
+  /*box-shadow: 5px 5px 5px 5px #888888;*/
+}
+
+.reveal0 pre > code.txt {
+  font-size: 1.2em; 
+  margin: 1px;
+  padding: 1px;
+  line-height: 1.1em;
+  color: black;
+  background: rgba(199, 197, 197, 0.5);
+}
+
+
+
+a {
+  word-wrap: break-word;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.truncate:hover {
+  white-space: normal;
+  overflow: visible;
+}
+
+.DescriptionExcerpt {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+@media print {
+
+  html {
+    background: #fff;
+    width: auto;
+    height: auto;
+    overflow: hide;
+  }
+
+  body {
+    background: #fff;
+    width: auto;
+    height: auto;
+    border: 0px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    overflow: hide;
+    float: none !important;
+  }
+.reveal p 
+  {font-size: 0.9em;
+  line-height: 0.9em;}
+  .reveal img{max-width: 70%;}
+ .reveal pre> code.python, .reveal pre> code.console,
+.reveal aside > pre> .python, .reveal aside > pre>code.console, aside >pre> code.python, aside >pre> code.text {
+    
+    border:0px !important;
+    margin:1px 1px;
+    padding:0px 0px !important;
+    font-size: 0.8em;
+    line-height: 0.9em;
+    }
+
+  /* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+     
+  .nestedarrow,
+  .controls,
+  .fork-reveal,
+  .share-reveal,
+  .state-background,
+  .reveal .progress,
+  .reveal .backgrounds,
+  .reveal .slide-number {
+    display: none !important;
+  }
+
+  /* All your print styles go here */
+  #header,
+  #footer,
+  #nav,
+  #customcontrols,
+  .controls,
+  .slide-menu-button {
+    display: none !important;
+  }
+
+}

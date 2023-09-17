@@ -1,13 +1,13 @@
 # Seminario EI1036_1042
-## Introducción a la WWW
-## Instalación WordPress
-
 
 #### EI1042 - Tecnologías y Aplicaciones Web
 
 #### EI1036- Tecnologías Web para los Sistemas de Información (2022/2023)
 
 ##### Profesorado: Dra. Dolores María Llidó Escrivá
+
+## Introducción a la WWW
+## Instalación WordPress
 
 ![Derechos Autor](./media/cc2.jpg)
 
@@ -21,18 +21,16 @@
 - HTML
 - Cliente Web
 - Servidor Web
-- Protocolo HTTP
 - URL
-- Introducción Wordpress
-- Conceptos de Wordpress
+- Protocolo HTTP
+- Introducción WordPress
+- Conceptos de WordPress
 - Frontend/Backend: Escritorio principal WP
 - Roles de Usuarios
 - Tripas WP
 - Wordpres y PHP
 
-
 ---
-
 
 #  Arquitectura Cliente Servidor Web
 
@@ -54,44 +52,81 @@
 <meta charset="ISO-8859-1">
 ```
 
-
 Html5 el estandar es utf-8
-
 
 - HTML(HyperText Markup Language)
 - XML(eXtensible Markup Language)
 
 https://validator.w3.org/#validate_by_uri+with_options
 
-
---
-
+---
 
 ## Clientes WEB CURL/GET
 
 - Descargar un documento html.
+  
 <small>curl http://www.pekegifs.com/  -o pp.html
 </small>
-
 
  - Descargar todos los ficheros MP3 de un subdirectorio.  
 <small> wget ‐‐level=1 ‐‐recursive ‐‐no-parent ‐‐accept mp3,MP3 http://example.com/mp3/
 </small>
 
-
 ---
+
 
 ## Servidor WEB 
 
 - Servidor WEB [Apache ](https://es.wikipedia.org/wiki/Servidor_HTTP_Apache): [LAMP](https://es.wikipedia.org/wiki/LAMP)
 - Servidor WEB local php: '''php -S localhost'''
 
+
 ---
 
-## 2. El protocolo HTTP
+# URL: Uniform Resource Locator
+
+Són cadenas de caracteres con un formato que identifica recursos indicando su dirección electrónica
+
+```<esquema>://<user>:<password>@<host>:<port>/<url-path>```
+
+esquema=protocolo sistema:
+  
+- http://host[:port][abs_path]
+
+- http://anubis.uji.es/index.html
+
+- ftp://al007@anubis.uji.es/un/ejemplo.txt
+  
+- https://aulavirtual.uji.es/course/view.php?id=64297#section-3
+
+--
+
+
+## URL amigables
+
+[http://www.example.com/camaras/reflex/canon-eos-5d-mark-2/](http://www.example.com/camaras/reflex/canon-eos-5d-mark-2/)
+
+- Mejora el SEO ( Search Engine Optimization)
+- El servidor http  manipula la URL para redirigir esta url  a los recursos internos correctamente.
+
+--
+
+#### Ejemplos URL amigables
+ 
+- Página de entradas de la categoría correspondiente a la primera sesión del curso:
+ https://cursoswp.educacion.navarra.es/cursowp2018/categoria/sesion-1/. 
+ 
+ La “Sesión 1” es una categoría de entradas, que agrupa todos los elementos de contenido que se tratarán en dicha sesión.
+- Página de las entradas que han sido marcadas con la etiqueta “widgets”: https://cursoswp.educacion.navarra.es/cursowp2018/etiqueta/widgets/.
+
+ La etiqueta “widgets” es un marcador semántico que sirve para poder agrupar todos los artículos que contengan dicho concepto.
+
+---
+
+## El protocolo HTTP
 
 Cliente
-
+http://anubis.uji.es/un/ejemplo.html
 ```txt
  GET /un/ejemplo.html HTTP/1.0 CRLF
  User Agent: Mozilla CRLF
@@ -114,7 +149,6 @@ Servidor
 ```
 
 --
-
 
 ![Image of headersHttp](./media/T1/image12.jpeg)
 
@@ -151,54 +185,9 @@ Servidor
 - 500 Internal Server Error
 - 501 Not Implemented
 
-
-
-
 ---
 
-# 3. URL: Uniform Resource Locator
-
-Són cadenas de caracteres con un formato que identifica recursos indicando su dirección electrónica
-
-
-```<esquema>://<user>:<password>@<host>:<port>/<url-path>```
-
-esquema=protocolo sistema:
-  
-- http://host[:port][abs_path]
-
-- http://anubis.uji.es/index.html
-
-- ftp://al007@anubis.uji.es/un/ejemplo.txt
-  
-- https://aulavirtual.uji.es/course/view.php?id=64297#section-3
-
-
---
-
-
---
-
-## URL amigables
-
-[http://www.example.com/camaras/reflex/canon-eos-5d-mark-2/](http://www.example.com/camaras/reflex/canon-eos-5d-mark-2/)
-
-- Mejora el SEO ( Search Engine Optimization)
-- El servidor http  manipula la URL para redirigir esta url  a los recursos internos correctamente.
-
-
---
-
-#### Ejemplos URL amigables
- 
-- Página de entradas de la categoría correspondiente a la primera sesión del curso:
- https://cursoswp.educacion.navarra.es/cursowp2018/categoria/sesion-1/. La “Sesión 1” es una categoría de entradas, que agrupa todos los elementos de contenido que se tratarán en dicha sesión.
-- Página de las entradas que han sido marcadas con la etiqueta “widgets”: https://cursoswp.educacion.navarra.es/cursowp2018/etiqueta/widgets/. La etiqueta “widgets” es un marcador semántico que sirve para poder agrupar todos los artículos que contengan dicho concepto.
-
----
-
-## Instalació Wordpress al Ordinador:
-
+## Instalación Wordpress al Ordinador:
 
 1. Descarga XAMP
 https://www.apachefriends.org/es/index.html
@@ -207,21 +196,20 @@ https://es.wordpress.org/download/#download-install
 3. Instala XAMP
 4. Ejecuta el entorno del XAMP
 
-
 <img width="30%" src="./media/seminario/xampp.png">
 
-En el menu de configuración obtendrás los datos de configuración por defecto de los distintos servidores
-- Accee a la pestaña "manager servers"
-- Pulsa "start" en todos los servidores
+En el menu de configuración obtendrás los datos de configuración por defecto de los distintos servidores.
 
+- Accede a la pestaña "manager servers"
+- Pulsa "start" en todos los servidores
 
 --
 
-5. Configuracion servidor web
+5. Configuración del servidor web
 
 
 - Pulsa en "Configure->Open Conf File"
-Segun esta imagen el home/raiz del portal web: http://localhost/  está en /Applications/XAMPP/xamppfiles/htdocs.
+Según la siguiente imagen el home/raiz del portal web: http://localhost/  está en /Applications/XAMPP/xamppfiles/htdocs.
 - Abre en un navegador la url http://localhost/ y conprueba donde está el fichero que muestra.
 Supongo que te redirige a la url: http://localhost/dashboard/index.html
 
@@ -234,16 +222,16 @@ Supongo que te redirige a la url: http://localhost/dashboard/index.html
 - El usuario por defecto si no se cambia es: root/xamp
 
 - Si no se abre la url o para dar más seguridad y ponerlo en ejecución, ejecuta en el terminal el comando siguiente, modificando la ruta del xamp de tu sistema operativo.
-´´´sh
+
+
+```sh
 sudo /Applications/XAMPP/xamppfiles/xampp security
-´´´
+```
 Añade un password a la BD para el usuario root.
 
 --
 
-
-
-7. Crear BD con phpmyadmin
+1. Crear una  BD con phpmyadmin
 
 - Puedes crear una BD para WP con la herramienta web phpmyadmin, entrando en la url http://localhost/phpmyadmin
 
@@ -253,34 +241,26 @@ Añade un password a la BD para el usuario root.
 
 --
 
-8. Abre el directorio "Home" del portal y en este directorio descomprimes el fichero de instalación de  WP.
-
-El directorio htdocs tendrá esta forma.
+1. En  el directorio "Home" del portal  descomprime el fichero de instalación de  WP. El directorio htdocs tendrá esta forma.
 <img width="50%" src="./media/T1/image14.jpeg">
 
 --
 
 9. Instalación WP. 
 
-- Entra en un navegador a la URL http://localhost/index.php aparecera el menú de instalación del WP. 
-
-- Pon los datos requeridos. 
+- Entra en un navegador a la URL http://localhost/index.php aparecera el menú de instalación del WP.  Pon los datos requeridos. Al final del proceso, entrarás en el dashboard/escritorio del Wordpress. 
 
 <img width="30%" src=./media/T3/WP_Gest.jpg><img width="30%" float="right" src="./media/seminario/wp.png">
 
-- Si todo es correcto, al final del proceso entrarás en el dashboard/escritorio del Wordpress. 
 
 --
-19. Linux
+
+1.  S.O. Linux
 
  - sudo +x  xamp
  - sudo xampxxx.run  ( ejecución super usuario)
   Solo Core files
   - instalación en /opt/LAMP
-
-
-
-
 
 ---
 
@@ -326,7 +306,6 @@ Hostings  gratuitos para WP :
 - https://cloudaccess.net
 - https://www.000webhost.com/
 - https://www.awardspace.com/  
-   (Este es el que utilizaremos para laboratorio)
   
 
 --
@@ -360,7 +339,6 @@ Hostings  gratuitos para WP :
 - *Etiqueta* (tags) palabras clave asociadas a páginas, artículos o entradas.
 - *Atajos* (shortcode): texto entre las marcas [ ] que se sustituyen por el resultado de una función PHP (ej.- [woocommerce_cart])
 
-
 --
 
 ## Conceptos
@@ -370,7 +348,6 @@ Hostings  gratuitos para WP :
 - *Menu*: Menús de navegación y acceso a distintos servicios del portal.
 
 Cualquier widget o menú creado en WP se muestra, por defecto, en todas las páginas del sitio web.
-
 
 --
 
@@ -392,11 +369,10 @@ Las taxonomías de WP son un mecanismo de agrupamiento o categorización de los 
 
 ## Frontend/Backend
 
-- Programador Back-End : es el especialista que desarrolla la parte de atrás, el soporte de una web, lo que nadie ve. Cliente
-- Programador  Front-End diseña lo de adelante, lo que sí se ve.  Servidor
+- Programador Back-End : es el especialista que desarrolla la parte de atrás, el soporte de una web, lo que nadie ve. Gestion usuarios/plantillas/datos...
+- Programador  Front-End diseña lo de adelante, lo que sí se ve.  El portal final
 
 <img src="./media/T4/FrontBack.jpg">
-
 
 
 --
@@ -417,7 +393,7 @@ Las taxonomías de WP son un mecanismo de agrupamiento o categorización de los 
   - Actualizaciones.
   - Gestionar los distintos recursos del site: multimedia (imágenes, videos...).
 
-**Continua ↓**
+
 
 ---
 
@@ -451,22 +427,10 @@ Las taxonomías de WP son un mecanismo de agrupamiento o categorización de los 
   - *Herramientas.* Importar y exportar son las opciones disponibles inicialmente. Si instalas ciertos plugins, su panel de opciones podría aparecer en esta sección.
   - *Ajustes.* Toda la configuración básica de tu sitio se hace en esta parte. También podrás modificar las opciones de cualquier plugin que instales en esta sección. De entrada tendrás acceso a configurar las opciones generales, de escritura, de lectura, de comentarios, de medios y de enlaces permanentes.
 
-
-
 ---
 
 ### ¿Dudas?
   ![Image de Dudas](./media/image8.png)
-
----
-
-
-
-
-
-
-
-
 
 
                   

@@ -13,7 +13,7 @@ print_r($_COOKIE);
 
 //Expire the session if user is inactive for x seconds
 
-expireAfterSeconds = 15;
+$expireAfterSeconds = 15;
 
 //Check to see if our "last action" session
 //variable has been set.
