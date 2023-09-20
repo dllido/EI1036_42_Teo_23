@@ -15,14 +15,15 @@
 
    <style>
       @media (orientation: landscape) {
+         p {
          background-color: gray;
-         opacity: 0.3;
+         opacity: 0.3;}
       }
 
       @media (orientation: portrait) {
-         color: green;
+         p {color: green;
          background-color: DodgerBlue;
-         opacity: .5;
+         opacity: .5;}
       }
 
       @media (min-width: 500px) and (max-width: 600px) {
@@ -38,31 +39,28 @@
 
       .container {
          background-color: rgb(238, 250, 215);
-         background-color: lightblue;
          width: 400px;
-         height: 200px;
+         margin: 10px;
+  
       }
 
       #elipsis {
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
-         height: 100px;
          background-color: lightsalmon;
+         height: 200px;
       }
 
       #elipsis:hover {
-
          white-space: normal;
          overflow: visible;
-
       }
 
       #scroll {
          background-color: lightsalmon;
          overflow: scroll;
-         height: 100px;
-
+         height: 200px;
       }
 
       #este {
@@ -128,14 +126,14 @@
          background-color: aquamarine;
       }
 
-      #dos0 {
+      #der {
          float: right;
          border: solid 4px green;
       }
 
-      #uno0 {
+      #izq {
          float: left;
-         border: dotted 4px blue;
+         border: dotted 4px blue;}
    </style>
 
 </head>
@@ -149,7 +147,7 @@
    </header>
    <h3> Texto overflow</h3>
    <div class="container">
-      <p id="scroll" class="truncate scroll">This is a text that should be truncated because it's too long. The dreams
+      <p id="scroll" class="scroll">This is a text that should be truncated because it's too long. The dreams
          of yesterday are the
          hopes of today and the reality of tomorrow. Many say exploration is part of our destiny, but it’s actually our
          duty to future generations and their quest to ensure the survival of the human species. Curious that we spend
@@ -169,40 +167,24 @@
          why climb the highest </p>
    </div>
 
-   <div id="" este">
-      <p>Sin reglas posicionamiento</p>
-   </div>
-   <div>
-      <div>uno</div>
-      <div>due due due due due due due due due due due due due </div>
-      <div>tre</div>
-   </div>
+   <h3> Nada</h3>
+   <div>cero1</div>
+   <div >uno1</div>
+   <div >dos1</div>
+   <div >tres1</div>
 
    <h3> Float: izq der</h3>
    <div>cero1</div>
-   <div id="uno0">uno1</div>
-   <div id="dos0">dos1</div>
+   <div id="der">uno1</div>
+   <div id="izq">dos1</div>
    <div id="tres">tres1</div>
 
    <h3> Float: der izq </h3>
    <div>cero2</div>
-   <div id="dos0">uno2</div>
-   <div id="uno0">dos2</div>
+   <div id="izq">uno2</div>
+   <div id="der">dos2</div>
    <div id="tres">tres2</div>
 
-   <p>Usando Columns</p>
-   <div class="content-box">
-      <div>uno</div>
-      <div>due due due due due due due due due due due due due </div>
-      <div>tre</div>
-   </div>
-
-   <p>Usando Flex</p>
-   <div class="flex">
-      <div>uno</div>
-      <div>due due due due due due due due due due due due </div>
-      <div>tre</div>
-   </div>
 
 </body>
 
