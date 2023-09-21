@@ -217,17 +217,24 @@ Supongo que te redirige a la url: http://localhost/dashboard/index.html
 
 --
 
-6. Abre  la url del gestor de la  BD :  http://localhost/phpmyadmin
+6. Configurar acceso BD a traves de BD:
+- Comprueba que el fichero de configuración de la BD tiene esto descomentado
+```txt
+[client]
+user =root
+password	=xamp
+```
+- Si lo has de modificarlo reinicia la BD.
+- Abre  la url del gestor de la  BD en el navegador :  http://localhost/phpmyadmin te debe pedir usuario: root/xamp
 
-- El usuario por defecto si no se cambia es: root/xamp
-
-- Si no se abre la url o para dar más seguridad y ponerlo en ejecución, ejecuta en el terminal el comando siguiente, modificando la ruta del xamp de tu sistema operativo.
+<!--- Si no se abre la url o para dar más seguridad y ponerlo en ejecución, ejecuta en el terminal el comando siguiente, modificando la ruta del xamp de tu sistema operativo.
 
 
 ```sh
 sudo /Applications/XAMPP/xamppfiles/xampp security
 ```
 Añade un password a la BD para el usuario root.
+-->
 
 --
 
@@ -237,7 +244,9 @@ Añade un password a la BD para el usuario root.
 
 <img width="50%" src="./media/seminario/phpmy.png">
 
-- Pulsa sobre el icono "nueva" y crea una BD  "WP_alxxxx" con un usuario "alxxxx" y contraseña "uji" con permisos de acceso para el WP. No modifiqueis estos datos.
+- Pulsa sobre el icono "nueva" y crea una BD  "WP_alxxxx" .
+- Crea  un usuario "alxxxx" y contraseña "uji" con permisos de acceso como los de root a localhost.
+- Cierra el phpmyadmin y intenta entrar con este usuario para ver que está bien configurado.  Si no lo consigues utilizaremos el usuario root aunque no sea lo más recomendable.
 
 --
 
