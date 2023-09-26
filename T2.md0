@@ -20,18 +20,6 @@ WP
 
 ---
 
-### Robots.txt
-
-- Fichero donde indicar el comportamiento que tienen que tener los buscadores y los programas de descargas sobre el servidor.
-
-- Se supone que todos los
-programas de descarga deben
-respetarlo, aunque no siempre es
-así.
-
-- Se utilizan 2 directivas:
-  - User-agent:
-  - Disallow:
 
 **Continua ↓**
 
@@ -115,6 +103,505 @@ RewriteRule . /index.php [L]
 ```
 Si existe el fichero o directorio los muestra como otro servidor apache.
 En caso contrario lo intenta cargar con wordpress.
+
+
+---
+
+
+### ¿De qué tipo es la variable?
+
+- gettype() devuelve el tipo de una variable
+- is_type() comprueba si una variable es de un tipo dado:
+
+```php
+is_array(), is_bool(), is_null(), is_object(), is_resource(),
+is_scalar(),is_string(),is_float(), is_integer(), is_numeric(),is_nan()
+```
+
+--
+
+### Ámbito de variables
+
+- Local: Variable definida en una función
+  - Está limitada a dicha función.
+  - Se elimina al acabar la ejecución de la función
+  - Salvo si la variable se declara como **static** .
+- Global:
+  - No se puede definir dentro de las funciones a menos que :
+    - se declare en la función con la palabra clave 'global'
+    - O que se acceda con el array $GLOBALS[indice]
+  - Existen durante todo el tiempo de proceso del fichero
+  - Al acabar de procesar el fichero se eliminan las variables globales
+
+--
+
+## Funciones
+
+```PHP
+function suma ($x, $y)
+{
+   $s = $x + $y;
+   return $s;
+}
+```
+
+Salida:
+
+```
+$a=1;
+$b=2;
+$c=suma ($a, $b);
+print $c;
+```
+
+--
+
+### Paso parámetros
+
+- Por defecto paso parámetros por valor
+- Paso por referencia:
+
+```PHP
+function incrementa (&$a)
+{
+  $a = $a + 1;
+}
+$a=1;
+incrementa ($a);
+print $a; // Muestra un 2
+--
+
+### Argumentos por defecto
+
+- Los argumentos con valores por defecto deben ser siempre
+  los últimos:
+
+```PHP
+function muestranombre ($nombre, $titulo= "Sr.")
+{
+  print "Estimado $titulo $nombre:\n";
+}
+muestranombre (“Fernández”);
+muestranombre (“Fernández”, "Prof.");
+```
+
+Salida:
+
+```
+Estimado Sr. Fernández:
+Estimado Prof. Fernández:
+```
+
+
+--
+
+### Manejo errores
+```
+try {
+    echo inverse(5) . "\n";
+    echo inverse(0) . "\n";
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+
+
+
+### Cabeceras HTTP
+
+- Php puede poner datos en la cabecera http.
+- Cuando PHP envia algo a la salida estándar (print/echo) 
+  comienza el cuerpo del http, ya no se puede enviar nada a la cabecera.
+
+#### Ejemplo de envio de cabeceras en PHP 
+```
+header('Location: http://www.example.com/');
+print( <html><body><p>Holamundo</p></body></html>)
+```
+--
+
+
+--
+
+## Caracteres especiales:
+
+- /: Indica path del recurso
+- #: indica una etiqueta que tiene el id referenciado 
+ (< id==section-3>)
+- &,=: El cliente WEB los datos del formulario cuando se usa el método get los envia como pares nombre=valor unidos por &
+
+```
+<?php
+echo '<a href="mycgi?foo=', urlencode($userinput), '">';
+?>
+```
+urlencode() - Codifica una cadena cifrada como URL
+urldecode() - Decodifica una cadena cifrada como URL
+
+--
+
+
+## Variables en el servidor WEB con PHP 
+
+- Variables predefinidas en PHP
+- Están disponibles en todos los ámbitos.
+
+- $GLOBALS — Array con todas las variables  en el ámbito global. 
+  - $\_SERVER — Información del entorno del servidor y de ejecución
+  - $\_GET(POST) — Variables HTTP GET(POST)
+  - $\_FILES — Variables de Carga de Archivos HTTP
+  - $\_REQUEST — Variables HTTP Request: GET+POTS+COOKIE
+  - $\_SESSION — Variables de sesión
+  - $\_COOKIE— Variables con datos de la cookie
+  - $\_ENV— Variables del entorno
+  
+```$ GLOBALS[$_REQUEST]  === $_REQUEST```
+
+---
+
+## 6. Formularios
+
+### Ejemplo: radio
+
+```HTML
+<form action="procesar.php" method="post">
+Sexo:
+  <INPUT TYPE="radio" NAME="sexo" VALUE="M" CHECKED >Mujer
+  <INPUT TYPE="radio" NAME="sexo" VALUE="H">Hombre
+  <INPUT TYPE="submit">
+</form>
+
+```
+
+```PHP
+#Procesar.php
+<?PHP
+$sexo = $_REQUEST["sexo"];
+print ($sexo);
+?>
+```
+#### Ejercicio
+  Añade el nombre de la persona en el formulario y  en Procesar.php haz que se muestren  todos los datos del formulario .
+
+--
+
+### Cuestiones:
+
+- ¿Cuál es la petición al servidor al pulsar submit/enviar?
+- ¿Diferencia entre post y get?
+- ¿Cómo probar que funciona el código PHP ?
+
+Simulando PETICIONES POST con parámetros
+
+```
+curl --data "param1=value1&param2=value2" http://hostname/resource
+```
+
+--
+
+### CHECKBOX
+
+```HTML
+<INPUT TYPE="checkbox" NAME="extras[]" VALUE="garaje" CHECKED>Garaje
+<INPUT TYPE="checkbox" NAME="extras[]" VALUE="piscina">Piscina
+<INPUT TYPE="checkbox" NAME="extras[]" VALUE="jardin">Jardín
+```
+
+```PHP
+<?php
+$extras = $_REQUEST["extras"];
+foreach ($extras as $extra)
+    print ("$extra<BR>\n");
+?>
+```
+
+--
+
+### BUTTON
+
+```HTML
+<INPUT TYPE="button" NAME="actualizar" VALUE="Actualizar datos">
+```
+
+```PHP
+<?php
+$actualizar = $_REQUEST["actualizar"];
+if ($actualizar)
+  print ("Se han actualizado los datos");
+?>
+```
+
+--
+
+### SELECT múltiple
+
+```HTML
+Idiomas:
+<SELECT MULTIPLE SIZE="3" NAME="idiomas[]">
+  <OPTION VALUE="ingles" SELECTED>Inglés
+  <OPTION VALUE="francés">Francés
+  <OPTION VALUE="alemán">Alemán
+  <OPTION VALUE="holandés">Holandés
+</SELECT>
+```
+
+```PHP
+<?php
+$idiomas = $_REQUEST["idiomas"];
+foreach ($idiomas as $idioma)
+   print ("$idioma<BR>\n");
+?>
+```
+
+
+---
+
+## 7. Sesión
+
+HTTP es un protocolo sin sesión.
+
+- ¿Cómo evitamos que pida reiteradamente la autentificación?
+- ¿Cómo recordamos el carrito de la compra?
+  
+
+--
+
+### Simulación de la Sesión
+
+- A partir de controles HTML ocultos.
+<small>```<INPUT type="hidden" name="session" value="1234">```</small>
+- URL rewriting.
+- Uso cookies.
+- Una combinación de cookie y bases de datos. (WP)
+- Usar el objeto **SESSION**  provisto por los entornos de programación como PHP, ASP o J2EE
+
+--
+
+### URL REWRITING
+
+Consiste en incluir la información del estado en la propio URL
+
+http://www.pekegifs.com/pekemundo/dibujos//comprar.asp?paso=3&producto1=01992CX&producto2=ZZ112230&
+
+--
+
+
+### Cookies
+
+Una cookie es información que un servidor puede enviar en la cabecera al cliente para que la almacene en un fichero y se reenvíe en posteriores accesos (header).
+
+Permiten:
+
+- Recordar preferencias de un cliente para generar contenido personalizado
+- Para almacenar información de sesión
+- En general: para “simular” sesiones
+- No para almacenar información privada. claves, cuentas...
+
+
+--
+
+#### Variables de las  Cookies
+
+fichero con pares nombre=valor de tamaño limitado.
+
+- name= nombre de la cookie
+- expires=DD-Month-YY HH:MM:SS GMT fecha caducidad.
+- secure=tipo de seguridad (sólo en HTTPS)
+- path= ruta específica a los recursos a los que se envía la - cookie. Por defecto lo añade el servidor.
+- domain=ámbito con el cual el cliente identifica si debe enviar la cookie al servidor
+
+--
+
+#### Ejemplo de cookies  en Chrome
+
+![Image of cookies](./media/T1/image11.jpeg)
+
+--
+
+##### Ejemplo Json de cookies:
+```
+[{
+    "domain": ".uji.es",
+    "expirationDate": 1697718905.752635,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "_ga",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": false,
+    "storeId": "0",
+    "value": "GA1.2.173852503.1662999830",
+    "id": 1
+},{
+    "domain": ".uji.es",
+    "expirationDate": 1663245305,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "_gid",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": false,
+    "storeId": "0",
+    "value": "GA1.2.478223246.1663088416",
+    "id": 2
+},]
+```
+
+--
+
+#### Contras Cookies
+
+- Privacidad: Otros servidores podrían pueden leer información de las cookies del cliente.
+- Los datos pueden ser alterados: Un usuario podría modificar el fichero de una cookie.
+- Implementación compleja: Mantener “a mano” el estado en el cliente es complicado si queremos hacerlo de manera robusta.
+- Tamaño de datos limitado: Tanto el tamaño máximo permitido por las cookies como la longitud máxima de una URL pueden darnos problemas.
+
+--
+
+### Uso de cookies
+
+- las cookies se envían del cliente al servidor en cada petición http en la cabecera y se guarda en la variable $_COOKIE que es un array.
+- Las cookies las envia el programa PHP al servidor en la cabecera con la directiva setcookie. (Antes de cualquier envio de texto a la salida estándar)
+
+--
+
+```
+<?php
+print "<p>Cookies:</p>";
+print_r($_COOKIE);
+setcookie("TestCookie0", 'PruebaALXXXX', time()+10);  
+/* expira en 10 segundos */
+setcookie("TestCookieEterna", 'Prueba');  
+/* no expira */
+print "<p>Cookies:</p>";
+print_r($_COOKIE);
+?>
+```
+[demo](http://piruleta.atwebpages.com/PHP/T1/cookies.php)
+##### Cuestión:
+- ¿Hay algún error?¿Cual?
+- ¿Que muestra por la pantalla?¿por que?
+- ¿Que hace esta sentencia?
+  ``` setcookie("TestCookie0", "PruebaALXXXX", time()-10); ```
+- ¿Como borramos una cookie?
+
+
+
+--
+
+## Objeto Session en PHP.
+
+- Php provee un sistema de gestión de sesiones mediante el objeto SESSION.
+
+- Este se inicializa con la función  "session_start()" .
+  -  Esta función generalmente busca en la cookie con un session_id, y entonces carga el fichero correspondiente a dicha sesión que tiene el nombre "sessionName", y los datos al diccionario $_SESSION. 
+  -  Si no existe la sesión, genera el session_name, envia la cookie y crea el fichero para almacenar los datos en el servidor y almacena sus valores.
+  -  "session_start()" ejecutar antes de cualquier envio de datos a la salida estándar, ya que se envía en la cabecera del HTTP.
+
+- "sessionName()" Nos devuelve el nombre de la sesión.
+
+
+
+--
+
+
+Ejemplo Sesiones
+
+```<?php
+session_start();
+print "<p>Cookies:</p>";
+var_dump($_COOKIE);
+print ("<p>Session:".session_name()."</p>");
+var_dump($_SESSION);
+if (!isset($_SESSION["activo"])) {
+    $_SESSION = array();
+    $_SESSION["activo"] = 1;
+    print "<h2>Hola</h2>";
+    $_SESSION["usuario"] = "visitante";
+} else {
+    
+    echo "<H2>bienvenido de nuevo ", $_SESSION["usuario"],"</H2>";
+}
+print "<p>SessionF:</p>";
+var_dump($_SESSION);
+?>
+```
+[demo](http://piruleta.atwebpages.com/PHP/T1/session0.php)
+
+--
+
+## Eliminar sesiones después de un rato de inactividad:
+```
+$secondsInactive = time() - $_SESSION['last_action'];
+if($secondsInactive >= $expireAfterSeconds){
+        //User has been inactive for too long.
+        //Kill their session.
+        session_unset();
+        session_destroy();
+        print "<h2>Reactivamos tu sesión</H2>";
+    }
+```
+[demo](http://piruleta.atwebpages.com/PHP/T1/session01.php)
+
+--
+
+### Ejercicios 
+
+- Hacer un programa que elimine la sessión después de 5 minutos.
+- Hacer un programa que  pida el nombre de usuario y lo guarde en la sessión.
+- Hacer un programa que muestre  "bienvenido" nombre de usuario. 
+
+
+---
+
+## 8. WEB: Autenticación de usuarios
+
+- Autentificación requiere credenciales o pruebas de identidad.
+- La autentificación de usuarios puede realizarse:
+    - Autentificación en el Servidor: En Apache los ficheros ```.htacacces```.
+    - Autentificación en el Cliente: Firma Digital.
+    - Autentificación por Programa: Escribir un programa para controlar el acceso de los usuarios.
+
+--
+
+## Proceso autentificación básica en Servidor: 
+
+Autentificación básica: Solicita al cliente un usuario y contraseña, que viajan encriptadas con codificación base 64 bits
+
+ ![Proceso Auth](./media/T4/authProcess.jpeg)
+
+--
+
+## Autentificación  Programa
+
+
+ ![Flujo del proceso autentificación?](./media/T4/authWorkflow.jpeg) 
+
+---
+
+## 9. Autorizar recursos a los usuarios
+
+Una cuestión frecuente en un sitio WEB es controlar el acceso de los usuarios a una zona determinada del mismo (autorización), para ello se requiere solicitar generalmente la Autentificación previamente.
+
+ ![Proceso autorización](./media/T4/ResourceShow.jpeg)
+
+--
+
+### Cuestiones:
+
+- ¿Hay que pedir autorización a todos los recursos que se soliciten?
+- ¿La acción “redirect” es propia de PHP o del protocolo http?
+- ¿Qué entiendes por usuario cliente, visitante, gestor,administrador?
+- ¿Qué permite el definir roles de usuario usuario?
+
+
+--
+
+#### Proceso de redirección
+
+ ![Image of Architecture](./media/T1/httpredirect.png)
+
 
 
 ---
