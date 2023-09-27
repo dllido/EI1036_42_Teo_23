@@ -1,0 +1,7 @@
+{
+   "files.associations": {
+      "*.md": "markdown",
+      "*.php": "php",
+      "iostream": "cpp"
+   }
+}
