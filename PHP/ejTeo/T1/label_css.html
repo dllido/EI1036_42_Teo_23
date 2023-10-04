@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>FomsLabels</title>
+  <link rel="stylesheet" href="./estilo1.css" type="text/css">
+</head>
+
+<body>
+
+  <header class="borde">
+    <div class="borde" id="eslogan">
+      <p>Asociación de </br>Consumidores de Comercio Electrónico </p>
+    </div>
+    <div id=a_izq class="borde">
+      <p> AECE </p>
+    </div>
+  </header>
+  <div class="borde">
+    <h3>Información sobre el producto</h3>
+    <form action="pp.php" method="post" enctype="multipart/form-data">
+      <fieldset>
+        <p>
+          <legend>Datos básicos</legend>
+          <label for="nombre">Nombre</label> <br />
+          <input type="text" name="nombre" id="nombre" size="50" maxlength="250" /><br />
+          <label for="descripcion">Descripción</label> <br />
+          <textarea name="descripcion" id="descripcion" cols="40" rows="5"></textarea><br />
+          <label for="foto">Foto</label> <br /> <input type="file" name="foto" /><br />
+          <label for="Contador">ContadorVisitas</label> <br /> <input name="contador" type="checkbox"
+            value="si" /><br />
+          <label for="idiomas">Idiomas</label>
+          <select multiple size="3" name="idiomas[]">
+            <option value="ingles" selected>inglés
+            <option value="francés">francés
+            <option value="alemán">alemán
+            <option value="holandés">holandés
+          </select>
+        </p>
+      </fieldset>
+      <fieldset>
+        <p>
+          <legend>Datos económicos</legend>
+          <label for="precio">Precio</label>
+          <input type="text" size="5" id="precio" name="precio" /> &euro;
+        </p>
+        <p><label for="impuestos">Impuestos</label>
+          <select id="impuestos" name="impuestos">
+            <option value="4" selected>4%</option>
+            <option value="7">7%</option>
+            <option value="16">16%</option>
+            <option value="25">25%</option>
+          </select>
+        </p>
+        <p>
+          <label>Promoción</label> <br />
+          <input type="radio" name="promocion" value="ninguno" checked="checked" /> Ninguno <br />
+          <input type="radio" name="promocion" value="portes" /> Transporte gratuito <br />
+          <input type="radio" name="promocion" value="descuento" /> Descuento 5%
+        </p>
+      </fieldset>
+      <p>
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Deshacer">
+      </p>
+    </form>
+
+  </div>
+
+  <footer>
+    Copyright Lola Llidó 2023©
+    <time datetime="2023-06-22">2023</time>
+  </footer>
+</body>

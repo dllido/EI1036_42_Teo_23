@@ -1,0 +1,56 @@
+body {
+
+    background-color: red;
+    margin: 10px auto;
+    padding: 15px 15px 15px 15px;
+}
+
+header {
+    min-height: 100px;
+    background-color: blue;
+    margin: 5px 5px 5px 5px;
+    padding: 15px 15px 15px 15px;
+
+}
+
+form {
+    width: 70%;
+    color: blue;
+    background-color: white;
+    color: red;
+    margin: 10 auto;
+    /* Centrado */
+    padding: 25px 25px 25px 25px;
+
+}
+
+nav,
+footer {
+    margin: 10px 10x 10px 10px;
+    /*margin-bottom: 10px;*/
+    padding: 10px;
+    text-align: center;
+    background-color: #914bb9;
+    font-size: 180%;
+
+}
+
+#eslogan {
+    position: absolute;
+    top: 30px;
+    width: 60%;
+}
+
+#a_izq {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 20%;
+    float: right
+}
+
+.borde {
+    border-color: black;
+    border-width: 3px;
+    border-style: solid;
+}

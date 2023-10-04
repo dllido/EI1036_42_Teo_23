@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<!--**
+ * * Descripción: formulario 0
+ * *
+ * * 
+ * * @author  Lola <dllido@uji.es>
+ * * @version 1
+ * *  * * -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Intro CSS </title>
+  <META name="Author" content="dllido">
+  <style>
+    #div {
+      /* basic styling */
+      width: 350px;
+      height: 200px;
+      border: 1px solid #555;
+      font: 14px Arial;
+    }
+
+    .content-box {
+      columns: 3 auto;
+    }
+
+    .flex {
+      position: absolute;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .flex>div {
+      flex: 1 1 auto;
+      width: 300px;
+    }
+
+    .arriba {
+      position: absolute;
+      top: 0;
+      border: 1px;
+      color: gray;
+      border-width: 3px;  
+      border-style: solid;
+    }
+
+    /* colors */
+    div>div:nth-child(1) {
+      background: #009246;
+    }
+
+    div>div:nth-child(2) {
+      background: #F1F2F1;
+    }
+
+    div>div:nth-child(3) {
+      background: #CE2B37;
+    }
+
+    .flex>div:hover {
+      width: 200px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <h1>Sin reglas posicionamiento</h1>
+  <div>
+    <div>uno</div>
+    <div>due</div>
+    <div>tre</div>
+  </div>
+  <h1>Usando Columns</h1>
+  <div class="content-box">
+    <div>uno</div>
+    <div>due</div>
+    <div>tre</div>
+  </div>
+  <h1>Usando Flex</h1>
+  <div class="flex">
+    <div>uno</div>
+    <div>due</div>
+    <div>tre</div>
+  </div>
+  <div class="arriba">
+    Esto lo escribo abajo y se ve arriba
+  </div>
+</body>
+
+</html>

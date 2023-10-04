@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<!--**
+ * * Descripción: formulario 0
+ * *
+ * * 
+ * * @author  Lola <dllido@uji.es>
+ * * @version 1
+ * *  * * -->
+
+<head>
+   <meta charset="UTF-8">
+   <title>Bienvenido </title>
+   <META name="Author" content="dllido">
+
+   <style>
+      @media (orientation: landscape) {
+         p {
+         background-color: gray;
+         opacity: 0.3;}
+      }
+
+      @media (orientation: portrait) {
+         p {color: green;
+         background-color: DodgerBlue;
+         opacity: .5;}
+      }
+
+      @media (min-width: 500px) and (max-width: 600px) {
+         h1 {
+            color: fuchsia;
+         }
+
+         .desc:after {
+            content: " In fact, it's between 500px and 600px wide.";
+         }
+      }
+
+
+      .container {
+         background-color: rgb(238, 250, 215);
+         width: 400px;
+         margin: 10px;
+  
+      }
+
+      #elipsis {
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         background-color: lightsalmon;
+         height: 200px;
+      }
+
+      #elipsis:hover {
+         white-space: normal;
+         overflow: visible;
+      }
+
+      #scroll {
+         background-color: lightsalmon;
+         overflow: scroll;
+         height: 200px;
+      }
+
+      #este {
+         /* basic styling */
+         width: 350px;
+         height: 200px;
+         border: 1px solid rgb(235, 41, 157);
+         font: 14px Arial;
+
+      }
+
+      .content-box {
+         columns: 3 auto;
+         border: solid 4px lightyellow;
+      }
+
+      .content-box {
+         columns: 3 auto;
+         border: solid 4px green;
+      }
+
+      div.negro {
+         border: solid 4px black;
+      }
+
+      .flex {
+         display: flex;
+         flex-direction: row-reverse;
+         border: solid 4px orange;
+      }
+
+      .flex>div {
+         flex: 1 1 auto;
+         width: 300px;
+      }
+
+      /* colors */
+      div>div:nth-child(1) {
+         background: #009246;
+      }
+
+      div>div:nth-child(2) {
+         background: #F1F2F1;
+      }
+
+      div>div:nth-child(3) {
+         background: #CE2B37;
+      }
+
+      .flex>div:hover {
+         width: 200px;
+      }
+
+      body {
+         background-image: url("https://static.uji.es/design/www.uji.es/2021/assets/img/logo-uji.png");
+         background-repeat: no-repeat;
+         background-position: top right;
+      }
+
+      form {
+         margin: 100px 20px 0 0;
+         padding: 0 40px 100px 20px;
+         background-color: aquamarine;
+      }
+
+      #der {
+         float: right;
+         border: solid 4px green;
+      }
+
+      #izq {
+         float: left;
+         border: dotted 4px blue;}
+   </style>
+
+</head>
+
+<body>
+   <header>
+      <hgroup>
+         <h1>EI1036</h1>
+         <h2>Ejercicios T1</h2>
+      </hgroup>
+   </header>
+   <h3> Texto overflow</h3>
+   <div class="container">
+      <p id="scroll" class="scroll">This is a text that should be truncated because it's too long. The dreams
+         of yesterday are the
+         hopes of today and the reality of tomorrow. Many say exploration is part of our destiny, but it’s actually our
+         duty to future generations and their quest to ensure the survival of the human species. Curious that we spend
+         more time congratulating people who have succeeded than encouraging people who have not. If you could see the
+         earth illuminated when you were in a place as dark as night, it would look to you more splendid than the moon.
+         Buy why, some say, the moon? Why choose this as our goal? And they may as well ask why climb the highest </p>
+   </div>
+   <div class="container">
+      <p id=elipsis class="truncate ">This is a text that should be truncated because it's too long. The dreams of
+         yesterday
+         are
+         the hopes of today and the reality of tomorrow. Many say exploration is part of our destiny, but it’s
+         actually our duty to future generations and their quest to ensure the survival of the human species. Curious
+         that we spend more time congratulating people who have succeeded than encouraging people who have not. If
+         you could see the earth illuminated when you were in a place as dark as night, it would look to you more
+         splendid than the moon. Buy why, some say, the moon? Why choose this as our goal? And they may as well ask
+         why climb the highest </p>
+   </div>
+
+   <h3> Nada</h3>
+   <div>cero1</div>
+   <div >uno1</div>
+   <div >dos1</div>
+   <div >tres1</div>
+
+   <h3> Float: izq der</h3>
+   <div>cero1</div>
+   <div id="der">uno1</div>
+   <div id="izq">dos1</div>
+   <div id="tres">tres1</div>
+
+   <h3> Float: der izq </h3>
+   <div>cero2</div>
+   <div id="izq">uno2</div>
+   <div id="der">dos2</div>
+   <div id="tres">tres2</div>
+
+
+</body>
+
+</html>

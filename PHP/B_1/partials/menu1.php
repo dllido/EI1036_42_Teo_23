@@ -7,7 +7,7 @@
 			<a href="?action=form_register">Registro</a>
 		</li>
 		<li>
-			<a href="?action=list">Listar</a>
+			<a href="?action=list" tabindex="-1">Listar</a>
 		</li>
 
 		<li>
@@ -17,4 +17,5 @@
 			<a href="../B_0/holaMundo.php" accesskey="H">HolaMundo</a>
 		</li>
 	</ul>
+	key H - holaMundo
 </nav>

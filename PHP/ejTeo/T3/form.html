@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<!--**
+ * * descripción: formulario 0
+ * *
+ * * 
+ * * @author  lola <dllido@uji.es>
+ * * @version 1
+ * *  * * -->
+
+<head>
+	<meta charset="utf-8">
+	<title>Bienvenido </title>
+	<meta name="author" content="dllido">
+</head>
+
+
+<body>
+<header><h1>Formulario: Ejemplos campos </h1></header>
+	<form action="./procesar.php" method="post">
+		
+		<fieldset>
+			<legend>Configuración</legend>
+		<input type="radio"  name="conf" id="c1" value="s" checked><label for="c1">SI</label>
+		<input type="radio" name="conf" id="c2" value="n"><label for="c2">NO</label>
+		</filedset>
+</fieldset> <br/>
+		<fieldset>
+			<legend>checbox de selección múltiple</legend>
+		<input type="checkbox"  name="extras[]" value="garaje" id="g" checked><label for="g">garaje</label>
+		<input type="checkbox"  name="extras[]" value="piscina" id="p"><label for="p">piscina</label>
+		<input type="checkbox" name="extra[]" value="jardin" id="j"><label for="j">jardin</label>
+		</fieldset>
+	
+		<p>
+			<label for="id">Idiomas</label>
+			<select multiple size="3" id="id" name="idiomas[]">
+				<option value="ingles" selected>inglés
+				<option value="francés">francés
+				<option value="alemán">alemán
+				<option value="holandés">holandés
+			</select>
+		</p>
+		<p>
+
+			<label for="pais">País</label>
+			<select multiple size="2" id="pais" name="pais">
+				<option value="es" selected>españa
+				<option value="fr">francia
+				<option value="gr">inglaterra
+			</select>
+			<p>¿Es multiple selección este campo?</p>
+		</p>
+		<input type="submit" value="enviar">
+	</form>
+</body>
+
+</html>
