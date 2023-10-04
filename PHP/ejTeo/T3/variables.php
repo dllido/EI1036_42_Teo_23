@@ -28,4 +28,6 @@ $a = '12345';
 echo "qwe{$a}rty";
 // This fails:
 echo "qwe$arty";
+$b=5+$a;
+print(gettype($b));
 ?>
