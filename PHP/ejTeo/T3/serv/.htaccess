@@ -1,7 +1,8 @@
 #./htaccess
 AuthType Basic
 AuthName "Password Required"
-AuthUserFile /tmp/.users_http
+#AuthUserFile /tmp/.users_http
+AuthUserFile /Users/dllido/Documents/Curso_23_24/EI1036_42/EI1036_42/PHP/ejTeo/T3/serv/.users_http
 #AuthUserFile	/storage/ssd1/406/19542406/public_html/PHP/ejTeo/T2/serv/.users_http
 Require  valid-user
 #htpasswd -c .users_http user

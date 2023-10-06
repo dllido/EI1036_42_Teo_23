@@ -1,18 +1,23 @@
 <?php
-$session_name("MiprimeraSesi");
+ini_set('display_errors', 1);
 session_start();
+print "<h1>Inicio Sesión:</h1>";
 print "<p>Cookies:</p>";
-var_dump($_COOKIE);
-print ("<p>Session:".session_name()."</p>");
-var_dump($_SESSION);
+print_r($_COOKIE);
+print "<p>Session:".session_name()."</p>";
+print_r($_SESSION);
 if (!isset($_SESSION["activo"])) {
     $_SESSION["activo"] = 1;
     print "<h2>Hola</h2>";
     $_SESSION["usuario"] = "visitante";
+    $_SESSION["visita"]=0;
 } else {
     echo "<H2>bienvenido de nuevo ", $_SESSION["usuario"],"</H2>";
+    $_SESSION["visita"]=1+$_SESSION["visita"];
 }
-print "<p>SessionF:</p>";
-var_dump($_SESSION);
-var_dump($_COOKIE);
+print "<p>Final:</p>";
+print "<p>Cookies:</p>";
+print_r($_COOKIE);
+print "<p>Session:".session_name()."</p>";
+print_r($_SESSION);
 ?>
