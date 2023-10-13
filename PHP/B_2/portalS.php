@@ -22,59 +22,60 @@ require_once(dirname(__FILE__) . "/partials/lib_utilidades.php");
 $action = (array_key_exists('action', $_REQUEST)) ? $_REQUEST["action"] : "home";
 $rol = autentificado();
 
-if (isset($_REQUEST["proceso"]))
-{switch ($_REQUEST["proceso"]){
-   case "logear":
-      $central = "/partials/login_form.php";
-      break;
-   case "auten":
-      if (autentificacion_ok("../recursos/seguro/users.csv", $_REQUEST($user), $_REQUEST($passwd)))
-
-         print('<div id="login"> Hola: $Session["user name"]<a="?proceso=log_out"> Salir </a></div>');
-      else
+if (isset($_REQUEST["proceso"])) {
+   switch ($_REQUEST["proceso"]) {
+      case "logear":
          $central = "/partials/login_form.php";
-      $error_msg = "Error autentificación";
+         break;
+      case "auten":
+         if (autentificacion_ok("../recursos/seguro/users.csv", $_REQUEST($user), $_REQUEST($passwd)))
 
-      break;
-}}
+            print('<div id="login"> Hola: $Session["user name"]<a="?proceso=log_out"> Salir </a></div>');
+         else
+            $central = "/partials/login_form.php";
+         $error_msg = "Error autentificación";
+
+         break;
+   }
+}
 
 switch ($action) {
    case "home":
       $central = "/partials/home.php";
       break;
    case "logear":
-         $central = "/partials/login_form.php";
-         break;
+      $central = "/partials/login_form.php";
+      break;
    case "log_out":
       unset($_SESSION);
-      $_SESSION=array();
+      $_SESSION = array();
       $central = "/partials/home.php";
    case "auten":
-         print_r($_REQUEST);
-         print_r("333");
-         echo dirname(__FILE__)."/recursos/seguro/users.csv"  ;
-         print $_REQUEST("user");
-         print  $_REQUEST("passwd");
-         if (autentificacion_ok(dirname(__FILE__)."/recursos/seguro/users.csv", $_REQUEST("user"), $_REQUEST("passwd")))
-            print('<div id="login"> Hola: '.$_SESSION["user name"].'<a="?proceso=log_out"> Salir </a></div>');
-         else
-            $central = "/partials/login_form.php";
+      print_r($_REQUEST);
+      if (!autentificacion_ok(dirname(__FILE__) . "/recursos/seguro/users.csv", $_REQUEST["user"], $_REQUEST["passwd"])) { #print('<div id="login"> Hola: '.$_SESSION["user_name"].'<a="?action=log_out"> Salir </a></div>');
+
+         $central = "/partials/login_form.php";
          $error_msg = "Error autentificación";
-   
-         break;
+      } else {
+         $rol = $_SESSION["user_role"];
+         $central = "/partials/home.php";
+      }
+      break;
    case "form_register":
-      $central = "/partials/form_cursos.php";
+      if ($rol != "admin") {
+         $error_msg = "No tienes permisos";
+         $central = "/partials/error.php";
+      } else
+         $central = "/partials/form_cursos.php";
       break;
 
    case "registrar":
 
       $bus = "?action=form_register";
-
-      $rol = autentificado();
       if ($rol == "admin") {
          if ((substr($_SERVER['HTTP_REFERER'], -1 * strlen($bus))) != $bus) {
             $error_msg = "Acceso directo no permitido";
-            $central = "/partials/form_register.php";
+            $central = "/partials/home.php";
          } else {
 
             $filename = dirname(__FILE__) . "/recursos/cursos.json";
@@ -117,7 +118,7 @@ switch ($action) {
 }
 
 if ($rol)
-   print('<div id="login"> Hola: $Session["user name"]<a href="?action=log_out"> Salir </a></div>');
+   print('<div id="login"> Hola: ' . $_SESSION["user_name"] . '<a href="?action=log_out"> Salir </a></div>');
 else
    print('<div id="login"> <a href="?action=logear"> Entrar </a></div>');
 
