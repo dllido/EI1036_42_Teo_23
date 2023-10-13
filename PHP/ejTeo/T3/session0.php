@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+
 session_start();
 print "<h1>Inicio Sesión:</h1>";
 print "<p>Cookies:</p>";
