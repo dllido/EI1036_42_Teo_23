@@ -1,4 +1,4 @@
 user_id,user_name,user_passwd,user_role
-admin1,administrador,admin1,admmin
-user1,lola,userlola,client
-user2,pp,userpp,client
+admin1,Administrador,admin1,admin
+user1,Lola,userlola,client
+user2,Pepe,userpepe,client
