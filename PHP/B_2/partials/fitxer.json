@@ -1,0 +1,1 @@
+{"admin1":[{"user_name":"Administrador","user_passwd":"admin1","user_role":"admin"}],"user1":[{"user_name":"Lola","user_passwd":"userlola","user_role":"client"}],"user2":[{"user_name":"Pepe","user_passwd":"userpepe","user_role":"client"}]}

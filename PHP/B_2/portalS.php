@@ -22,23 +22,6 @@ require_once(dirname(__FILE__) . "/partials/lib_utilidades.php");
 $action = (array_key_exists('action', $_REQUEST)) ? $_REQUEST["action"] : "home";
 $rol = autentificado();
 
-if (isset($_REQUEST["proceso"])) {
-   switch ($_REQUEST["proceso"]) {
-      case "logear":
-         $central = "/partials/login_form.php";
-         break;
-      case "auten":
-         if (autentificacion_ok("../recursos/seguro/users.csv", $_REQUEST($user), $_REQUEST($passwd)))
-
-            print('<div id="login"> Hola: $Session["user name"]<a="?proceso=log_out"> Salir </a></div>');
-         else
-            $central = "/partials/login_form.php";
-         $error_msg = "Error autentificación";
-
-         break;
-   }
-}
-
 switch ($action) {
    case "home":
       $central = "/partials/home.php";
@@ -49,11 +32,12 @@ switch ($action) {
    case "log_out":
       unset($_SESSION);
       $_SESSION = array();
+      $rol=False;
       $central = "/partials/home.php";
+      break;
    case "auten":
-      print_r($_REQUEST);
-      if (!autentificacion_ok(dirname(__FILE__) . "/recursos/seguro/users.csv", $_REQUEST["user"], $_REQUEST["passwd"])) { #print('<div id="login"> Hola: '.$_SESSION["user_name"].'<a="?action=log_out"> Salir </a></div>');
-
+      if (!autentificacion_ok(dirname(__FILE__) . "/recursos/seguro/users.csv", $_REQUEST["user"], $_REQUEST["passwd"]))
+       { 
          $central = "/partials/login_form.php";
          $error_msg = "Error autentificación";
       } else {
@@ -105,7 +89,7 @@ switch ($action) {
       }
 
       break;
-   case "listar":
+   case "list":
 
       $filename = dirname(__FILE__) . "/recursos/cursos.json";
       $diccionario = carregar_dades($filename);
@@ -127,9 +111,4 @@ if (isset($error_msg))
 
 require_once(dirname(__FILE__) . $central);
 require_once(dirname(__FILE__) . "/partials/footer.php");
-
-
-
-
-
 ?>
