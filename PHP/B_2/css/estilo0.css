@@ -46,6 +46,7 @@ h2 {
 
 #logo {
     float: left;
+    width: 10%;
     min-width: 80px;
 }
 

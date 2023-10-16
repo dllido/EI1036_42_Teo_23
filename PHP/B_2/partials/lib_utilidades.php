@@ -12,8 +12,7 @@
  * * 
  **/
 
-#ini_set('display_errors', 1);
-print(" ");
+
 
 /**
  * Summary of importar_dades_csv
@@ -70,7 +69,7 @@ function importar_dades0($nomFitxer)
  * @param mixed $diccionario
  * @param mixed $filename
  * Guarda un fichero Json en un directorio, devuelve false si no se ha podido escribir.
- * @return void
+ * @return mixed
  */
 function guarda_dades($diccionario, $filename)
 {
@@ -106,8 +105,10 @@ function autentificacion_ok($nomFitxer, $user, $passwd)
 { /* que carga el fitxer users.csv  y  comprueba  que existe una fila con
    $_REQUEST[“user”=user_id  y $_REQUEST[ “passwd”]
   */
-
+   print ($nomFitxer.$user.$passwd."\n");
    $dic = importar_dades_csv($nomFitxer);
+  
+   print_r($dic[$user]);
    if (isset($dic[$user]) and $dic[$user]["user_passwd"] == $passwd) {
       $_SESSION["user"] = $user;
       $_SESSION["user_name"] = $dic[$user]["user_name"];
@@ -119,15 +120,16 @@ function autentificacion_ok($nomFitxer, $user, $passwd)
 /**
  * Summary of autentificado
  * @return mixed
- * Si existe deveuelve el rol del usuario
+ * Si existe devuelve el rol del usuario
  * Si no existe devuelve falso indicando que no se ha autentificado.
  */
 function autentificado()
-{
+{  var_dump($_SESSION);
    if (isset($_SESSION["user_role"]))
       return $_SESSION["user_role"];
    return False;
 }
+
 /*
 $nomFitxer = '../recursos/seguro/users.csv';
 $dic = importar_dades0($nomFitxer);

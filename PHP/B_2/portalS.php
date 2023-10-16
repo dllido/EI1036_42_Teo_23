@@ -19,26 +19,39 @@ require_once(dirname(__FILE__) . "/partials/menu1.php");
 
 require_once(dirname(__FILE__) . "/partials/lib_utilidades.php");
 
-$action = (array_key_exists('action', $_REQUEST)) ? $_REQUEST["action"] : "home";
-$rol = autentificado();
 
+if (array_key_exists('action', $_REQUEST)) {
+   $bus = $_SERVER["SERVER_NAME"];
+
+   
+   if (array_key_exists('HTTP_REFERER', $_SERVER) and (strpos($_SERVER['HTTP_REFERER'], $bus)<0)) {
+      $error_msg = "Acceso directo no permitido";
+
+      $action = "home";
+   } else
+     {
+      $action = $_REQUEST["action"];}
+} else {
+   $action = "home";
+}
+$rol = autentificado();
+print($action);
 switch ($action) {
    case "home":
       $central = "/partials/home.php";
       break;
    case "logear":
-      $central = "/partials/login_form.php";
+      $central = "/partials/form_login.php";
       break;
    case "log_out":
       unset($_SESSION);
       $_SESSION = array();
-      $rol=False;
+      $rol = False;
       $central = "/partials/home.php";
       break;
    case "auten":
-      if (!autentificacion_ok(dirname(__FILE__) . "/recursos/seguro/users.csv", $_REQUEST["user"], $_REQUEST["passwd"]))
-       { 
-         $central = "/partials/login_form.php";
+      if (!autentificacion_ok(dirname(__FILE__) . "/recursos/seguro/users.csv", $_REQUEST["user"], $_REQUEST["passwd"])) {
+         $central = "/partials/form_login.php";
          $error_msg = "Error autentificación";
       } else {
          $rol = $_SESSION["user_role"];
@@ -48,7 +61,7 @@ switch ($action) {
    case "form_register":
       if ($rol != "admin") {
          $error_msg = "No tienes permisos";
-         $central = "/partials/error.php";
+         $central = "/partials/home.php";
       } else
          $central = "/partials/form_cursos.php";
       break;
@@ -57,48 +70,70 @@ switch ($action) {
 
       $bus = "?action=form_register";
       if ($rol == "admin") {
-         if ((substr($_SERVER['HTTP_REFERER'], -1 * strlen($bus))) != $bus) {
-            $error_msg = "Acceso directo no permitido";
+
+         $filename = dirname(__FILE__) . "/recursos/cursos.json";
+         $diccionario = carregar_dades($filename);
+         if (!isset($_REQUEST["curso"])) {
+            $error_msg = "Datos no validos";
+            $central = "/partials/form_cursos.php";
+         } else {
+            # codi, descripció, nombre alumnes màxim, nombre places vacants i els seus preus
+            $datos = ["desc", "num_max", "mat", "preu"];
+            if (!isset($diccionario[$_REQUEST["curso"]])) {
+               $diccionario[$_REQUEST["curso"]] = array();
+
+            }
+            foreach ($datos as $i) {
+               $diccionario[$_REQUEST["curso"]][$i] = $_REQUEST[$i];
+            }
+            guarda_dades($diccionario, $filename);
+
+            $central = "/partials/listar.php";
+         }}
+         else { $error_msg = "No tienes permisos";
+            $central = "/partials/home.php";}
+      
+
+
+      break;
+   case "borrar":
+      if ($rol == "admin") {
+         $filename = dirname(__FILE__) . "/recursos/cursos.json";
+         $diccionario = carregar_dades($filename);
+         if (!isset($_REQUEST["curso"])) {
+            $error_msg = "No se ha podido realizar la acción";
             $central = "/partials/home.php";
          } else {
-
-            $filename = dirname(__FILE__) . "/recursos/cursos.json";
-            $diccionario = carregar_dades($filename);
-            print_r($_REQUEST);
-            if (!isset($_REQUEST["curso"])) {
-               $error_msg = "Datos no validos";
-               $central = "/partials/form_cursos.php";
-            } else {
-               # codi, descripció, nombre alumnes màxim, nombre places vacants i els seus preus
-               $datos = ["desc", "num_max", "mat", "preu"];
-               if (!isset($diccionario[$_REQUEST["curso"]])) {
-                  $diccionario[$_REQUEST["curso"]] = array();
-
-               }
-               foreach ($datos as $i) {
-                  $diccionario[$_REQUEST["curso"]][$i] = $_REQUEST[$i];
-               }
-               guarda_dades($diccionario, $filename);
-               var_dump($diccionario);
-               $central = "/partials/listar.php";
-            }
+            unset($diccionario[$_REQUEST["curso"]]);
+            guarda_dades($diccionario, $filename);
+            $central = "/partials/listar.php";
          }
       } else {
          $error_msg = "No tienes permisos";
-         $central = "/partials/error.php";
+         $central = "/partials/home.php";
       }
-
       break;
+   case "modify":
+      if ($rol == "admin") {
+         $filename = dirname(__FILE__) . "/recursos/cursos.json";
+         $diccionario = carregar_dades($filename);
+   
+         $central = "/partials/modificar.php";
+      } else {
+         $error_msg = "No tienes permisos";
+         $central = "/partials/home.php";
+      }
+         break;
    case "list":
 
       $filename = dirname(__FILE__) . "/recursos/cursos.json";
       $diccionario = carregar_dades($filename);
-      var_dump($diccionario);
+
       $central = "/partials/listar.php";
       break;
    default:
       $error_msg = "Accion no permitida";
-      $central = "/partials/error.php";
+      $central = "/partials/home.php";
 }
 
 if ($rol)
