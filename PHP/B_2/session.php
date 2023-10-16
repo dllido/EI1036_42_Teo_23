@@ -17,7 +17,7 @@ if (!isset($_SESSION["activo"])) {
     $_SESSION["visitado"]=[];
 
 } else {
-    echo "<H2>bienvenido de nuevo </H2>";
+    #echo "<H2>bienvenido de nuevo </H2>";
     $_SESSION["visita"]=1+$_SESSION["visita"];
     $_SESSION["visitado"][]=$_SERVER['REQUEST_URI'];
     $now = time();
@@ -26,12 +26,12 @@ if (!isset($_SESSION["activo"])) {
         session_unset();
         session_destroy();
         session_start();
-        print("<h4>Has permanecido demasiado tiempo inactivo<h4>");
+        #print("<h4>Has permanecido demasiado tiempo inactivo<h4>");
     }
 
     // either new or old, it should live at most for another hour
-    $_SESSION['discard_after'] = $now + 30;
+    $_SESSION['discard_after'] = $now + 300;
 }
 //Eliminar cuando funcione bien:
-print_r($_SESSION)
+#print_r($_SESSION)
 ?>

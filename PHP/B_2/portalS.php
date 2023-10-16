@@ -12,13 +12,13 @@
  * * mostrara el formulario de registro. Si no hay nada la página principal.
  **/
 
-require_once(dirname(__FILE__) . "/session.php");
+
 require_once(dirname(__FILE__) . "/partials/header1.php");
 require_once(dirname(__FILE__) . "/partials/menu1.php");
 
 
 require_once(dirname(__FILE__) . "/partials/lib_utilidades.php");
-
+require_once(dirname(__FILE__) . "/session.php");
 
 if (array_key_exists('action', $_REQUEST)) {
    $bus = $_SERVER["SERVER_NAME"];
@@ -35,7 +35,6 @@ if (array_key_exists('action', $_REQUEST)) {
    $action = "home";
 }
 $rol = autentificado();
-print($action);
 switch ($action) {
    case "home":
       $central = "/partials/home.php";
@@ -45,8 +44,9 @@ switch ($action) {
       break;
    case "log_out":
       unset($_SESSION);
-      $_SESSION = array();
+      session_destroy();
       $rol = False;
+
       $central = "/partials/home.php";
       break;
    case "auten":

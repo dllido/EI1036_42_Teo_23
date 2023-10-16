@@ -105,10 +105,10 @@ function autentificacion_ok($nomFitxer, $user, $passwd)
 { /* que carga el fitxer users.csv  y  comprueba  que existe una fila con
    $_REQUEST[“user”=user_id  y $_REQUEST[ “passwd”]
   */
-   print ($nomFitxer.$user.$passwd."\n");
+  
    $dic = importar_dades_csv($nomFitxer);
   
-   print_r($dic[$user]);
+ 
    if (isset($dic[$user]) and $dic[$user]["user_passwd"] == $passwd) {
       $_SESSION["user"] = $user;
       $_SESSION["user_name"] = $dic[$user]["user_name"];
@@ -124,7 +124,7 @@ function autentificacion_ok($nomFitxer, $user, $passwd)
  * Si no existe devuelve falso indicando que no se ha autentificado.
  */
 function autentificado()
-{  var_dump($_SESSION);
+{  
    if (isset($_SESSION["user_role"]))
       return $_SESSION["user_role"];
    return False;
