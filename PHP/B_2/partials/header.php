@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<META name="Author" content="Author Information"><!DOCTYPE html>
 <html lang="es">
 
 <head>

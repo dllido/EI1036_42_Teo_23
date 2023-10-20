@@ -1,5 +1,5 @@
 
-  <legend>Listado  Cursos</legend>
+  <legend>Listado Cursos</legend>
  <ul>
   	<?php foreach ($diccionario as $dato=> $datos) {?>
     <form method="POST" ="?action=registrar">
@@ -8,7 +8,6 @@
     </td><td>
     <input type="submit" value="Modificar">
     </td><td>
-	
             <a href="?action=borrar&curso=<?php print ($dato)?>" > Borrar </a>
             </td>
             </tr>
