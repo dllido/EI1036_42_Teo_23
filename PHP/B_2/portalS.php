@@ -12,6 +12,7 @@
  * * mostrara el formulario de registro. Si no hay nada la página principal.
  **/
 
+ini_set('display_errors', 1);
 require_once(dirname(__FILE__) . "/session.php");
 require_once(dirname(__FILE__) . "/partials/header1.php");
 require_once(dirname(__FILE__) . "/partials/menu1.php");

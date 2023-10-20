@@ -6,13 +6,11 @@
     <tr><td>
     <input type="text" id="nombre" name="curso" value=<?php print ($dato)?> readonly>
     </td><td>
-    <input type="submit" value="Enviar">
+    <input type="submit" value="Modificar">
     </td><td>
 	
             <a href="?action=borrar&curso=<?php print ($dato)?>" > Borrar </a>
-            </td><td>
-            <a href="?action=modificar&curso<?php print($dato)?>" > Modificar </a>
-            </td><td>
+            </td>
             </tr>
     </form>
     <?php }?>

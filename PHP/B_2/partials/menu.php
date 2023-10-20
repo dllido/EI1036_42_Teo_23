@@ -1,3 +1,8 @@
+<? if (defined('ACCESO_PERMITIDO') === false) {
+  header('HTTP/1.0 403 Forbidden');
+  exit();
+}?>
+
 <nav>
 	<ul>
 		<li>

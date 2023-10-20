@@ -4,11 +4,10 @@
 ini_set('session.gc_maxlifetime', 480);
 
 // each client should remember their session id for EXACTLY 1 hour
-session_set_cookie_params(80);
+session_set_cookie_params(480);
 
 
-//Mostrar posibles errores 
-ini_set('display_errors', 1);
+
 session_start();
 
 if (!isset($_SESSION["activo"])) {
@@ -33,5 +32,5 @@ if (!isset($_SESSION["activo"])) {
     $_SESSION['discard_after'] = $now + 300;
 }
 //Eliminar cuando funcione bien:
-#print_r($_SESSION)
+print_r($_SESSION)
 ?>

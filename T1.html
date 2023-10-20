@@ -66,7 +66,8 @@
       Reveal.on('ready', event => {
          var titPres = document.createElement('aside')
          titPres.appendChild(document.createTextNode(document.title))
-         titPres.className = "titPres"         var parentN = document.querySelector('div.slide-number')
+         titPres.className = "titPres"        
+         var parentN = document.querySelector('div.slide-number')
          parentN.insertBefore(document.createTextNode(document.title), parentN.firstChild)
          document.body.appendChild(titPres)
       });
