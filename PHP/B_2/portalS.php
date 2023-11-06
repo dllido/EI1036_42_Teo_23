@@ -16,26 +16,29 @@ ini_set('display_errors', 1);
 require_once(dirname(__FILE__) . "/session.php");
 require_once(dirname(__FILE__) . "/partials/header1.php");
 require_once(dirname(__FILE__) . "/partials/menu1.php");
-
-
 require_once(dirname(__FILE__) . "/partials/lib_utilidades.php");
 
 
-if (array_key_exists('action', $_REQUEST)) {
-   $bus = $_SERVER["SERVER_NAME"];
+function existe_referer_valido()
+{
+   if ((array_key_exists('HTTP_REFERER', $_SERVER)) && (strpos($_SERVER['HTTP_REFERER'], $_SERVER["SERVER_NAME"]) )) {
+      return True;
+   }
+   return False;
+}
 
-   
-   if (array_key_exists('HTTP_REFERER', $_SERVER) and (strpos($_SERVER['HTTP_REFERER'], $bus)<0)) {
+$action = "home";
+
+if (array_key_exists('action', $_REQUEST)) {
+   if (!existe_referer_valido()) {
       $error_msg = "Acceso directo no permitido";
 
-      $action = "home";
    } else
-     {
-      $action = $_REQUEST["action"];}
-} else {
-   $action = "home";
+      $action = $_REQUEST["action"];
 }
-$rol = autentificado();
+
+
+$rol = autorizacion();
 switch ($action) {
    case "home":
       $central = "/partials/home.php";
@@ -90,10 +93,12 @@ switch ($action) {
             guarda_dades($diccionario, $filename);
 
             $central = "/partials/listar.php";
-         }}
-         else { $error_msg = "No tienes permisos";
-            $central = "/partials/home.php";}
-      
+         }
+      } else {
+         $error_msg = "No tienes permisos";
+         $central = "/partials/home.php";
+      }
+
 
 
       break;
@@ -118,13 +123,13 @@ switch ($action) {
       if ($rol == "admin") {
          $filename = dirname(__FILE__) . "/recursos/cursos.json";
          $diccionario = carregar_dades($filename);
-   
+
          $central = "/partials/modificar.php";
       } else {
          $error_msg = "No tienes permisos";
          $central = "/partials/home.php";
       }
-         break;
+      break;
    case "list":
 
       $filename = dirname(__FILE__) . "/recursos/cursos.json";
@@ -138,7 +143,7 @@ switch ($action) {
 }
 
 if ($rol)
-   print('<div id="login"> Hola: ' . $_SESSION["user_name"] . '<a href="?action=log_out"> Salir </a></div>');
+   print('<div id="login"> Hola: ' . $_SESSION["user_name"] . '<a href="?action=log_out"> Sa1r </a></div>');
 else
    print('<div id="login"> <a href="?action=logear"> Entrar </a></div>');
 

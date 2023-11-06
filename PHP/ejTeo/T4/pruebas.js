@@ -5,6 +5,7 @@ console.log(a);
 var b=8;
 typeof (c);
 
+
 //EJEMPLO 1
 
 

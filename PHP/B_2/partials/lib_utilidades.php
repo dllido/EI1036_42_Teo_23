@@ -123,7 +123,7 @@ function autentificacion_ok($nomFitxer, $user, $passwd)
  * Si existe devuelve el rol del usuario
  * Si no existe devuelve falso indicando que no se ha autentificado.
  */
-function autentificado()
+function autorizacion()
 {  
    if (isset($_SESSION["user_role"]))
       return $_SESSION["user_role"];

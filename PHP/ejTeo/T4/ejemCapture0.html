@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>test</title>
+    
+    <style>
+        div {
+            border: 1px solid red;
+            padding: 5px;
+            min-height: 10px;
+        }
+    </style>
+</head>
+<body>
+   <div id="parent">
+      <button id="target" style="padding: 1em 0.8em;">
+          Trigger event
+      </button>
+  </div>
+  <script>
+   var parent = document.getElementById('parent');
+   var target = document.getElementById('target');
+   
+   // "target" will trigger in the order of register (addEventListener()), capture / bubble don't affect the order
+   // #2
+   target.addEventListener('click', function (e) { 
+   console.log('Target Bubble 1');
+   // e.stopPropagation();
+   }, false);
+   
+   // #3
+   target.addEventListener('click', function (e) { 
+   console.log('Target Capture');
+   // e.stopPropagation();
+   }, true);
+   
+   // #4
+   target.addEventListener('click', function (e) { 
+   console.log('Target Bubble 2');
+   // e.stopPropagation();
+   }, false);
+   
+   // #1 : "parent capture" first
+   parent.addEventListener('click', function (e) { 
+   console.log('Parent Capture');
+   // e.stopPropagation();
+   }, true);
+   
+   // #5 : "parent bubble" last
+   parent.addEventListener('click', function (e) { 
+   console.log('Parent Bubble');
+   // e.stopPropagation();
+   }, false);  </script>
+</body>
+</html>
