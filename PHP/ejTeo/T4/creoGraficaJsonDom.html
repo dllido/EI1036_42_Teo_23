@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Hola chart</title>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script type="text/javascript">
+      const data = [
+      { year: 2010, count: 10 },
+      { year: 2011, count: 20 },
+      { year: 2012, count: 15 },
+      { year: 2013, count: 25 },
+      { year: 2014, count: 22 },
+      { year: 2015, count: 30 },
+      { year: 2016, count: 28 },
+    ];
+
+function creachart(data,elemento) {
+   console.log(document.getElementById(elemento));
+  new Chart(
+    document.getElementById(elemento),
+    {
+      type: 'bar',
+      data: {
+        labels: data.map(row => row.year),
+        datasets: [
+          {
+            label: 'Acquisitions by year',
+            data: data.map(row => row.count)
+          }
+        ]
+      }
+    }
+  );
+  
+}
+  
+function creatabla(data){
+ base = data[0]["1"];
+
+ table = document.createElement("table");
+ thead = table.createTHead();
+ tbody = document.createElement("tbody");
+ table.append(tbody)
+
+ headRow = thead.insertRow();
+ headers = Object.keys(data[0]).forEach((head) => {
+  let cell = headRow.insertCell();
+  cell.textContent = head;
+});
+
+data.forEach((obj) => {
+  row = tbody.insertRow();
+  vals = Object.values(obj);
+  vals.forEach((v) => {
+    cell = row.insertCell();
+    if (typeof(v) !== 'string') {
+      return cell.textContent = JSON.stringify(v);
+    }
+    cell.textContent = v
+  });
+});
+document.querySelector("h1").append(table)
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+   creatabla(data);
+   creachart(data,"myChart");
+   console.log(document.listAllEventListeners());}
+);
+</script>
+<style>* {
+   margin: 0;
+   padding: 0;
+}
+table {margin-top:10px;
+}
+
+table thead td {
+   padding: 0.5em;
+   text-transform: uppercase;
+   font-weight: bold;
+   border: 3px solid rgb(154, 71, 255);
+} 
+
+table td {
+   padding: 0.5em;
+   border: 1px solid tomato;
+} 
+
+table td:hover {
+   background-color: violet;
+} 
+
+table td:focus {
+   background-color: grey;
+}</style>
+</head>
+
+<body>
+   <h1>Abajo aparecerá la tabla</h1>
+   <div>
+      <h1>Abajo aparecerá la gráfica</h1>
+      <canvas id="myChart"></canvas>
+    </div>
+</body>
+
+</html>
