@@ -122,13 +122,14 @@
   }
 
  .reveal pre>code{
-    overflow: scroll;
+    overflow: auto;
+    scrollbar-width:thin;
     max-height: 600px;
-    margin: 5px 5px 5px 5px;
-    padding:2px 2px 2px 2px;
+    /*margin: 5px 5px 5px 5px;
+    padding:2px 2px 2px 2px;*/
     border:0px;
-    font-size: .8em;
-    line-height: .8em;
+    font-size: .7em;
+    /*line-height: .9em;*/
     box-shadow: none;
     width: 100%;
 
