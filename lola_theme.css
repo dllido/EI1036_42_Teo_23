@@ -51,10 +51,15 @@
   
   /* All your print styles go here */
   #header, #footer, #nav,#customcontrols,.controls,.slide-menu-button { display: none !important; } 
-  .reveal pre>code {margin:0 0 0 0 !important;padding: 0 0 0 0 !important; border: 0px !important}
- }
+  .reveal pre>code {
+    margin:0 0 0 0 !important;
+    padding: 0 0 0 0 !important; 
+    border: 0px !important;
+    overflow: auto;
+    scrollbar-width:thin;}
+}
 
-
+.reveal a{font-size: 0.7em;}
  .reveal section {
    top: 15%;
    margin: 0  0  0 0;
@@ -120,8 +125,7 @@
   
   background:rgba(199, 197, 197, 0.5);
   }
-
- .reveal pre>code{
+  .reveal pre>code{
     overflow: auto;
     scrollbar-width:thin;
     max-height: 600px;
@@ -129,7 +133,7 @@
     padding:2px 2px 2px 2px;*/
     border:0px;
     font-size: .7em;
-    /*line-height: .9em;*/
+    line-height: .9em;
     box-shadow: none;
     width: 100%;
 
