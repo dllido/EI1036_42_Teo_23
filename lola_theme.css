@@ -52,9 +52,10 @@
   /* All your print styles go here */
   #header, #footer, #nav,#customcontrols,.controls,.slide-menu-button { display: none !important; } 
   .reveal pre>code {
-    margin:0 0 0 0 !important;
-    padding: 0 0 0 0 !important; 
+
     border: 0px !important;
+    font-size: .7em;
+    line-height: .9em;
     overflow: auto;
     scrollbar-width:thin;}
 }
@@ -135,7 +136,6 @@
     font-size: .7em;
     line-height: .9em;
     box-shadow: none;
-    width: 100%;
 
     }
 
