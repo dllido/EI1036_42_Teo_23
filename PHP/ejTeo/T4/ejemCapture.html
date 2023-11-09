@@ -22,16 +22,16 @@
             event.currentTarget.style.borderColor = "blue";
         }
         function fun2(event) {
-            event.target.style.borderColor = "purple";
-            event.currentTarget.style.borderColor = "yelow";
+            event.target.style.borderColor = "black";
+            event.currentTarget.style.borderColor = "yellow";
         }
         function load() {
             var divs = document.getElementsByTagName('div');
-            divs[1].addEventListener('dblclick', fun1, true);
-            divs[3].addEventListener('dblclick', fun2, true);
+            divs[1].addEventListener('dblclick', fun1);
+            divs[3].addEventListener('dblclick', fun2);
             for (var i = 0; i < divs.length; i++) {
-                divs[i].addEventListener('click', capture, true);
-                divs[i].addEventListener('click', bubble, false);
+                divs[i].addEventListener('click', capture,true);
+                divs[i].addEventListener('click', bubble);
             }
         }
         function log(msg) {
@@ -40,11 +40,11 @@
             x.innerHTML = '<p>' + msg + '</p>';
             node.appendChild(x);
         }
-        document.addEventListener("DOMContentLoaded"    , load, false);
+        document.addEventListener("DOMContentLoaded", load);
     </script>
     <style>
         div {
-            border: 1px solid red;
+            border: 3px solid red;
             padding: 5px;
             min-height: 10px;
         }

@@ -3,10 +3,9 @@
     $doc = new DOMDocument();
     $doc->loadHTML ($html);
     $h2 = $doc->createElement('h2');
-    $h1= $doc->getElementsByTagName("h1")[0];
-    $h1->parentNode->appendChild($h2);
+    $h1= $doc->getElementsByTagName("h1");
+    $h1[0]->parentNode->appendChild($h2);
     $h2->appendChild($doc->createTextNode('Esto es el H2'));
-    
     $doctype="<!DOCTYPE html >";
     echo $doctype.$doc->saveHTML();
     ?>

@@ -11,17 +11,13 @@
       node0 = val;
       console.info("nodo a borrar:" + node0.nodeName);
       console.info("val:" + val.nodeName);
-
       var node = val.parentNode;
       node.removeChild(node0)
-
       alert("¿Algo borrado ?");
     }
 
     function recuperar(Id) {
-
       var node = document.getElementById(Id);
-
       node.appendChild(node0);
       alert("nodo recuperado:");
 
@@ -37,7 +33,6 @@
     <p id="borrar">Mueve ratón <span onMouseOver="borrar(this) ;"> AQUÍ</span>:</p>
     <p>Venga, Has borrado algo ¿Necesitas Ayuda?</span></p>
     <p><span onClick="recuperar('borrar');">PULSA AQUI</span> para recuperar el original</p>
-
     <p>FIN</p>
   </div>
 </body>
