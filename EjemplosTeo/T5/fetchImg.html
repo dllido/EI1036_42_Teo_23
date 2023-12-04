@@ -1,0 +1,79 @@
+<html>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>Fetch IMG</title>
+   <script type="text/javascript">
+      function cargaFech(src_url, lugar) {
+         fetch(src_url)
+            .then(
+               function (response) {
+                  if (response.status !== 200) {
+                     console.log('We have a problem. Status Code: ' +
+                        response.status);
+                     return false;
+                  }
+                  // Examine the text in the response
+                  response.text().then(data => {
+                     p=document.createElement("p");
+                     p.innerHTML = data;
+                     lugar.appendChild(p);
+                     console.log('Correcto ');
+                  });
+               }
+            )
+            .catch(function (err) {
+               console.log('Fetch Error :-S', err);
+            });
+         console.log("Fin");
+         return true;
+      }
+      function cargaFechImage(src_url, lugar) {
+         fetch(src_url)
+            .then(
+               function (response) {
+                  if (response.status !== 200) {
+                     console.log('We have a problem. Status Code: ' +
+                        response.status);
+                     return false;}
+                  response.blob().then(data => {
+                     var objectURL = URL.createObjectURL(data);
+                     lugar.src = objectURL;
+                     console.log('Correcto ');
+                  });})
+            .catch(function (err) {
+               console.log('Fetch Error :-S', err);});
+         console.log("Fin");
+         return true;
+      }
+      function detectores() {
+         lugar = document.querySelector("#divi");
+         enlace = document.querySelector("#txt");
+         enlace.addEventListener("click", function (event) {
+            if (cargaFech(event.target.href, lugar) == true) {
+               event.preventDefault()
+            } });
+         document.querySelector("#img").addEventListener("click", function (event) {
+            if (cargaFechImage(event.target.href, lugar.querySelector("img")) == true) {
+               event.preventDefault()
+            }});}
+      document.addEventListener("DOMContentLoaded", function () {
+         detectores()
+      });
+   </script>
+</head>
+
+<body>
+   <h1>Hola Mundo<h1>
+         <nav>
+            <p><a id="txt" href="./texto.txt"> Texto </a>
+            <p>
+               <p><a id="img" href="../../media/image8.png"> Imagen</a>
+                  <p>
+         </nav>
+         <div id="divi">
+            <img alt="Aparecerá la Imagen"></img>
+         </div>
+</body>
+
+</html>

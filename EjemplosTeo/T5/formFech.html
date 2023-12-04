@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<script type="text/javascript">
+            async function enviaForm(evento) {
+               try {
+                  evento.preventDefault();
+                  let url = evento.target.getAttribute("action")
+                  let data =new FormData(evento.target)
+                  let init = {
+                     method: 'POST',
+                     body: data
+                  };
+                  let request0 = new Request(url,init);
+                  const response = await fetch(request0);
+                  if (!response.ok) {
+                     throw Error(response.statusText);
+                  }
+                  const result = await response.text();
+                  p = document.createElement("p");
+                  p.innerHTML = "Resultado:"+result;
+                  evento.target.appendChild(p);
+                  console.log('Envio Correcto');
+               } catch (error) {
+                  console.log('Envio Incorrecto:'+error);
+               }
+            
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+               if (document.forms.length > 0) {
+                  document.forms[0].addEventListener("submit", function (event) {
+                     enviaForm(event);
+               })
+            }})
+         </script>
+			</head>
+<body>
+	
+
+<h1>Central</h1>
+
+<form method="post" id="form_log" action="./recibo.php">
+	<p>
+	<label for="Nombre">Nombre </label>
+	<input
+		type="text"
+		name="user_name"
+		placeholder="Maria"
+		pattern="[a-zA-Z]{3,15}"
+		title="Sólo letras"
+      id="Nombre"
+		required >
+
+		</p>
+      <p>
+         <label for="Years">Años </label>
+         <input
+            type="number"
+            name="user_years"
+            id="Years"
+            required 
+            min="16" max="95">
+            </p>
+			<input name="Enviar" type="submit">
+	</form>
+</body>
+</html>

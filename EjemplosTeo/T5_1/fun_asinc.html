@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hola</title>
+  <script type="text/javascript">
+
+    function resolveAfter2Seconds(x) {
+      //esto devuelve una promesa convalor x
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(x);
+        }, 2000);
+      });
+    }
+
+    async function add1(x) {
+      //ejecución en serie
+      const a = await resolveAfter2Seconds(20);
+      const b = await resolveAfter2Seconds(30);
+      return x + a + b;
+    }
+
+    add1(10).then((v) => {
+      console.log(v); // prints 60 after 4 seconds.
+    });
+
+    async function add2(x) {
+      //ejecución en paralelo
+      const p_a = resolveAfter2Seconds(20);
+      const p_b = resolveAfter2Seconds(30);
+      return x + (await p_a) + (await p_b);
+    }
+
+    add2(10).then((v) => {
+      console.log(v); // prints 60 after 2 seconds.
+    });
+    function add1s(x) {
+      //ejecución en serie
+      resolveAfter2Seconds(20).then((data) => 
+        {
+         resolveAfter2Seconds(30)console.log("success: " + data))
+      const b = resolveAfter2Seconds(30);
+      return new Promise((resolve) => {resolve(x + a + b);})
+    }
+    add1s(10).then((v) => {
+      console.log(v); // prints 60 after 2 seconds.
+    });
+  </script>
+  <script>
+    a=new Promise(function(resolve, reject) {
+
+      setTimeout(() => resolve(1), 1000);
+    
+    })
+    a.then(function(result) {
+    
+      alert(result); // 1
+    
+      return new Promise((resolve, reject) => { // (*)
+        setTimeout(() => resolve(result * 2), 1000);
+      });
+    
+    }).then(function(result) { // (**)
+    
+      alert(result); // 2
+    
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(result * 2), 1000);
+      });
+    
+    }).then(function(result) {
+    
+      alert(result); // 4
+    
+    });
+
+    c=a.then(function(result) {
+    
+      alert(result); // 1
+    
+      return new Promise((resolve, reject) => { // (*)
+        setTimeout(() => resolve(result * 2), 1000);
+      });).
+  </script>
+  <script>
+    function resolveAfter2Seconds("/article/promise-chaining/one.js")
+    .then(script => resolveAfter2Seconds("/article/promise-chaining/two.js"))
+    .then(script => resolveAfter2Seconds("/article/promise-chaining/three.js"))
+    .then(script => {
+      // los scripts se cargaron, podemos usar las funciones declaradas en ellos
+      one();
+      two();
+      three();
+    });
+  
+    function resolveAfter2Seconds(x) {
+      //esto devuelve una promesa convalor x
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(x);
+        }, 2000);
+      });
+    }
+    resolveAfter2Seconds("/article/promise-chaining/one.js").then(script1 => 
+      resolveAfter2Seconds("/article/promise-chaining/two.js")).then(script2 => 
+        resolveAfter2Seconds("/article/promise-chaining/three.js")).then(script3 => 
+          {
+        // los scripts se cargaron, podemos usar las funciones declaradas en ellos
+        one();
+        two();
+        three();
+      });
+
+
+      
+      
+      resolveAfter2Seconds("/article/promise-chaining/one.js").then(script1 => {
+        alert(script1);
+        resolveAfter2Seconds("/article/promise-chaining/two.js").then(script2 =>{
+        alert(script2);
+        resolveAfter2Seconds("/article/promise-chaining/three.js").then(script3 =>{ 
+        alert(script3);
+        // los scripts se cargaron, podemos usar las funciones declaradas en ellos
+        alert(script1);
+        alert(script2);
+      }); 
+      });
+    });
+  
+a=resolveAfter2Seconds("/article/promise-chaining/one.js")
+
+aa=a.then(script1 => {
+      alert(script1);
+      resolveAfter2Seconds("/article/promise-chaining/two.js").then(script2 =>{
+      return(script2);});});
+bb=a.then(script11 => {  
+      alert(script11);
+      resolveAfter2Seconds("/article/promise-chaining/three.js").then(script22 =>{ 
+      // los scripts se cargaron, podemos usar las funciones declaradas en ellos
+      return(script22);
+    }); 
+  });
+alert({await aa}+{await bb});
+  
+  </script>
+</head>
+<body>
+ <p> Hola mundo</p>
+</body>
+</html>
+  

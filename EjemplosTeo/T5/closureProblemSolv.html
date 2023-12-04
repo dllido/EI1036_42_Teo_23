@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>TEMPLATE</title>
+    <title>Clousure Bucles</title>
     <script>
         function showHelp(help1) {
             document.getElementById('help').innerHTML = help1;
@@ -18,9 +18,8 @@
                 document.getElementById(item.id).addEventListener("focus", function () { showHelp(item.help) });
             }
         }
-        document.addEventListener("DOMContentLoaded", function () { setupHelp();});
-        document.addEventListener("change", function () { setupHelp();});
-
+        document.addEventListener("DOMContentLoaded", function () { setupHelp(); });
+        
     </script>
 </head>
 

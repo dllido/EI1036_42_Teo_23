@@ -21,11 +21,10 @@
 1. HTTP Asíncrono: AJAX
 2. Funciones Anidadas: Clousure/Callback(NUEVO)
 3. Promesas - Promise
-4. Async/Await(NUEVO)
-5. CORS (NUEVO)
-6. API FETCH
-7. Servicios Web
-8. Seguridad
+4. API FETCH
+5. CORS
+6. Servicios Web
+7. Seguridad
   
 
 
@@ -186,7 +185,7 @@ node.innerHTML=Ajax1.responseText;
 
 ### Ejemplo: Carga hiperenlaces de forma asíncrona
 
-https://www3.uji.es/~dllido/EI1036_42/T5/AsincroAjax.html
+https://piruletas3.000webhostapp.com/PHP/ejTeo/T5/AsincroAjax.html
 
 ```js
 function cargaAjax(src_url, l) {
@@ -293,13 +292,12 @@ console.log(suma10(suma5(2)); // muestra 12
 --
 
 #### Cuestión: 
-- ¿Qué función es el clousure?
+- ¿Que función es el clousure?
 - ¿Qué expresión es la contenedora?
 - ¿Qué valores  tiene el "item.id" en cada iteración?
 - ¿Qué valores  tiene el "item.help()" cuando se hace foco en el elemento con id =email?
 ```js 
-var helpText = [{ 'id': 'email', 'help': 'Correo electrónico' },
- { 'id': 'name', 'help': 'Nombre completo' },]
+var helpText = [{ 'id': 'email', 'help': 'Correo electrónico' }, { 'id': 'name', 'help': 'Nombre completo' },]
 for (var i = 0; i < helpText.length; i++) {
   var item = helpText[i];
   document.getElementById(item.id).addEventListener
@@ -307,7 +305,6 @@ for (var i = 0; i < helpText.length; i++) {
 }
 ```
 Ejemplo Problema: https://www3.uji.es/~dllido/EI1036_42/EjemplosTeo/T5/closureProblem.html
-
 Ejemplo Solución: https://www3.uji.es/~dllido/EI1036_42/EjemplosTeo/T5/closureProblemSolv.html
 
 --
@@ -388,7 +385,6 @@ Una Promesa está en uno de estos 3 estados:
   ![imagenPromesaEstado](./media/T5/estados_promesas.png)
 
 --
-
 #### Cuestiones
 
 ```js
@@ -443,11 +439,7 @@ let promiseRej = new Promise(function(resolve, reject) {
 });
 
 promiseOk.then(ee=>alert(ee))
-promiseOk.then(alert)//equivalente anterior
 promiseRej.catch(ee=>alert("error:"+ee))
-
-
-
 
 ```
 
@@ -457,23 +449,20 @@ promiseRej.catch(ee=>alert("error:"+ee))
 
 Para encadenar promesas en caso de éxito o fracaso tenemos estos métodos:
 
-- **then(onFulfilled,onRejected)** : Método para indicar que funcion ejecutar en el caso de que la promesa termine como cumplida(onFulfilled) o rechazada(onRejected).Más común usar sólo 1 parámetro.
+- **then(onFulfilled,onRejected)** : Método para indicar que funcion ejecutar en el caso de que la promesa termine como cumplida(resolve) o rechazada(reject).
 - **catch(onRejected)**: Método para indicar que hacer cuando una promesa devuelve una promesa rechazada no capturada  o una  excepción. 
 
 Estos métodos pueden:
 - Devolver un valor con return(),  método then queda resuelta adoptando el valor de retorno.
 - Si se produce un error, la Promesa devuelta por el método then es rechazada, adoptando el error como su valor.
 - Devolver una promesa 
-- Si no hay return, se devuelve una promesa resuelta/rechazada sin valor.
-
-**NOTA** Generalmente se concadenan then(onFUllfiles) o catch(Onrejected)
+- Si no hay return, se devuelve una promesa resuelta sin valor.
 
 --
 
 #### Cuestiones: 
 - ¿Cuantas promesas hay?
 - ¿Qué es a, que tipo es?. ¿Qué estado y que  valores tiene?
-- ¿Qué hace el código?
 
 ```js
 a=new Promise(function (resolve, reject) {
@@ -491,7 +480,6 @@ a=new Promise(function (resolve, reject) {
 .catch(z=>alert("error:"+z));
 
 ```
-
 --
 
 A una promesa en caso de éxito o fracaso se le  puede asignar varias acciones.
@@ -517,12 +505,28 @@ new Promise((resolve, reject) => {
 new Promise((resolve, reject) => {
   reject(new Error("Whoops!"));
 }).catch(alert); // Error: Whoops!
+```
+
+-- 
+
+#### Cuestión:
+
+¿Que hace este código y el estado/valores de las promesas
+
+```
+b=new Promise ((isDinnerTime, reject)=>{
+  const now = new Date();
+  hora=now.getHours();
+  if (hora>0) isDinnerTime(6);
+  else reject("error")})
+.then(x=>alert("exito:"+x),y=>alert("fracaso:·"+y))
+.catch(x=>alert(z=>"error:"+z));
 
 ```
 
 --
 
-## Ejemplo promesa con una promesa como resolve
+## Ejemplo promesa con una promesa 
 
 ```
 let promiseOk = new Promise(function(reject) {
@@ -565,201 +569,65 @@ isDinnerTime()
   .then((data) => console.log("success: " + data))
   .catch((data) => console.log("error: " + data));
 ```
-Si son las 12 devuelve una promesa fullfilled  u en la consola "success yes
-
-Si son las 12 devuelve una promesa rejected y en la consola "error no.
-
---
-
-#### Cuestión:
-
-¿Qué hace este código y el estado/valores de las promesas?
-
-¿Si son las 10H, si son las 14H si son las 23H?
-
-```
-b=new Promise ((isDinnerTime, reject)=>{
-  const now = new Date();
-  hora=now.getHours();
-  if (hora>12) isDinnerTime(6);
-  else reject("Durmiendo")})
-.then(x=>alert("éxito:"+x),y=>alert("fracaso:·"+y))
-.catch(x=>alert(z=>"error:"+z));
-
-```
 
 
-
+#### Cuestiones
+- Copiar en consola y ver el funcionamiento.
+- ¿Que pasa si modificamos 22 por 12
+- ¿Cuando entra en **then** y cuando en **catch**?
 
 --
 
 ![Promesas](./media/T5/image12.png)
 
+--
+
 En las promesas se pueden sustituir las promesas por funciones que devuelvan promesas.
+
+``````
+function isDinnerTime() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      const now = new Date();
+      if (now.getHours() >= 22) {
+        resolve("yes");
+      } else {
+        reject("no");
+      }
+    }, 1000);
+  });
+}
+promesa=new Promise((promiseOk,reject)=> {
+   promiseOk(5);})
+promesa.then(
+  result => alert(result), // no se ejecuta
+  error => alert(error) // muestra "Error: ¡Vaya!" después de 1 segundo
+);
+```
+
+- Copiar en consola y ver el funcionamiento.
+- Podemos ver que una acción tarda en realizarse, es un ejemplo de función asíncrona.
+- Esto es un ejemplo de funciones asíncronas pero escritas como si fueran síncronas gracias a las promesas
+- Además el callback de resolve lo hemos definido  promesaOK.
+
+
+
 
 --
 
-#### Cuestiones:
-- ¿Qué problema hay en el siguiente ejemplo?
-- ¿Qué tipo de dato es a?¿Qué es a?
 
+# Promesas y Asincronias: Problemas con Errores
+#### Ejemplo de una promesa cuyo error no se captura
 ```js
-function g(){
-  let promise = new Promise((resolve, reject) => {
-    resolve("done!")}); 
-  return(promise)
-}
-function f() {
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("done!"), 10000)});
-  return(promise)
-}
-a=f()
-a.then(alert)
-alert("fallo")
-
-```
-
-Aparece antes la alerta de fallo que la alerta alert.
-
-¿Qué pasa si a=g()?
-
-**Nota** El programa ejecuta en paralelo las sentencias sin esperar que acaben las funciones asíncronas.
-
-
-
-<!--
-#### Ejemplo error: ¿Quien captura "Whops"?
-
-
-
-```js
-
-
-function f() {
-
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => {throw new Error("Whoops!")}, 1000)
-  });
-  return(promise)
-}
-//a=g()
-a=f();
-a.catch (x=>alert(x))
-alert("I sigue ...")
-```
-El error se produce  asíncronamente, la promesa no lo puede capturar.
-Tendríamos que poner un try/catch
-
-
-
-async function f() {
-
-  let promise = await new Promise((resolve, reject) => {
-    setTimeout(() => {throw new Error("Whoops!")}, 1000)
-  });
-  return(promise)
-}
-
-a= await f();
-a.catch (x=>alert(x))
-alert("I sigue ...")
-
-
- promesa=await new Promise(function(resolve, reject) {
+new Promise(function(resolve, reject) {
   setTimeout(() => {
     throw new Error("Whoops!");
   }, 1000);
-  return promesa
-
-})
-
-if promesa: alert("correcto")
-else: alert("error")
-
-
--->
+}).catch(alert);
+``````
+El error se produce  asíncronamente, la promesa no lo puede capturar.
 
 ---
-
-
-# Asinc/await
-
-Con async/await tenemos una forma más cómoda de trabajar con promesas, y escribir el código asíncrono como si fuera síncrono.
-
-- La palabra clave **async** se pone antes de una función que devuelve una promesa.
-
-- El operador  **await** hace que JavaScript espere hasta que esa promesa termine y devuelva su resultado en rv.
-
-**[rv] = await expression;** 
-
-```js
-async function f() {
-  let promise = await new Promise((resolve, reject) => {
-    setTimeout(() => resolve("done!"), 1000)});
-  return(promise)
-}
-//a=g()
-try{ a=await f()}
-catch {alert("Fallo");exit}
-alert("I sigue ...")
-alert(a)  //¿A es una promesa?
-```
-
----
-
-##  CORS/Cross-Origin Resource Sharing 
-
-- Por seguridad JS en el intercambio de recursos de origen cruzado  no permite que una  aplicación que reside en un servidor  pueda  extraer datos de otro.
-- El uso compartido de recursos de origen cruzado (CORS- introducido en HTML5) permite a las aplicaciones web de un dominio realizar solicitudes de dominio cruzado.
-- Hay que habilitar estas llamadas tanto en el servidor como en el cliente.
-
---
-
-![corsFluxe](https://developer.mozilla.org/es/docs/Web/HTTP/CORS/cors_principle.png)
-
---
-
-
-
-### CORS en el servidor
-
-Se puede que habilitar CORS de dos formas:
-- Con un encabezado (header): 
-
-```php
-<?php header('Access-Control-Allow-Origin: *');?>
-```
-- o en el fichero .httacess:
-```txt
-Header set Access-Control-Allow-Origin "*" 
-```
-
---
-
-
-
-### CORS en el cliente
-
-- Por razones de seguridad, los navegadores restringen las peticiones HTTP de origen cruzado iniciadas desde scripts. 
-- Por ejemplo, XMLHttpRequest y la API Fetch siguen la Política Same-origin. Esto significa que una aplicación web que utilice esas API solo puede solicitar recursos del mismo origen desde el que se cargó la aplicación, a menos que la respuesta de otros orígenes incluya las cabeceras CORS adecuadas.
-
-
-
---
-
-EJEMPLO Google maps con CORS y sin CORS
-
-https://www3.uji.es/~dllido/EI1036_42/T5/webDOMIframe.html
-
-https://www.google.es/maps/@39.8466303,-0.4785588,15z
-Referrer Policy: origin
-https://cdn.jsdelivr.net/npm/chart.js
-Referrer Policy:
-strict-origin-when-cross-origin
-
----
-
 
 
 # 2. API FETCH
@@ -769,8 +637,10 @@ strict-origin-when-cross-origin
 - Utiliza las promesas de JavaScript. 
 - El objeto **Fetch** permite  solicitar recursos definidos  y devuelve un objeto **Response** que es  una promesa.
 
-Constructor:  **fetch(resource[, requestInit])**
+Constructor:
+**fetch(resource[, requestInit])***
 
+Resource puede ser simplemente una URL.
 
 --
 
@@ -792,28 +662,25 @@ fetch("./api/some.json")
   .catch(function (err) {
     console.log("Fetch Error :", err);
   });
-  console.log("Termino")
 ```
 
-
-https://www3.uji.es/~dllido/EI1036_42/T5/AsincroFetch.html
+https://piruletas3.000webhostapp.com/PHP/ejTeo/T5/AsincroFetch.html
 
 `response.status !== 200` Es un error. ¿no se debería recogerse con catch?
 
-
 --
 
-## Constructor  
+### Objeto fetch
 
-Constructor:  **fetch(resource[, requestInit])**
 
-- resource(recurso de la petición): una cadena con la **URL** 
-   o un objeto **Request**.  Objeto  con  la solicitud de un recurso para la petición Fetch.   
-- **requestInit**: Objeto JSON de inicialización de la petición, cuyos valores sobrescriben los que existen en el objeto Request. Es optativo. Estos parámetros pueden ser:
-    * Cadena **method**: request HTTP method:Por defecto GET.
-    * Objeto **headers**: request HTTP headers.
-    * Objeto **body**: request HTTP body.
-
+- resource(recurso de la petición): 
+  - una cadena con la **URL** .
+  - o un objeto **Request**.  Objeto  que  contiene los datos para la solicitud de un recurso para la petición Fetch.   
+- requestInit: Objeto JSON de inicialización de la petición, cuyos valores sobrescriben los que existen en el objeto Request. Es optativo. Estos parámetros pueden ser:
+  - Cadena **method**: request HTTP method:Por defecto GET.
+  - Objeto **headers**: request HTTP headers.
+  - Objeto **body**: request HTTP body.
+ 
 --
 
 ### Objeto Request
@@ -873,69 +740,98 @@ Tipos de respuesta:
 
 
 --
-
 #### Ejemplo de petición FETCH
-
 ```js
-function loadText(url) {
+function loadJson(url) {
   return fetch(url)
     .then(response => {
       if (response.status == 200) {
-        return response.text();
+        return response.json();
       } else {
         throw new Error(response.status);
       }
-    },x=>alert("serv"+x)).catch(e=>alert("er"+e))
+    });
 }
-
-url1='https://javascript.info/no-such-user.json' //No existe el recurso
-url2="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-url3="http://www.uji.es"
-url4="./T4.html"
-
-loadText(url)
-  .catch(x=>alert(x)) 
+url='https://javascript.info/no-such-user.json'
+loadJson(url)
+  .catch(x=>alert(x)) // Error: 404
   .then(x=>alert("ok: "+x))
 ```
-#### Cuestiones: 
-- ¿Qué pasa si llamamos a loadText con las distintas urls anteriores
+
 - ¿Qué pasa si no existe la URL?
 - Si existe que ocurre. ¿Estado/valor promesas?
 - ¿Qué pasa si el fichero json es muy grande?
+- ¿Qué pasa si url = 'http://www.uji.es'?
+
+
+--
+
+
+# Asinc/await
+
+Con async/await tenemos una forma más cómoda de trabajar con promesas, y escribir el código asíncrono como si fuera síncrono.
+
+- La palabra clave **async** se pone antes de una función que devuelve una promesa.
+
+- La palabra clave **await** hace que JavaScript espere hasta que esa promesa se establezca y devuelva su resultado.
+Sólo tiene sentido en funciones asíncronas
+
+```js
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+  let result = await promise; // wait until the promise resolves (*)
+  alert(result); // "done!"
+}
+```
+
+
+
 
 --
 
 # Peticiones Fetch asíncronas
-Podemos usar async/await para las peticiones fetch
-#### Ejemplo peticion recurso con error
+
 ```js
-url="/coleccion/obra-de-arte/triptico-del-jardin-de-las-delicias/02388242-6d6a-4e9e-a992-e1311eab3609"
-function f(url) {
-    try {let response = fetch('url');}
-    catch (err) {alert(err);}}\\ no captura el error
-a=f()
+let response = await fetch('http://www.uji.es').catch(err=>{alert(err); });
+
+let user = await response.json()
+.then (console.log(user);)
+.catch(alert );
+
 ```
 
-#### Ejemplo con async
+**NOTA:**En la notación fletxa con 1 parámetro **x=>alert(x)** se puede simplificar a **alert**
+--
+
 ```js
 async function f() {
-  try {let response = await fetch('http://no-such-url');} 
-  catch(err) {
+
+  try {
+    let response = await fetch('http://no-such-url');
+  } catch(err) {
     alert(err); // TypeError: failed to fetch
   }
 }
-a=f();
+
+f();
+
+//equivalente
+
+async function f() {
+  let response = await fetch('http://no-such-url');
+}
+
+// f() becomes a rejected promise
+f().catch(alert); // TypeError: failed to fetch // (*)
+
 ```
-
-
-
-**NOTA:**En la notación fletxa con 1 parámetro **x=>alert(x)** se puede simplificar a **alert**
-
-
 --
 
 ### Ejercicio:
-Reescribir con async/await
+REescribir con async/await
 ```js
 function loadJson(url) {
   return fetch(url)
@@ -948,12 +844,13 @@ function loadJson(url) {
     });
 }
 
-loadJson(url)
+loadJson('https://javascript.info/no-such-user.json')
   .catch(alert); // Error: 404
 ```
 
 
-<!--
+--
+
 Solución:
 async function loadJson(url) { // (1)
   let response = await fetch(url); // (2)
@@ -969,14 +866,16 @@ async function loadJson(url) { // (1)
 loadJson('https://javascript.info/no-such-user.json')
   .catch(alert); // Error: 404 (4)
 
--->
+
 
 --
 
 ### Fetch: Request Get Blob
 
 Ejemplo: Carga una imagen
-https://www3.uji.es/~dllido/EI1036_42/T5/ImageSend.html
+https://piruletas3.000webhostapp.com/PHP/ejTeo/T5/ImageSend.html
+
+
 
 
 ```js
@@ -997,12 +896,10 @@ function asyncCall() {
     });
 }
 ```
-Estudia que hace createObject URL.
-¿Donde se muestra la imagen?
 
+- ver carga imagen asíncrona
+- ver envio formulario asíncrono
 
-[EjemploAsyncImagenes](https://www3.uji.es/~dllido/EI1036_42/T5fechImg.html)
-[EjemploAsyncImagenes](https://www3.uji.es/~dllido/EI1036_42/T5fechImgAsync.html)
 
 --
 
@@ -1010,43 +907,35 @@ Estudia que hace createObject URL.
 
 ```js
 async function enviaForm(evento) {
-  try {
-    evento.preventDefault();
-    let url = evento.target.getAttribute("action")
-    let data =new FormData(evento.target)
-    let init = {
-        method: 'POST',
-        body: data
-    };
-    let request0 = new Request(url,init);
-    const response = await fetch(request0);
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    const result = await response.text();
-    p = document.createElement("p");
-    p.innerHTML = "Resultado:"+result;
-    evento.target.appendChild(p);
-    console.log('Envio Correcto');
-  } 
-  catch (error) {
-    console.log('Envio Incorrecto:'+error);
-  }
-}
+   try {
+      evento.preventDefault();
+      let url = evento.target.getAttribute("action")
+      let data = new FormData(evento.target);
+      let init = {
+         url: url,
+         method: 'post',
+         body: data
+      };
+      let request0 = new Request(init);
+      const response = await fetch(request0);
+      if (!response.ok) {
+         throw Error(response.statusText);
+      }
+      const result = await response.text();
+      console.log('Correcto devuelvo:', result);
+   } catch (error) {
+      console.log(error);
+   }
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (document.forms.length > 0) {
+}
+if (document.forms.length > 0) {
    document.forms[0].addEventListener("submit", function (event) {
       enviaForm(event);
-})}})
+   })
+}
+
 ```
 --
-
-Otros ejemplos
-
-[EjemploFormulario](https://www3.uji.es/~dllido/EI1036_42/T5formFech.html)
-[EjemploFormularioConImagenes](https://www3.uji.es/~dllido/EI1036_42/T5formFechMulty.html)
-
 
 ---
 
@@ -1129,6 +1018,55 @@ La api Rest de Wordpress permite realizar operaciones CRUD pueden afectar a cual
 
 
 
+## 10. CORS
+
+- Por seguridad JS no permite que una  aplicación que reside en un servidor  pueda  extraer datos de otro.
+- El uso compartido de recursos de origen cruzado (CORS- introducido en HTML5) permite a las aplicaciones web de un dominio realizar solicitudes de dominio cruzado.
+- Hay que habilitar estas llamadas tanto en el servidor como en el cliente.
+
+![corsFluxe](https://developer.mozilla.org/es/docs/Web/HTTP/CORS/cors_principle.png)
+
+
+
+
+
+--
+
+### CORS en el servidor
+
+Se puede que habilitar CORS de dos formas:
+- Con un encabezado (header) para permitir solicitudes de example.com: 
+
+```php
+<?php header('Access-Control-Allow-Origin: *');?>
+```
+- o en el fichero .httacess
+```
+Header set Access-Control-Allow-Origin "*" 
+```
+
+--
+
+
+
+### CORS en el cliente
+
+- Por razones de seguridad, los navegadores restringen las peticiones HTTP de origen cruzado iniciadas desde scripts. 
+- Por ejemplo, XMLHttpRequest y la API Fetch siguen la Política Same-origin. Esto significa que una aplicación web que utilice esas API solo puede solicitar recursos del mismo origen desde el que se cargó la aplicación, a menos que la respuesta de otros orígenes incluya las cabeceras CORS adecuadas.
+
+--
+
+EJEMPLO Google maps con CORS y sin CORS
+
+https://piruletas3.000webhostapp.com/PHP/ejTeo/T4/webDOMIframe.html
+
+https://www.google.es/maps/@39.8466303,-0.4785588,15z
+Referrer Policy: origin
+https://cdn.jsdelivr.net/npm/chart.js
+Referrer Policy:
+strict-origin-when-cross-origin
+
+---
 
 # 5. Seguridad
 
@@ -1190,7 +1128,7 @@ La seguridad supone un coste económico y de eficiencia.
 
 https://www.el-tiempo.net/api
 
-- ¿Qué puedes decir de este servicio web?
+- ¿Que puedes decir de este servicio web?
 - Haz un aside en una página web que muestre la información de un municipio fijo. Utiliza  Fetch_API.
 
 

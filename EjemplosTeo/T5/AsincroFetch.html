@@ -11,15 +11,11 @@
             if (response.status !== 200) {
               console.log('Looks like there was a problem. Status Code: ' +
                 response.status);
-              return;
+              return false;
             }
             // Examine the text in the response
             response.text().then(function (data) {
-              //sec = document.createElement('section');
-              //sec = document.createDocumentFragment();
-              //document.write(data);
-              //nodoScript = sec.querySelector("script");
-              //nodoDiv = sec.querySelector("div");
+              
               lugar.innerHTML = data;
               nodoScript = lugar.querySelector("script");
               if (null != nodoScript) {
@@ -28,12 +24,14 @@
                 document.head.appendChild(myScript);
                 (nodoScript.parentNode).removeChild(nodoScript);
               }
+              console.log('Correcto ');
             });
           }
         )
         .catch(function (err) {
           console.log('Fetch Error :-S', err);
         });
+      console.log("Fin");
       return true;
     }
 
@@ -56,7 +54,7 @@
 <body>
   <h1>Hola Mundo<h1>
       <nav>
-        <p><a id="login" href="./closureProblemAsinc.html"> Acceder </a>
+        <p><a id="login" href="/media/image9.png"> Acceder </a>
           <p>
       </nav>
       <div id="divi"></div>

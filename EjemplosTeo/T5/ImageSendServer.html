@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <meta charset="utf-8"> 
+                <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no" ;="">
+                <!--<meta name="viewport" content="width=device-width; height=device.height; target-densitydpi=device-dpi; initial-scale=1.0; maximumscale=1.0; user-scalable=0;" />-->
+  <title>Html5 Form</title>
+	  <script>
+      function mostrarFoto(file, imagen) {
+         var reader = new FileReader();
+         reader.addEventListener("load", function () {
+            imagen.src = reader.result;
+         });
+         reader.readAsDataURL(file);
+      }
+      
+      function asyncCall() {
+         var myImage = document.querySelector('#mi_imagen');
+         fetch('recibo.php',"post")
+         
+            .then(function (response) {
+               if (!response.ok) { throw new Error(response.statusText); }
+               response.blob().then(function(data) {
+                  var objectURL = URL.createObjectURL(data);
+                  myImage.src = objectURL;
+                });
+              
+            })
+            .catch(function (error) {
+               console.log(error);
+            })
+      }
+      
+      
+      
+      
+      
+      
+      // envia formulario
+      function enviaForm(evento) {
+      
+         evento.preventDefault();
+         let url = evento.target.getAttribute("action")
+         let data = new FormData(evento.target);
+         let init = {
+            url: url,
+            method: 'post',
+            body: data
+         };
+         let request0 = new Request(url, init);
+      
+         fetch(request0)
+            .then(function (response) {
+               if (!response.ok) { throw new Error(response.statusText); }
+               response.text().then(function(data) {
+               document.body.innerHTML = data;
+               console.log('Correcto devuelvo:', data);
+            })})
+            .catch(function (error) { console.log(error); })
+      
+      }
+      
+      
+      asyncCall();
+      var myImage = document.querySelector('#mi_imagen');
+      var fichero = document.querySelector('#fichero');
+      fichero.addEventListener("change", function (event) {
+         mostrarFoto(this.files[0], myImage);
+      })
+      if (document.forms.length > 0) {
+         document.forms[0].addEventListener("submit", function (event) {
+            enviaForm(event);
+         })
+      }</script>
+    </script>
+		 
+  </head> 
+ 
+  <body> 
+  <H1>HTML5-FormSend</H1>
+	
+<form id="envioDib" action="Image.php" method="POST" enctype="multipart/form-data">       
+	<label for="nombre" >Foto</label>	
+	<input name="nombre" type="text">
+	<br>
+	<label for="foto" >Foto</label>	
+	<input name="foto" id="fichero" type="file"><br>
+                  <input  value="Borrar" type="reset">
+                  <input  value="Enviar" type="submit">
+
+</form>
+<img id="mi_imagen" src="">
+	</body>
+</html>
