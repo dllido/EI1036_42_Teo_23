@@ -13,7 +13,7 @@
             }
             data = await response.json();
             p = document.createElement("p");
-            p.innerHTML = data;
+            p.innerHTML = JSON.stringify(data);
             lugar.appendChild(p);
             return true
          }
