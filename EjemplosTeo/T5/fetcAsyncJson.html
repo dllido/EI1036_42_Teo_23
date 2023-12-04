@@ -11,7 +11,7 @@
                   response.status);
                throw new Error(response.status)
             }
-            data = await response.text();
+            data = await response.json();
             p = document.createElement("p");
             p.innerHTML = data;
             lugar.appendChild(p);
@@ -69,7 +69,7 @@
 <body>
    <h1>Hola Mundo<h1>
       <nav>
-         <p><a id="txt" href="./texto.txt"> Texto </a>
+         <p><a id="txt" href="https://www.el-tiempo.net/api/json/v2/provincias/12/municipios/12050"> Texto </a>
          <p>
          <p><a id="img" href="./../media/image8.png"> Imagen</a>
          <p>
